@@ -8,3 +8,4 @@ C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Debug
 C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Debug\To-Ba-To-Iutta.csproj.CoreCompileInputs.cache
 C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Debug\To-Ba-To-Iutta.exe
 C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Debug\To-Ba-To-Iutta.pdb
+C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Debug\To_Ba_To_Iutta.IntroForm.resources
