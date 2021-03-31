@@ -1,0 +1,10 @@
+C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\bin\Debug\To-Ba-To-Iutta.exe.config
+C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\bin\Debug\To-Ba-To-Iutta.exe
+C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\bin\Debug\To-Ba-To-Iutta.pdb
+C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Debug\To-Ba-To-Iutta.csprojAssemblyReference.cache
+C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Debug\To_Ba_To_Iutta.SplashForm.resources
+C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Debug\To_Ba_To_Iutta.Properties.Resources.resources
+C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Debug\To-Ba-To-Iutta.csproj.GenerateResource.cache
+C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Debug\To-Ba-To-Iutta.csproj.CoreCompileInputs.cache
+C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Debug\To-Ba-To-Iutta.exe
+C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Debug\To-Ba-To-Iutta.pdb
