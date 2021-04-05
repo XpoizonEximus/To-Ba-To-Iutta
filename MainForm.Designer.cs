@@ -59,7 +59,7 @@ namespace To_Ba_To_Iutta
             // 
             // leftContainerPanel
             // 
-            this.leftContainerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(40)))), ((int)(((byte)(35)))));
+            this.leftContainerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(17)))), ((int)(((byte)(32)))));
             this.leftContainerPanel.Controls.Add(this.leftSecondPanel);
             this.leftContainerPanel.Controls.Add(this.leftSecondSeparatorPanel);
             this.leftContainerPanel.Controls.Add(this.leftFirstPanel);
@@ -281,7 +281,7 @@ namespace To_Ba_To_Iutta
             // 
             // mainPanel
             // 
-            this.mainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(82)))), ((int)(((byte)(78)))));
+            this.mainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(39)))), ((int)(((byte)(74)))));
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Name = "mainPanel";
@@ -290,7 +290,7 @@ namespace To_Ba_To_Iutta
             // 
             // titleBarPanel
             // 
-            this.titleBarPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(57)))), ((int)(((byte)(52)))));
+            this.titleBarPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(22)))), ((int)(((byte)(42)))));
             this.titleBarPanel.Controls.Add(this.minimzeButton);
             this.titleBarPanel.Controls.Add(this.closeButton);
             this.titleBarPanel.Dock = System.Windows.Forms.DockStyle.Top;
