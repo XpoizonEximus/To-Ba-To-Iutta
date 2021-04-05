@@ -12,8 +12,6 @@ namespace To_Ba_To_Iutta
 {
     public partial class MainForm : Form
     {
-        private bool logoPanelClicked = false;
-        private Point logoPanelClickedStartPoint;
 
         public MainForm(bool splash = true)
         {
@@ -27,6 +25,8 @@ namespace To_Ba_To_Iutta
             f.ShowDialog();
         }
 
+        private bool logoPanelClicked = false;
+        private Point logoPanelClickedStartPoint;
         private void roundCorners()
         {
             Rectangle Bounds = new Rectangle(0, 0, Width, Height);
@@ -41,7 +41,7 @@ namespace To_Ba_To_Iutta
             this.Region = new Region(path);
         }
 
-        #region Move Panel
+        #region Move Form Panel
         private void movePanel_MouseDown(object sender, MouseEventArgs e)
         {
             logoPanelClicked = true;

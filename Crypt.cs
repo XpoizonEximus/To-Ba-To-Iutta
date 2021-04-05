@@ -15,7 +15,12 @@ namespace To_Ba_To_Iutta
 
             public const int FormBorderRadius = 15;
 
-            public static readonly ColorTheme[] ColorThemeCollection= 
+            public static readonly System.Drawing.Size MainFormSize = new System.Drawing.Size(1025, 561);
+            public const int LeftContainerPanelWidth = 231;
+            public const int TitleBarPanelHeight = 31;
+            public static readonly Size MainPanelSize = new Size(Crypt.Constants.MainFormSize.Width - Crypt.Constants.LeftContainerPanelWidth, Crypt.Constants.MainFormSize.Height - Crypt.Constants.TitleBarPanelHeight);
+
+            public static readonly ColorTheme[] ColorThemeCollection = 
             {
                 new ColorTheme
                 (

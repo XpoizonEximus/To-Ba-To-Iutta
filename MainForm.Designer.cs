@@ -59,7 +59,7 @@ namespace To_Ba_To_Iutta
             // 
             // leftContainerPanel
             // 
-            this.leftContainerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(17)))), ((int)(((byte)(32)))));
+            this.leftContainerPanel.BackColor = Crypt.Constants.ColorThemeCollection[0].Primary;
             this.leftContainerPanel.Controls.Add(this.leftSecondPanel);
             this.leftContainerPanel.Controls.Add(this.leftSecondSeparatorPanel);
             this.leftContainerPanel.Controls.Add(this.leftFirstPanel);
@@ -69,7 +69,7 @@ namespace To_Ba_To_Iutta
             this.leftContainerPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.leftContainerPanel.Location = new System.Drawing.Point(0, 0);
             this.leftContainerPanel.Name = "leftContainerPanel";
-            this.leftContainerPanel.Size = new System.Drawing.Size(231, 585);
+            this.leftContainerPanel.Size = new System.Drawing.Size(Crypt.Constants.LeftContainerPanelWidth, 561);
             this.leftContainerPanel.TabIndex = 0;
             // 
             // leftSecondPanel
@@ -80,7 +80,7 @@ namespace To_Ba_To_Iutta
             this.leftSecondPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.leftSecondPanel.Location = new System.Drawing.Point(0, 250);
             this.leftSecondPanel.Name = "leftSecondPanel";
-            this.leftSecondPanel.Size = new System.Drawing.Size(231, 290);
+            this.leftSecondPanel.Size = new System.Drawing.Size(231, 266);
             this.leftSecondPanel.TabIndex = 7;
             // 
             // chatButton
@@ -212,7 +212,7 @@ namespace To_Ba_To_Iutta
             this.leftThirdPanel.Controls.Add(this.settingsButton);
             this.leftThirdPanel.Controls.Add(this.helpButton);
             this.leftThirdPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.leftThirdPanel.Location = new System.Drawing.Point(0, 540);
+            this.leftThirdPanel.Location = new System.Drawing.Point(0, 516);
             this.leftThirdPanel.Name = "leftThirdPanel";
             this.leftThirdPanel.Size = new System.Drawing.Size(231, 45);
             this.leftThirdPanel.TabIndex = 1;
@@ -281,22 +281,22 @@ namespace To_Ba_To_Iutta
             // 
             // mainPanel
             // 
-            this.mainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(39)))), ((int)(((byte)(74)))));
+            this.mainPanel.BackColor = Crypt.Constants.ColorThemeCollection[0].Background;
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mainPanel.Location = new System.Drawing.Point(0, 0);
+            this.mainPanel.Location = new System.Drawing.Point(231, 31);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(1164, 585);
+            this.mainPanel.Size = new System.Drawing.Size(794, 530);
             this.mainPanel.TabIndex = 1;
             // 
             // titleBarPanel
             // 
-            this.titleBarPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(22)))), ((int)(((byte)(42)))));
+            this.titleBarPanel.BackColor = Crypt.Constants.ColorThemeCollection[0].Secondary;
             this.titleBarPanel.Controls.Add(this.minimzeButton);
             this.titleBarPanel.Controls.Add(this.closeButton);
             this.titleBarPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.titleBarPanel.Location = new System.Drawing.Point(231, 0);
             this.titleBarPanel.Name = "titleBarPanel";
-            this.titleBarPanel.Size = new System.Drawing.Size(933, 31);
+            this.titleBarPanel.Size = new System.Drawing.Size(794, Crypt.Constants.TitleBarPanelHeight);
             this.titleBarPanel.TabIndex = 0;
             this.titleBarPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.movePanel_MouseDown);
             this.titleBarPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.movePanel_MouseMove);
@@ -310,7 +310,7 @@ namespace To_Ba_To_Iutta
             this.minimzeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.minimzeButton.Font = new System.Drawing.Font("Helvetica", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.minimzeButton.ForeColor = System.Drawing.Color.White;
-            this.minimzeButton.Location = new System.Drawing.Point(845, 0);
+            this.minimzeButton.Location = new System.Drawing.Point(706, 0);
             this.minimzeButton.Margin = new System.Windows.Forms.Padding(0);
             this.minimzeButton.Name = "minimzeButton";
             this.minimzeButton.Size = new System.Drawing.Size(44, 31);
@@ -327,7 +327,7 @@ namespace To_Ba_To_Iutta
             this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeButton.Font = new System.Drawing.Font("Century Gothic", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.closeButton.ForeColor = System.Drawing.Color.White;
-            this.closeButton.Location = new System.Drawing.Point(889, 0);
+            this.closeButton.Location = new System.Drawing.Point(750, 0);
             this.closeButton.Margin = new System.Windows.Forms.Padding(0);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(44, 31);
@@ -340,10 +340,10 @@ namespace To_Ba_To_Iutta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1164, 585);
+            this.ClientSize = Crypt.Constants.MainFormSize;
+            this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.titleBarPanel);
             this.Controls.Add(this.leftContainerPanel);
-            this.Controls.Add(this.mainPanel);
             this.Font = new System.Drawing.Font("Helvetica", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MainForm";
