@@ -18,7 +18,7 @@ namespace To_Ba_To_Iutta
             public static readonly System.Drawing.Size MainFormSize = new System.Drawing.Size(1025, 561);
             public const int LeftContainerPanelWidth = 231;
             public const int TitleBarPanelHeight = 31;
-            public static readonly Size MainPanelSize = new Size(Crypt.Constants.MainFormSize.Width - Crypt.Constants.LeftContainerPanelWidth, Crypt.Constants.MainFormSize.Height - Crypt.Constants.TitleBarPanelHeight);
+            public static readonly Size MainPanelSize = new Size(MainFormSize.Width - LeftContainerPanelWidth, MainFormSize.Height - TitleBarPanelHeight);
 
             public static readonly ColorTheme[] ColorThemeCollection = 
             {
@@ -36,6 +36,9 @@ namespace To_Ba_To_Iutta
                 )
             };
         }
+
+
+        public static PanelForm mainPanelForm;
     }
     public enum Procedure { encrypt, decrypt };
     public class ColorTheme

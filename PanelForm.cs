@@ -10,11 +10,12 @@ using System.Windows.Forms;
 
 namespace To_Ba_To_Iutta
 {
-    public abstract partial class PanelForm : Form
+    public partial class PanelForm : Form
     {
         public PanelForm()
         {
             InitializeComponent();
         }
+        public Panel ContainerPanel { get { return mainPanel; } }
     }
 }
