@@ -15,7 +15,18 @@ namespace To_Ba_To_Iutta
         public PanelForm()
         {
             InitializeComponent();
+            this.mainPanel.BackColor = Crypt.Constants.ColorThemeCollection[0].Background;
         }
-        public Panel ContainerPanel { get { return mainPanel; } }
+        public List<Control> ControlsList
+        {
+            get
+            {
+                List<Control> v = new List<Control>();
+                foreach (Control c in mainPanel.Controls)
+                    v.Add(c);
+                return v;
+            }
+        }
+        public Control[] ControlsArray { get { return ControlsList.ToArray(); } }
     }
 }

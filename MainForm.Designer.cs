@@ -49,6 +49,7 @@ namespace To_Ba_To_Iutta
             this.titleBarPanel = new System.Windows.Forms.Panel();
             this.minimzeButton = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
+            this.titleLabel = new System.Windows.Forms.Label();
             this.leftContainerPanel.SuspendLayout();
             this.leftSecondPanel.SuspendLayout();
             this.leftFirstPanel.SuspendLayout();
@@ -59,7 +60,7 @@ namespace To_Ba_To_Iutta
             // 
             // leftContainerPanel
             // 
-            this.leftContainerPanel.BackColor = Crypt.Constants.ColorThemeCollection[0].Primary;
+            this.leftContainerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(17)))), ((int)(((byte)(32)))));
             this.leftContainerPanel.Controls.Add(this.leftSecondPanel);
             this.leftContainerPanel.Controls.Add(this.leftSecondSeparatorPanel);
             this.leftContainerPanel.Controls.Add(this.leftFirstPanel);
@@ -69,7 +70,7 @@ namespace To_Ba_To_Iutta
             this.leftContainerPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.leftContainerPanel.Location = new System.Drawing.Point(0, 0);
             this.leftContainerPanel.Name = "leftContainerPanel";
-            this.leftContainerPanel.Size = new System.Drawing.Size(Crypt.Constants.LeftContainerPanelWidth, 561);
+            this.leftContainerPanel.Size = new System.Drawing.Size(231, 561);
             this.leftContainerPanel.TabIndex = 0;
             // 
             // leftSecondPanel
@@ -281,7 +282,7 @@ namespace To_Ba_To_Iutta
             // 
             // mainPanel
             // 
-            this.mainPanel.BackColor = Crypt.Constants.ColorThemeCollection[0].Background;
+            this.mainPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(39)))), ((int)(((byte)(74)))));
             this.mainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mainPanel.Location = new System.Drawing.Point(231, 31);
             this.mainPanel.Name = "mainPanel";
@@ -290,13 +291,14 @@ namespace To_Ba_To_Iutta
             // 
             // titleBarPanel
             // 
-            this.titleBarPanel.BackColor = Crypt.Constants.ColorThemeCollection[0].Secondary;
+            this.titleBarPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(22)))), ((int)(((byte)(42)))));
+            this.titleBarPanel.Controls.Add(this.titleLabel);
             this.titleBarPanel.Controls.Add(this.minimzeButton);
             this.titleBarPanel.Controls.Add(this.closeButton);
             this.titleBarPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.titleBarPanel.Location = new System.Drawing.Point(231, 0);
             this.titleBarPanel.Name = "titleBarPanel";
-            this.titleBarPanel.Size = new System.Drawing.Size(794, Crypt.Constants.TitleBarPanelHeight);
+            this.titleBarPanel.Size = new System.Drawing.Size(794, 31);
             this.titleBarPanel.TabIndex = 0;
             this.titleBarPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.movePanel_MouseDown);
             this.titleBarPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.movePanel_MouseMove);
@@ -336,11 +338,25 @@ namespace To_Ba_To_Iutta
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.closeFormHandler);
             // 
+            // titleLabel
+            // 
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.titleLabel.ForeColor = System.Drawing.Color.White;
+            this.titleLabel.Location = new System.Drawing.Point(6, 9);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(65, 16);
+            this.titleLabel.TabIndex = 2;
+            this.titleLabel.Text = "titleLabel";
+            this.titleLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.movePanel_MouseDown);
+            this.titleLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.movePanel_MouseMove);
+            this.titleLabel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.movePanel_MouseUp);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = Crypt.Constants.MainFormSize;
+            this.ClientSize = new System.Drawing.Size(1025, 561);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.titleBarPanel);
             this.Controls.Add(this.leftContainerPanel);
@@ -354,6 +370,7 @@ namespace To_Ba_To_Iutta
             this.leftThirdPanel.ResumeLayout(false);
             this.logoPanel.ResumeLayout(false);
             this.titleBarPanel.ResumeLayout(false);
+            this.titleBarPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -379,5 +396,6 @@ namespace To_Ba_To_Iutta
         private System.Windows.Forms.Button chatButton;
         private System.Windows.Forms.Button decryptButton;
         private System.Windows.Forms.Button encryptButton;
+        private System.Windows.Forms.Label titleLabel;
     }
 }

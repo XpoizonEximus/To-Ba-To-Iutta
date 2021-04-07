@@ -55,6 +55,6 @@ namespace To_Ba_To_Iutta
 
         #endregion
 
-        private System.Windows.Forms.Panel mainPanel;
+        protected System.Windows.Forms.Panel mainPanel;
     }
 }

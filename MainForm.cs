@@ -18,6 +18,10 @@ namespace To_Ba_To_Iutta
             if (splash) showSplashForm();
             InitializeComponent();
             roundCorners();
+            titleLabel.Text = System.Reflection.Assembly.GetEntryAssembly().Location;
+            Crypt.MainPanelForm = new TextCryptForm(Crypt.Procedure.encrypt);
+            this.mainPanel.Controls.Clear();
+            this.mainPanel.Controls.AddRange(Crypt.MainPanelForm.ControlsArray);
         }
         private void showSplashForm()
         {
