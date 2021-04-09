@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,10 @@ namespace To_Ba_To_Iutta
         {
             InitializeComponent();
             InitializeProcedure(proc);
+            Crypt.Actions.ControlRoundBorder(inputPanel, new Pen(Color.Silver, 1.0f));
+            Crypt.Actions.ControlRoundBorder(outputPanel, new Pen(Color.Silver, 1.0f));
+            Crypt.Actions.ControlRoundBorder(keyPanel, new Pen(Color.Silver, 1.0f));
+            Crypt.Actions.ControlRoundBorder(button, new Pen(Color.White, 2f));
         }
         private void InitializeProcedure(Crypt.Procedure proc)
         {
@@ -35,6 +40,11 @@ namespace To_Ba_To_Iutta
         public void SwapProcedure()
         {
             InitializeProcedure(procedure == Crypt.Procedure.encrypt ? Crypt.Procedure.decrypt : Crypt.Procedure.encrypt);
+        }
+
+        private void button_Click(object sender, EventArgs e)
+        {
+            output.Text = input.Text;
         }
     }
 }

@@ -19,9 +19,9 @@ namespace To_Ba_To_Iutta
             InitializeComponent();
             roundCorners();
             titleLabel.Text = System.Reflection.Assembly.GetEntryAssembly().Location;
-            Crypt.MainPanelForm = new TextCryptForm(Crypt.Procedure.encrypt);
+            Crypt.Data.MainPanelForm = new TextCryptForm(Crypt.Procedure.decrypt);
             this.mainPanel.Controls.Clear();
-            this.mainPanel.Controls.AddRange(Crypt.MainPanelForm.ControlsArray);
+            this.mainPanel.Controls.AddRange(Crypt.Data.MainPanelForm.ControlsArray);
         }
         private void showSplashForm()
         {
@@ -34,12 +34,12 @@ namespace To_Ba_To_Iutta
         private void roundCorners()
         {
             Rectangle Bounds = new Rectangle(0, 0, Width, Height);
-            int CornerRadius = Crypt.Constants.FormBorderRadius;
+            float CornerRadius = Crypt.Constants.FormBorderRadius;
             System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
-            path.AddArc(Bounds.X, Bounds.Y, CornerRadius, CornerRadius, 180, 90);
-            path.AddArc(Bounds.X + Bounds.Width - CornerRadius, Bounds.Y, CornerRadius, CornerRadius, 270, 90);
-            path.AddArc(Bounds.X + Bounds.Width - CornerRadius, Bounds.Y + Bounds.Height - CornerRadius, CornerRadius, CornerRadius, 0, 90);
-            path.AddArc(Bounds.X, Bounds.Y + Bounds.Height - CornerRadius, CornerRadius, CornerRadius, 90, 90);
+            path.AddArc(Bounds.X, Bounds.Y, 2 * CornerRadius, 2 * CornerRadius, 180, 90);
+            path.AddArc(Bounds.X + Bounds.Width - 2 * CornerRadius, Bounds.Y, 2 * CornerRadius, 2 * CornerRadius, 270, 90);
+            path.AddArc(Bounds.X + Bounds.Width - 2 * CornerRadius, Bounds.Y + Bounds.Height - 2 * CornerRadius, 2 * CornerRadius, 2 * CornerRadius, 0, 90);
+            path.AddArc(Bounds.X, Bounds.Y + Bounds.Height - 2 * CornerRadius, 2 * CornerRadius, 2 * CornerRadius, 90, 90);
             path.CloseAllFigures();
 
             this.Region = new Region(path);

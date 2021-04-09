@@ -47,9 +47,9 @@ namespace To_Ba_To_Iutta
             this.logoLabel = new System.Windows.Forms.Label();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.titleBarPanel = new System.Windows.Forms.Panel();
+            this.titleLabel = new System.Windows.Forms.Label();
             this.minimzeButton = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
-            this.titleLabel = new System.Windows.Forms.Label();
             this.leftContainerPanel.SuspendLayout();
             this.leftSecondPanel.SuspendLayout();
             this.leftFirstPanel.SuspendLayout();
@@ -304,6 +304,20 @@ namespace To_Ba_To_Iutta
             this.titleBarPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.movePanel_MouseMove);
             this.titleBarPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.movePanel_MouseUp);
             // 
+            // titleLabel
+            // 
+            this.titleLabel.AutoSize = true;
+            this.titleLabel.Font = new System.Drawing.Font("Helvetica", 10F);
+            this.titleLabel.ForeColor = System.Drawing.Color.White;
+            this.titleLabel.Location = new System.Drawing.Point(6, 9);
+            this.titleLabel.Name = "titleLabel";
+            this.titleLabel.Size = new System.Drawing.Size(65, 16);
+            this.titleLabel.TabIndex = 2;
+            this.titleLabel.Text = "titleLabel";
+            this.titleLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.movePanel_MouseDown);
+            this.titleLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.movePanel_MouseMove);
+            this.titleLabel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.movePanel_MouseUp);
+            // 
             // minimzeButton
             // 
             this.minimzeButton.Cursor = System.Windows.Forms.Cursors.Default;
@@ -337,20 +351,6 @@ namespace To_Ba_To_Iutta
             this.closeButton.Text = "✖";
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.closeFormHandler);
-            // 
-            // titleLabel
-            // 
-            this.titleLabel.AutoSize = true;
-            this.titleLabel.Font = new System.Drawing.Font("Helvetica", 10F);
-            this.titleLabel.ForeColor = System.Drawing.Color.White;
-            this.titleLabel.Location = new System.Drawing.Point(6, 9);
-            this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(65, 16);
-            this.titleLabel.TabIndex = 2;
-            this.titleLabel.Text = "titleLabel";
-            this.titleLabel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.movePanel_MouseDown);
-            this.titleLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.movePanel_MouseMove);
-            this.titleLabel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.movePanel_MouseUp);
             // 
             // MainForm
             // 
