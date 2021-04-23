@@ -19,7 +19,7 @@ namespace To_Ba_To_Iutta
             InitializeComponent();
             roundCorners();
             titleLabel.Text = System.Reflection.Assembly.GetEntryAssembly().Location;
-            Crypt.Data.MainPanelForm = new TextCryptForm(Crypt.Procedure.decrypt);
+            Crypt.Data.MainPanelForm = new TextCryptForm(Crypt.Procedure.encrypt);
             this.mainPanel.Controls.Clear();
             this.mainPanel.Controls.AddRange(Crypt.Data.MainPanelForm.ControlsArray);
         }

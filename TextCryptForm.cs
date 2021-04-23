@@ -6,8 +6,11 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Security.Cryptography;
 
 namespace To_Ba_To_Iutta
 {
@@ -44,7 +47,24 @@ namespace To_Ba_To_Iutta
 
         private void button_Click(object sender, EventArgs e)
         {
-            output.Text = input.Text;
+            Aes aes = Aes.Create();
+
+            SHA256 sha = SHA256.Create();
+            MemoryStream keyStream = new MemoryStream();
+            StreamWriter keystreamWriter = new StreamWriter(keyStream);
+            keystreamWriter.Write(key.Text);
+            byte[] keyb = sha.ComputeHash(keyStream);
+            aes.Key = keyb;
+
+            using (FileStream encryptfilestream = new FileStream("C:\\encr.txt", FileMode.Create))
+                using (CryptoStream encryptstream = new CryptoStream(encryptfilestream, aes.CreateEncryptor(), CryptoStreamMode.Write))
+                    using (StreamWriter encryptstreamwriter = new StreamWriter(encryptstream))
+                        encryptstreamwriter.WriteLine(input.Text);
+
+            using (FileStream decryptfilestream = new FileStream("C:\\encr.txt", FileMode.Open))
+                using (CryptoStream decryptstream = new CryptoStream(decryptfilestream, aes.CreateDecryptor(), CryptoStreamMode.Read))
+                    using (StreamReader encryptstreamreader = new StreamReader(decryptstream))
+                        output.Text = encryptstreamreader.ReadToEnd();
         }
     }
 }

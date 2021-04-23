@@ -38,8 +38,10 @@ namespace To_Ba_To_Iutta
             this.input = new System.Windows.Forms.TextBox();
             this.inputPanel = new System.Windows.Forms.Panel();
             this.outputPanel = new System.Windows.Forms.Panel();
-            this.keyPanel = new System.Windows.Forms.Panel();
             this.output = new System.Windows.Forms.TextBox();
+            this.keyPanel = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.mainPanel.SuspendLayout();
             this.inputPanel.SuspendLayout();
             this.outputPanel.SuspendLayout();
@@ -48,6 +50,8 @@ namespace To_Ba_To_Iutta
             // 
             // mainPanel
             // 
+            this.mainPanel.Controls.Add(this.panel1);
+            this.mainPanel.Controls.Add(this.panel2);
             this.mainPanel.Controls.Add(this.button);
             this.mainPanel.Controls.Add(this.keyPanel);
             this.mainPanel.Controls.Add(this.outputPanel);
@@ -157,14 +161,6 @@ namespace To_Ba_To_Iutta
             this.outputPanel.Size = new System.Drawing.Size(694, 220);
             this.outputPanel.TabIndex = 8;
             // 
-            // keyPanel
-            // 
-            this.keyPanel.Controls.Add(this.key);
-            this.keyPanel.Location = new System.Drawing.Point(87, 239);
-            this.keyPanel.Name = "keyPanel";
-            this.keyPanel.Size = new System.Drawing.Size(521, 52);
-            this.keyPanel.TabIndex = 9;
-            // 
             // output
             // 
             this.output.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(39)))), ((int)(((byte)(74)))));
@@ -179,6 +175,30 @@ namespace To_Ba_To_Iutta
             this.output.Size = new System.Drawing.Size(682, 208);
             this.output.TabIndex = 0;
             this.output.TabStop = false;
+            // 
+            // keyPanel
+            // 
+            this.keyPanel.Controls.Add(this.key);
+            this.keyPanel.Location = new System.Drawing.Point(87, 239);
+            this.keyPanel.Name = "keyPanel";
+            this.keyPanel.Size = new System.Drawing.Size(521, 52);
+            this.keyPanel.TabIndex = 9;
+            // 
+            // panel1
+            // 
+            this.panel1.Location = new System.Drawing.Point(87, 239);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(200, 66);
+            this.panel1.TabIndex = 10;
+            this.panel1.Visible = false;
+            // 
+            // panel2
+            // 
+            this.panel2.Location = new System.Drawing.Point(87, 262);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(6, 81);
+            this.panel2.TabIndex = 11;
+            this.panel2.Visible = false;
             // 
             // TextCryptForm
             // 
@@ -208,5 +228,7 @@ namespace To_Ba_To_Iutta
         private System.Windows.Forms.Panel outputPanel;
         private System.Windows.Forms.Panel keyPanel;
         private System.Windows.Forms.TextBox output;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }
