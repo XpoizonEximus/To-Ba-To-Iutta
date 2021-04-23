@@ -50,21 +50,51 @@ namespace To_Ba_To_Iutta
             Aes aes = Aes.Create();
 
             SHA256 sha = SHA256.Create();
-            MemoryStream keyStream = new MemoryStream();
-            StreamWriter keystreamWriter = new StreamWriter(keyStream);
-            keystreamWriter.Write(key.Text);
-            byte[] keyb = sha.ComputeHash(keyStream);
-            aes.Key = keyb;
+            using (MemoryStream keyStream = new MemoryStream())
+            using (StreamWriter keystreamWriter = new StreamWriter(keyStream))
+            {
+                keystreamWriter.Write(key.Text);
+                byte[] keyb = sha.ComputeHash(keyStream);
+                aes.Key = keyb;
+            }
 
+            /*
             using (FileStream encryptfilestream = new FileStream("C:\\encr.txt", FileMode.Create))
-                using (CryptoStream encryptstream = new CryptoStream(encryptfilestream, aes.CreateEncryptor(), CryptoStreamMode.Write))
-                    using (StreamWriter encryptstreamwriter = new StreamWriter(encryptstream))
-                        encryptstreamwriter.WriteLine(input.Text);
+            using (CryptoStream encryptstream = new CryptoStream(encryptfilestream, aes.CreateEncryptor(), CryptoStreamMode.Write))
+            using (StreamWriter encryptstreamwriter = new StreamWriter(encryptstream))
+            {
+                encryptstreamwriter.Write(input.Text);
+            }
 
             using (FileStream decryptfilestream = new FileStream("C:\\encr.txt", FileMode.Open))
-                using (CryptoStream decryptstream = new CryptoStream(decryptfilestream, aes.CreateDecryptor(), CryptoStreamMode.Read))
-                    using (StreamReader encryptstreamreader = new StreamReader(decryptstream))
-                        output.Text = encryptstreamreader.ReadToEnd();
+            using (CryptoStream decryptstream = new CryptoStream(decryptfilestream, aes.CreateDecryptor(), CryptoStreamMode.Read))
+            using (StreamReader encryptstreamreader = new StreamReader(decryptstream))
+            {
+                output.Text = encryptstreamreader.ReadToEnd();
+            }
+            */
+            /*
+            using (MemoryStream encryptmemorystream = new MemoryStream())
+            {
+                using (CryptoStream encryptstream = new CryptoStream(encryptmemorystream, aes.CreateEncryptor(), CryptoStreamMode.Write))
+                {
+                    using (StreamWriter encryptstreamwriter = new StreamWriter(encryptstream))
+                    {
+                        encryptstreamwriter.Write(input.Text);
+                    }
+                    output.Text = Convert.ToBase64String(encryptmemorystream.ToArray());
+                }
+            }
+
+            using (FileStream decryptfilestream = new FileStream(@"C:\encr.txt", FileMode.Create))
+            {
+                using (CryptoStream decryptstream = new CryptoStream(decryptfilestream, aes.CreateDecryptor(), CryptoStreamMode.Write))
+                {
+                    byte[] inputbytes = Convert.FromBase64String(output.Text);
+                    decryptstream.Write(inputbytes, 0, inputbytes.Length);
+                }
+            }
+            */
         }
     }
 }
