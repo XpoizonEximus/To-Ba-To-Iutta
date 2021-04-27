@@ -59,7 +59,7 @@ namespace To_Ba_To_Iutta
             }
             public void PanelRoundBorder_PaintHandler(object sender, PaintEventArgs e)
             {
-                float i = pen.Width / 2;
+                float i = pen.Width;
 
                 e.Graphics.DrawLine(pen, i, i + CornerRadius, i, Control.Height - i - CornerRadius);
                 e.Graphics.DrawLine(pen, i + CornerRadius, i, Control.Width - i - CornerRadius, i);
@@ -79,7 +79,7 @@ namespace To_Ba_To_Iutta
             public static readonly string DefaultFont = "Helvetica";
 
             public const float FormBorderRadius = 20;
-            public const float PanelBorderRadius = 15;
+            public const float PanelBorderRadius = 10;
 
             public static readonly Image EncryptButtonImage = Image.FromFile("C:\\Users\\xpoiz\\Documents\\Visual Studio 2019\\Projects\\C#\\To-Ba-To-Iutta\\res\\padlock-3-24.png");
             public static readonly Image DecryptButtonImage = Image.FromFile("C:\\Users\\xpoiz\\Documents\\Visual Studio 2019\\Projects\\C#\\To-Ba-To-Iutta\\res\\key-24.png");
@@ -107,11 +107,11 @@ namespace To_Ba_To_Iutta
         {
             public static void Initialize(MainForm form)
             {
-                form.Procedure = Procedure.Encrypt;
+                form.Procedure = Procedure.Decrypt;
                 form.Algorythm = CryptoAlgorythm.Symmetric;
                 form.Chat = false;
 
-                Data.MainPanelForm = new SymmetricCryptForm(form.Procedure);
+                Data.MainPanelForm = new AsymmetricEncryptForm(form.Procedure);
 
                 Symmetric.Algorythm = Aes.Create();
                 byte[] SymmetricIV = { 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0 };
@@ -194,6 +194,42 @@ namespace To_Ba_To_Iutta
                 }
                 return output;
             }
+            public static byte[] Encrypt(byte[] input, string publicKeyContainerName, bool setCngKey = true)
+            {
+                byte[] output = null;
+                try
+                {
+                    if (setCngKey)
+                    {
+                        if (!CngKey.Exists(publicKeyContainerName))
+                            throw new CryptographicException($"The Key Service Provider does not contain a key with the name '{publicKeyContainerName}'");
+
+                        cngKey = CngKey.Open(publicKeyContainerName);
+                    }
+                    rsa = new RSACng(cngKey) { KeySize = keySize };
+
+                    output = rsa.Encrypt(input, rsaEncryptionPadding);
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                return output;
+            }
+            public static byte[] Encrypt(byte[] input, byte[] key)
+            {
+                byte[] output = null;
+                try
+                {
+                    cngKey = CngKey.Import(key, CngKeyBlobFormat.GenericPublicBlob);
+                    output = Encrypt(input, "", false);
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                return output;
+            }
         }
         public static class Signature
         {
@@ -202,6 +238,8 @@ namespace To_Ba_To_Iutta
                 return null;
             }
         }
+
+
 
         public static class Data
         {

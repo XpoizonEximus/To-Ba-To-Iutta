@@ -1,7 +1,7 @@
 ﻿
 namespace To_Ba_To_Iutta
 {
-    partial class SymmetricCryptForm
+    partial class AsymmetricEncryptForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,16 +29,18 @@ namespace To_Ba_To_Iutta
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SymmetricCryptForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AsymmetricEncryptForm));
             this.inputLabel = new System.Windows.Forms.Label();
             this.button = new System.Windows.Forms.Button();
             this.outputLabel = new System.Windows.Forms.Label();
-            this.key = new System.Windows.Forms.TextBox();
             this.keyLabel = new System.Windows.Forms.Label();
             this.input = new System.Windows.Forms.TextBox();
             this.inputPanel = new System.Windows.Forms.Panel();
             this.outputPanel = new System.Windows.Forms.Panel();
             this.output = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.getPublicKeyButton = new System.Windows.Forms.Button();
+            this.manageKeysButton = new System.Windows.Forms.Button();
             this.keyPanel = new System.Windows.Forms.Panel();
             this.mainPanel.SuspendLayout();
             this.inputPanel.SuspendLayout();
@@ -48,6 +50,8 @@ namespace To_Ba_To_Iutta
             // 
             // mainPanel
             // 
+            this.mainPanel.Controls.Add(this.manageKeysButton);
+            this.mainPanel.Controls.Add(this.getPublicKeyButton);
             this.mainPanel.Controls.Add(this.button);
             this.mainPanel.Controls.Add(this.keyPanel);
             this.mainPanel.Controls.Add(this.outputPanel);
@@ -96,29 +100,12 @@ namespace To_Ba_To_Iutta
             this.outputLabel.TabIndex = 3;
             this.outputLabel.Text = "Output:";
             // 
-            // key
-            // 
-            this.key.AcceptsTab = true;
-            this.key.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.key.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(39)))), ((int)(((byte)(74)))));
-            this.key.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.key.Font = new System.Drawing.Font("Helvetica", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.key.ForeColor = System.Drawing.Color.White;
-            this.key.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.key.Location = new System.Drawing.Point(6, 6);
-            this.key.MaxLength = 0;
-            this.key.Multiline = true;
-            this.key.Name = "key";
-            this.key.Size = new System.Drawing.Size(509, 40);
-            this.key.TabIndex = 5;
-            // 
             // keyLabel
             // 
             this.keyLabel.AutoSize = true;
             this.keyLabel.Font = new System.Drawing.Font("Helvetica", 13F);
             this.keyLabel.ForeColor = System.Drawing.Color.White;
-            this.keyLabel.Location = new System.Drawing.Point(12, 243);
+            this.keyLabel.Location = new System.Drawing.Point(12, 237);
             this.keyLabel.Name = "keyLabel";
             this.keyLabel.Size = new System.Drawing.Size(46, 21);
             this.keyLabel.TabIndex = 6;
@@ -139,7 +126,7 @@ namespace To_Ba_To_Iutta
             this.input.MaxLength = 0;
             this.input.Multiline = true;
             this.input.Name = "input";
-            this.input.Size = new System.Drawing.Size(682, 207);
+            this.input.Size = new System.Drawing.Size(682, 204);
             this.input.TabIndex = 0;
             // 
             // inputPanel
@@ -147,15 +134,15 @@ namespace To_Ba_To_Iutta
             this.inputPanel.Controls.Add(this.input);
             this.inputPanel.Location = new System.Drawing.Point(87, 12);
             this.inputPanel.Name = "inputPanel";
-            this.inputPanel.Size = new System.Drawing.Size(694, 219);
+            this.inputPanel.Size = new System.Drawing.Size(694, 216);
             this.inputPanel.TabIndex = 7;
             // 
             // outputPanel
             // 
             this.outputPanel.Controls.Add(this.output);
-            this.outputPanel.Location = new System.Drawing.Point(87, 299);
+            this.outputPanel.Location = new System.Drawing.Point(87, 302);
             this.outputPanel.Name = "outputPanel";
-            this.outputPanel.Size = new System.Drawing.Size(694, 219);
+            this.outputPanel.Size = new System.Drawing.Size(694, 216);
             this.outputPanel.TabIndex = 8;
             // 
             // output
@@ -172,23 +159,69 @@ namespace To_Ba_To_Iutta
             this.output.Multiline = true;
             this.output.Name = "output";
             this.output.ReadOnly = true;
-            this.output.Size = new System.Drawing.Size(682, 207);
+            this.output.Size = new System.Drawing.Size(682, 204);
             this.output.TabIndex = 0;
             this.output.TabStop = false;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(39)))), ((int)(((byte)(74)))));
+            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.comboBox1.Font = new System.Drawing.Font("Helvetica", 11F);
+            this.comboBox1.ForeColor = System.Drawing.Color.White;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.ItemHeight = 17;
+            this.comboBox1.Items.AddRange(new object[] {
+            "10"});
+            this.comboBox1.Location = new System.Drawing.Point(0, 0);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(521, 25);
+            this.comboBox1.TabIndex = 1;
+            // 
+            // getPublicKeyButton
+            // 
+            this.getPublicKeyButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.getPublicKeyButton.FlatAppearance.BorderSize = 0;
+            this.getPublicKeyButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.getPublicKeyButton.Font = new System.Drawing.Font("Helvetica", 11F);
+            this.getPublicKeyButton.ForeColor = System.Drawing.Color.White;
+            this.getPublicKeyButton.Location = new System.Drawing.Point(87, 269);
+            this.getPublicKeyButton.Name = "getPublicKeyButton";
+            this.getPublicKeyButton.Size = new System.Drawing.Size(167, 25);
+            this.getPublicKeyButton.TabIndex = 10;
+            this.getPublicKeyButton.Text = "Get Public Key";
+            this.getPublicKeyButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.getPublicKeyButton.UseVisualStyleBackColor = true;
+            // 
+            // manageKeysButton
+            // 
+            this.manageKeysButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.manageKeysButton.FlatAppearance.BorderSize = 0;
+            this.manageKeysButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.manageKeysButton.Font = new System.Drawing.Font("Helvetica", 11F);
+            this.manageKeysButton.ForeColor = System.Drawing.Color.White;
+            this.manageKeysButton.Location = new System.Drawing.Point(262, 269);
+            this.manageKeysButton.Name = "manageKeysButton";
+            this.manageKeysButton.Size = new System.Drawing.Size(167, 25);
+            this.manageKeysButton.TabIndex = 11;
+            this.manageKeysButton.Text = "Manage Keys";
+            this.manageKeysButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.manageKeysButton.UseVisualStyleBackColor = true;
+            // 
             // keyPanel
             // 
-            this.keyPanel.Controls.Add(this.key);
-            this.keyPanel.Location = new System.Drawing.Point(87, 239);
+            this.keyPanel.BackColor = System.Drawing.Color.White;
+            this.keyPanel.Controls.Add(this.comboBox1);
+            this.keyPanel.Location = new System.Drawing.Point(87, 236);
             this.keyPanel.Name = "keyPanel";
-            this.keyPanel.Size = new System.Drawing.Size(521, 52);
+            this.keyPanel.Size = new System.Drawing.Size(521, 25);
             this.keyPanel.TabIndex = 9;
             // 
-            // SymmetricCryptForm
+            // AsymmetricEncryptForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(794, 530);
-            this.Name = "SymmetricCryptForm";
+            this.Name = "AsymmetricEncryptForm";
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();
             this.inputPanel.ResumeLayout(false);
@@ -196,7 +229,6 @@ namespace To_Ba_To_Iutta
             this.outputPanel.ResumeLayout(false);
             this.outputPanel.PerformLayout();
             this.keyPanel.ResumeLayout(false);
-            this.keyPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -206,11 +238,13 @@ namespace To_Ba_To_Iutta
         private System.Windows.Forms.Button button;
         private System.Windows.Forms.Label outputLabel;
         private System.Windows.Forms.Label keyLabel;
-        private System.Windows.Forms.TextBox key;
         private System.Windows.Forms.Panel inputPanel;
         private System.Windows.Forms.TextBox input;
         private System.Windows.Forms.Panel outputPanel;
-        private System.Windows.Forms.Panel keyPanel;
         private System.Windows.Forms.TextBox output;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button getPublicKeyButton;
+        private System.Windows.Forms.Button manageKeysButton;
+        private System.Windows.Forms.Panel keyPanel;
     }
 }

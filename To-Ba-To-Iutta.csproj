@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsymmetricEncryptForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AsymmetricEncryptForm.Designer.cs">
+      <DependentUpon>AsymmetricEncryptForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Crypt.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -73,6 +79,9 @@
     <Compile Include="SymmetricCryptForm.Designer.cs">
       <DependentUpon>SymmetricCryptForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AsymmetricEncryptForm.resx">
+      <DependentUpon>AsymmetricEncryptForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
