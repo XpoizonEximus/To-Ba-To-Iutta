@@ -99,7 +99,8 @@ namespace To_Ba_To_Iutta
             // key
             // 
             this.key.AcceptsTab = true;
-            this.key.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.key.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.key.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(39)))), ((int)(((byte)(74)))));
             this.key.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -110,7 +111,7 @@ namespace To_Ba_To_Iutta
             this.key.MaxLength = 0;
             this.key.Multiline = true;
             this.key.Name = "key";
-            this.key.Size = new System.Drawing.Size(509, 40);
+            this.key.Size = new System.Drawing.Size(482, 40);
             this.key.TabIndex = 5;
             // 
             // keyLabel
@@ -138,23 +139,23 @@ namespace To_Ba_To_Iutta
             this.input.MaxLength = 0;
             this.input.Multiline = true;
             this.input.Name = "input";
-            this.input.Size = new System.Drawing.Size(682, 208);
+            this.input.Size = new System.Drawing.Size(655, 208);
             this.input.TabIndex = 0;
             // 
             // inputPanel
             // 
             this.inputPanel.Controls.Add(this.input);
-            this.inputPanel.Location = new System.Drawing.Point(87, 12);
+            this.inputPanel.Location = new System.Drawing.Point(114, 12);
             this.inputPanel.Name = "inputPanel";
-            this.inputPanel.Size = new System.Drawing.Size(694, 220);
+            this.inputPanel.Size = new System.Drawing.Size(667, 220);
             this.inputPanel.TabIndex = 7;
             // 
             // outputPanel
             // 
             this.outputPanel.Controls.Add(this.output);
-            this.outputPanel.Location = new System.Drawing.Point(87, 298);
+            this.outputPanel.Location = new System.Drawing.Point(114, 298);
             this.outputPanel.Name = "outputPanel";
-            this.outputPanel.Size = new System.Drawing.Size(694, 220);
+            this.outputPanel.Size = new System.Drawing.Size(667, 220);
             this.outputPanel.TabIndex = 8;
             // 
             // output
@@ -175,9 +176,9 @@ namespace To_Ba_To_Iutta
             // keyPanel
             // 
             this.keyPanel.Controls.Add(this.key);
-            this.keyPanel.Location = new System.Drawing.Point(87, 239);
+            this.keyPanel.Location = new System.Drawing.Point(114, 239);
             this.keyPanel.Name = "keyPanel";
-            this.keyPanel.Size = new System.Drawing.Size(521, 52);
+            this.keyPanel.Size = new System.Drawing.Size(494, 52);
             this.keyPanel.TabIndex = 9;
             // 
             // SymmetricCryptForm

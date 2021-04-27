@@ -59,7 +59,7 @@ namespace To_Ba_To_Iutta
             }
             public void PanelRoundBorder_PaintHandler(object sender, PaintEventArgs e)
             {
-                float i = pen.Width / 2;
+                float i = pen.Width;
 
                 e.Graphics.DrawLine(pen, i, i + CornerRadius, i, Control.Height - i - CornerRadius);
                 e.Graphics.DrawLine(pen, i + CornerRadius, i, Control.Width - i - CornerRadius, i);
@@ -79,7 +79,7 @@ namespace To_Ba_To_Iutta
             public static readonly string DefaultFont = "Helvetica";
 
             public const float FormBorderRadius = 20;
-            public const float PanelBorderRadius = 15;
+            public const float PanelBorderRadius = 10;
 
             public static readonly Image EncryptButtonImage = Image.FromFile("C:\\Users\\xpoiz\\Documents\\Visual Studio 2019\\Projects\\C#\\To-Ba-To-Iutta\\res\\padlock-3-24.png");
             public static readonly Image DecryptButtonImage = Image.FromFile("C:\\Users\\xpoiz\\Documents\\Visual Studio 2019\\Projects\\C#\\To-Ba-To-Iutta\\res\\key-24.png");
@@ -111,7 +111,7 @@ namespace To_Ba_To_Iutta
                 form.Algorythm = CryptoAlgorythm.Symmetric;
                 form.Chat = false;
 
-                Data.MainPanelForm = new SymmetricCryptForm(form.Procedure);
+                Data.MainPanelForm = new AsymmetricEncryptForm();
 
                 Symmetric.Algorythm = Aes.Create();
                 byte[] SymmetricIV = { 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0 };

@@ -77,9 +77,9 @@ namespace To_Ba_To_Iutta
             this.button.Font = new System.Drawing.Font("Minecraftia", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button.ForeColor = System.Drawing.Color.White;
             this.button.Image = ((System.Drawing.Image)(resources.GetObject("button.Image")));
-            this.button.Location = new System.Drawing.Point(614, 239);
+            this.button.Location = new System.Drawing.Point(614, 236);
             this.button.Name = "button";
-            this.button.Size = new System.Drawing.Size(167, 52);
+            this.button.Size = new System.Drawing.Size(167, 58);
             this.button.TabIndex = 2;
             this.button.Text = "Encrypt";
             this.button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -105,9 +105,9 @@ namespace To_Ba_To_Iutta
             this.keyLabel.ForeColor = System.Drawing.Color.White;
             this.keyLabel.Location = new System.Drawing.Point(12, 237);
             this.keyLabel.Name = "keyLabel";
-            this.keyLabel.Size = new System.Drawing.Size(46, 21);
+            this.keyLabel.Size = new System.Drawing.Size(96, 21);
             this.keyLabel.TabIndex = 6;
-            this.keyLabel.Text = "Key:";
+            this.keyLabel.Text = "Key name:";
             // 
             // input
             // 
@@ -124,23 +124,23 @@ namespace To_Ba_To_Iutta
             this.input.MaxLength = 0;
             this.input.Multiline = true;
             this.input.Name = "input";
-            this.input.Size = new System.Drawing.Size(682, 204);
+            this.input.Size = new System.Drawing.Size(655, 204);
             this.input.TabIndex = 0;
             // 
             // inputPanel
             // 
             this.inputPanel.Controls.Add(this.input);
-            this.inputPanel.Location = new System.Drawing.Point(87, 12);
+            this.inputPanel.Location = new System.Drawing.Point(114, 12);
             this.inputPanel.Name = "inputPanel";
-            this.inputPanel.Size = new System.Drawing.Size(694, 216);
+            this.inputPanel.Size = new System.Drawing.Size(667, 216);
             this.inputPanel.TabIndex = 7;
             // 
             // outputPanel
             // 
             this.outputPanel.Controls.Add(this.output);
-            this.outputPanel.Location = new System.Drawing.Point(87, 302);
+            this.outputPanel.Location = new System.Drawing.Point(114, 302);
             this.outputPanel.Name = "outputPanel";
-            this.outputPanel.Size = new System.Drawing.Size(694, 216);
+            this.outputPanel.Size = new System.Drawing.Size(667, 216);
             this.outputPanel.TabIndex = 8;
             // 
             // output
@@ -157,7 +157,7 @@ namespace To_Ba_To_Iutta
             this.output.Multiline = true;
             this.output.Name = "output";
             this.output.ReadOnly = true;
-            this.output.Size = new System.Drawing.Size(682, 204);
+            this.output.Size = new System.Drawing.Size(655, 204);
             this.output.TabIndex = 0;
             this.output.TabStop = false;
             // 
@@ -168,7 +168,7 @@ namespace To_Ba_To_Iutta
             this.getPublicKeyButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.getPublicKeyButton.Font = new System.Drawing.Font("Helvetica", 11F);
             this.getPublicKeyButton.ForeColor = System.Drawing.Color.White;
-            this.getPublicKeyButton.Location = new System.Drawing.Point(87, 269);
+            this.getPublicKeyButton.Location = new System.Drawing.Point(114, 269);
             this.getPublicKeyButton.Name = "getPublicKeyButton";
             this.getPublicKeyButton.Size = new System.Drawing.Size(167, 25);
             this.getPublicKeyButton.TabIndex = 10;
@@ -183,7 +183,7 @@ namespace To_Ba_To_Iutta
             this.manageKeysButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.manageKeysButton.Font = new System.Drawing.Font("Helvetica", 11F);
             this.manageKeysButton.ForeColor = System.Drawing.Color.White;
-            this.manageKeysButton.Location = new System.Drawing.Point(262, 269);
+            this.manageKeysButton.Location = new System.Drawing.Point(289, 269);
             this.manageKeysButton.Name = "manageKeysButton";
             this.manageKeysButton.Size = new System.Drawing.Size(167, 25);
             this.manageKeysButton.TabIndex = 11;
@@ -193,10 +193,11 @@ namespace To_Ba_To_Iutta
             // 
             // keyPanel
             // 
-            this.keyPanel.BackColor = System.Drawing.Color.White;
-            this.keyPanel.Location = new System.Drawing.Point(87, 236);
+            this.keyPanel.BackColor = System.Drawing.Color.Transparent;
+            this.keyPanel.ForeColor = System.Drawing.Color.White;
+            this.keyPanel.Location = new System.Drawing.Point(114, 236);
             this.keyPanel.Name = "keyPanel";
-            this.keyPanel.Size = new System.Drawing.Size(521, 25);
+            this.keyPanel.Size = new System.Drawing.Size(494, 25);
             this.keyPanel.TabIndex = 9;
             // 
             // AsymmetricEncryptForm

@@ -47,12 +47,17 @@ namespace To_Ba_To_Iutta
         {
             try
             {
-                byte[] inputb = (procedure == Crypt.Procedure.Encrypt ? Encoding.UTF8.GetBytes(input.Text) : Convert.FromBase64String(input.Text));
-                byte[] keyb = Encoding.UTF8.GetBytes(keyLabel.Text);
+                byte[] inputb;
+                byte[] outputb;
+                if(Procedure==Crypt.Procedure.Encrypt)
+                {
+                    inputb = Encoding.UTF8.GetBytes(input.Text);
 
-                byte[] outputb = Crypt.Symmetric.PerformProcedure(Procedure, inputb, keyb);
-                if (outputb != null)
-                    output.Text = (procedure == Crypt.Procedure.Encrypt ? Convert.ToBase64String(outputb) : Encoding.UTF8.GetString(outputb));
+                }
+                else
+                {
+
+                }
             }
             catch (System.Exception ex)
             {
