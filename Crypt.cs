@@ -16,10 +16,7 @@ namespace To_Ba_To_Iutta
         #region Data Types
         public enum Procedure { Encrypt = 0, Decrypt = 1 }
         public enum CryptoAlgorythm { Symmetric = 0, Asymmetric = 1}
-        public interface ISwapProcedure
-        {
-            void SwapProcedure();
-        }
+        public interface ISwapProcedure { void SwapProcedure(); }
         public class ColorTheme
         {
             public Color Primary;
@@ -110,16 +107,18 @@ namespace To_Ba_To_Iutta
         {
             public static void Initialize(MainForm form)
             {
-                form.Procedure = Procedure.Decrypt;
+                form.Procedure = Procedure.Encrypt;
                 form.Algorythm = CryptoAlgorythm.Symmetric;
                 form.Chat = false;
 
                 Data.MainPanelForm = new SymmetricCryptForm(form.Procedure);
 
                 Symmetric.Algorythm = Aes.Create();
-
                 byte[] SymmetricIV = { 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0 };
                 Symmetric.Algorythm.IV = SymmetricIV;
+
+                Asymmetric.keySize = 2048;
+                Asymmetric.rsaEncryptionPadding = RSAEncryptionPadding.OaepSHA512;
             }
             public static void ControlRoundBorder(Control Control, Pen pen, DashStyle dashstyle = DashStyle.Solid)
             {
@@ -172,13 +171,28 @@ namespace To_Ba_To_Iutta
         }
         public static class Asymmetric
         {
-            public static byte[] Encrypt(byte[] input, string publicKeyContainerName)
+            public static RSACng rsa;
+            public static CngKey cngKey;
+            public static int keySize;
+            public static RSAEncryptionPadding rsaEncryptionPadding;
+            public static byte[] Decrypt(byte[] input, string keyContainerName)
             {
-                return null;
-            }
-            public static byte[] Decrypt(byte[] input, string privateKeyContainerName)
-            {
-                return null;
+                byte[] output = null;
+                try
+                {
+                    if (!CngKey.Exists(keyContainerName))
+                        throw new CryptographicException($"The Key Service Provider does not contain a key with the name '{keyContainerName}'");
+
+                    cngKey = CngKey.Open(keyContainerName);
+                    rsa = new RSACng(cngKey) { KeySize = keySize };
+
+                    output = rsa.Decrypt(input, rsaEncryptionPadding);
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                return output;
             }
         }
         public static class Signature
