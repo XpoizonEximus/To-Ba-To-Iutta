@@ -37,8 +37,8 @@ namespace To_Ba_To_Iutta
             this.encryptButton = new System.Windows.Forms.Button();
             this.leftSecondSeparatorPanel = new System.Windows.Forms.Panel();
             this.leftFirstPanel = new System.Windows.Forms.Panel();
-            this.FileButton = new System.Windows.Forms.Button();
-            this.textButton = new System.Windows.Forms.Button();
+            this.asymmetricButton = new System.Windows.Forms.Button();
+            this.symmetricButton = new System.Windows.Forms.Button();
             this.leftFirstSeparatorPanel = new System.Windows.Forms.Panel();
             this.leftThirdPanel = new System.Windows.Forms.Panel();
             this.settingsButton = new System.Windows.Forms.Button();
@@ -50,6 +50,7 @@ namespace To_Ba_To_Iutta
             this.titleLabel = new System.Windows.Forms.Label();
             this.minimzeButton = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.leftContainerPanel.SuspendLayout();
             this.leftSecondPanel.SuspendLayout();
             this.leftFirstPanel.SuspendLayout();
@@ -61,6 +62,8 @@ namespace To_Ba_To_Iutta
             // leftContainerPanel
             // 
             this.leftContainerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(17)))), ((int)(((byte)(32)))));
+            this.leftContainerPanel.Controls.Add(this.chatButton);
+            this.leftContainerPanel.Controls.Add(this.panel1);
             this.leftContainerPanel.Controls.Add(this.leftSecondPanel);
             this.leftContainerPanel.Controls.Add(this.leftSecondSeparatorPanel);
             this.leftContainerPanel.Controls.Add(this.leftFirstPanel);
@@ -75,13 +78,12 @@ namespace To_Ba_To_Iutta
             // 
             // leftSecondPanel
             // 
-            this.leftSecondPanel.Controls.Add(this.chatButton);
             this.leftSecondPanel.Controls.Add(this.decryptButton);
             this.leftSecondPanel.Controls.Add(this.encryptButton);
-            this.leftSecondPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.leftSecondPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.leftSecondPanel.Location = new System.Drawing.Point(0, 250);
             this.leftSecondPanel.Name = "leftSecondPanel";
-            this.leftSecondPanel.Size = new System.Drawing.Size(231, 266);
+            this.leftSecondPanel.Size = new System.Drawing.Size(231, 142);
             this.leftSecondPanel.TabIndex = 7;
             // 
             // chatButton
@@ -93,14 +95,15 @@ namespace To_Ba_To_Iutta
             this.chatButton.Font = new System.Drawing.Font("Helvetica", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chatButton.ForeColor = System.Drawing.Color.White;
             this.chatButton.Image = ((System.Drawing.Image)(resources.GetObject("chatButton.Image")));
-            this.chatButton.Location = new System.Drawing.Point(0, 142);
+            this.chatButton.Location = new System.Drawing.Point(0, 395);
             this.chatButton.Margin = new System.Windows.Forms.Padding(0);
             this.chatButton.Name = "chatButton";
             this.chatButton.Size = new System.Drawing.Size(231, 71);
             this.chatButton.TabIndex = 8;
-            this.chatButton.Text = "   Chat";
+            this.chatButton.Text = "    Chat";
             this.chatButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.chatButton.UseVisualStyleBackColor = true;
+            this.chatButton.Click += new System.EventHandler(this.chatButton_Click);
             // 
             // decryptButton
             // 
@@ -117,9 +120,10 @@ namespace To_Ba_To_Iutta
             this.decryptButton.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
             this.decryptButton.Size = new System.Drawing.Size(231, 71);
             this.decryptButton.TabIndex = 7;
-            this.decryptButton.Text = "   Decrypt";
+            this.decryptButton.Text = "    Decrypt";
             this.decryptButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.decryptButton.UseVisualStyleBackColor = true;
+            this.decryptButton.Click += new System.EventHandler(this.decryptButton_Click);
             // 
             // encryptButton
             // 
@@ -136,9 +140,10 @@ namespace To_Ba_To_Iutta
             this.encryptButton.Padding = new System.Windows.Forms.Padding(11, 0, 0, 0);
             this.encryptButton.Size = new System.Drawing.Size(231, 71);
             this.encryptButton.TabIndex = 6;
-            this.encryptButton.Text = "   Encrypt";
+            this.encryptButton.Text = "    Encrypt";
             this.encryptButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.encryptButton.UseVisualStyleBackColor = true;
+            this.encryptButton.Click += new System.EventHandler(this.encryptButton_Click);
             // 
             // leftSecondSeparatorPanel
             // 
@@ -153,49 +158,53 @@ namespace To_Ba_To_Iutta
             // 
             // leftFirstPanel
             // 
-            this.leftFirstPanel.Controls.Add(this.FileButton);
-            this.leftFirstPanel.Controls.Add(this.textButton);
+            this.leftFirstPanel.Controls.Add(this.asymmetricButton);
+            this.leftFirstPanel.Controls.Add(this.symmetricButton);
             this.leftFirstPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.leftFirstPanel.Location = new System.Drawing.Point(0, 105);
             this.leftFirstPanel.Name = "leftFirstPanel";
             this.leftFirstPanel.Size = new System.Drawing.Size(231, 142);
             this.leftFirstPanel.TabIndex = 5;
             // 
-            // FileButton
+            // asymmetricButton
             // 
-            this.FileButton.Cursor = System.Windows.Forms.Cursors.Default;
-            this.FileButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.FileButton.FlatAppearance.BorderSize = 0;
-            this.FileButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.FileButton.Font = new System.Drawing.Font("Helvetica", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FileButton.ForeColor = System.Drawing.Color.White;
-            this.FileButton.Image = ((System.Drawing.Image)(resources.GetObject("FileButton.Image")));
-            this.FileButton.Location = new System.Drawing.Point(0, 71);
-            this.FileButton.Margin = new System.Windows.Forms.Padding(0);
-            this.FileButton.Name = "FileButton";
-            this.FileButton.Size = new System.Drawing.Size(231, 71);
-            this.FileButton.TabIndex = 5;
-            this.FileButton.Text = "   File";
-            this.FileButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.FileButton.UseVisualStyleBackColor = true;
+            this.asymmetricButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.asymmetricButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.asymmetricButton.FlatAppearance.BorderSize = 0;
+            this.asymmetricButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.asymmetricButton.Font = new System.Drawing.Font("Helvetica", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.asymmetricButton.ForeColor = System.Drawing.Color.White;
+            this.asymmetricButton.Image = ((System.Drawing.Image)(resources.GetObject("asymmetricButton.Image")));
+            this.asymmetricButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.asymmetricButton.Location = new System.Drawing.Point(0, 71);
+            this.asymmetricButton.Margin = new System.Windows.Forms.Padding(0);
+            this.asymmetricButton.Name = "asymmetricButton";
+            this.asymmetricButton.Size = new System.Drawing.Size(231, 71);
+            this.asymmetricButton.TabIndex = 5;
+            this.asymmetricButton.Text = "Asymmetric";
+            this.asymmetricButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.asymmetricButton.UseVisualStyleBackColor = true;
+            this.asymmetricButton.Click += new System.EventHandler(this.asymmetricButton_Click);
             // 
-            // textButton
+            // symmetricButton
             // 
-            this.textButton.Cursor = System.Windows.Forms.Cursors.Default;
-            this.textButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textButton.FlatAppearance.BorderSize = 0;
-            this.textButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.textButton.Font = new System.Drawing.Font("Helvetica", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textButton.ForeColor = System.Drawing.Color.White;
-            this.textButton.Image = ((System.Drawing.Image)(resources.GetObject("textButton.Image")));
-            this.textButton.Location = new System.Drawing.Point(0, 0);
-            this.textButton.Margin = new System.Windows.Forms.Padding(0);
-            this.textButton.Name = "textButton";
-            this.textButton.Size = new System.Drawing.Size(231, 71);
-            this.textButton.TabIndex = 4;
-            this.textButton.Text = "   Text";
-            this.textButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.textButton.UseVisualStyleBackColor = true;
+            this.symmetricButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.symmetricButton.Dock = System.Windows.Forms.DockStyle.Top;
+            this.symmetricButton.FlatAppearance.BorderSize = 0;
+            this.symmetricButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.symmetricButton.Font = new System.Drawing.Font("Helvetica", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.symmetricButton.ForeColor = System.Drawing.Color.White;
+            this.symmetricButton.Image = ((System.Drawing.Image)(resources.GetObject("symmetricButton.Image")));
+            this.symmetricButton.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.symmetricButton.Location = new System.Drawing.Point(0, 0);
+            this.symmetricButton.Margin = new System.Windows.Forms.Padding(0);
+            this.symmetricButton.Name = "symmetricButton";
+            this.symmetricButton.Size = new System.Drawing.Size(231, 71);
+            this.symmetricButton.TabIndex = 4;
+            this.symmetricButton.Text = " Symmetric  ";
+            this.symmetricButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.symmetricButton.UseVisualStyleBackColor = true;
+            this.symmetricButton.Click += new System.EventHandler(this.symmetricButton_Click);
             // 
             // leftFirstSeparatorPanel
             // 
@@ -352,6 +361,17 @@ namespace To_Ba_To_Iutta
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.closeFormHandler);
             // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 392);
+            this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.panel1.Size = new System.Drawing.Size(231, 3);
+            this.panel1.TabIndex = 7;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -385,17 +405,18 @@ namespace To_Ba_To_Iutta
         private System.Windows.Forms.Button minimzeButton;
         private System.Windows.Forms.Button settingsButton;
         private System.Windows.Forms.Button helpButton;
-        private System.Windows.Forms.Button textButton;
+        private System.Windows.Forms.Button symmetricButton;
         private System.Windows.Forms.Panel leftFirstSeparatorPanel;
         private System.Windows.Forms.Panel leftSecondPanel;
         private System.Windows.Forms.Panel leftSecondSeparatorPanel;
         private System.Windows.Forms.Panel leftFirstPanel;
-        private System.Windows.Forms.Button FileButton;
+        private System.Windows.Forms.Button asymmetricButton;
         private System.Windows.Forms.Label logoLabel;
         private System.Windows.Forms.Panel mainPanel;
         private System.Windows.Forms.Button chatButton;
         private System.Windows.Forms.Button decryptButton;
         private System.Windows.Forms.Button encryptButton;
         private System.Windows.Forms.Label titleLabel;
+        private System.Windows.Forms.Panel panel1;
     }
 }

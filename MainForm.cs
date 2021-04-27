@@ -12,26 +12,27 @@ namespace To_Ba_To_Iutta
 {
     public partial class MainForm : Form
     {
+        public Crypt.Procedure Procedure { get; set; }
+        public Crypt.CryptoAlgorythm Algorythm { get; set; }
+        public bool Chat { get; set; }
+
 
         public MainForm(bool splash = true)
         {
-            if (splash) showSplashForm();
+            if (splash) ShowSplashForm();
             InitializeComponent();
-            roundCorners();
+            Crypt.Actions.Initialize(this);
+            RoundCorners();
+            LoadMainPanel();
+
             titleLabel.Text = System.Reflection.Assembly.GetEntryAssembly().Location;
-            Crypt.Data.MainPanelForm = new TextCryptForm(Crypt.Procedure.encrypt);
-            this.mainPanel.Controls.Clear();
-            this.mainPanel.Controls.AddRange(Crypt.Data.MainPanelForm.ControlsArray);
         }
-        private void showSplashForm()
+        private void ShowSplashForm()
         {
             SplashForm f = new SplashForm();
             f.ShowDialog();
         }
-
-        private bool logoPanelClicked = false;
-        private Point logoPanelClickedStartPoint;
-        private void roundCorners()
+        private void RoundCorners()
         {
             Rectangle Bounds = new Rectangle(0, 0, Width, Height);
             float CornerRadius = Crypt.Constants.FormBorderRadius;
@@ -44,8 +45,9 @@ namespace To_Ba_To_Iutta
 
             this.Region = new Region(path);
         }
-
         #region Move Form Panel
+        private bool logoPanelClicked = false;
+        private Point logoPanelClickedStartPoint;
         private void movePanel_MouseDown(object sender, MouseEventArgs e)
         {
             logoPanelClicked = true;
@@ -66,7 +68,23 @@ namespace To_Ba_To_Iutta
             }
         }
         #endregion
+        private void LoadMainPanel()
+        {
+            mainPanel.SuspendLayout();
+            this.mainPanel.Controls.Clear();
+            this.mainPanel.Controls.AddRange(Crypt.Data.MainPanelForm.ControlsArray);
+            mainPanel.ResumeLayout();
+        }
+        private void ChangeControls(Crypt.Procedure procedure, Crypt.CryptoAlgorythm algorythm, bool chat)
+        {/*
+            Procedure = procedure;
+            Algorythm = algorythm;
+            Chat = chat;
+            Crypt.Actions.SetMainPanelForm(procedure, algorythm, chat);
+            LoadMainPanel();*/
+        }
 
+        #region Minimize-Close Buttons
         private void closeFormHandler(object sender, EventArgs e) 
         {
             this.FormBorderStyle = FormBorderStyle.Sizable;
@@ -78,5 +96,12 @@ namespace To_Ba_To_Iutta
             this.WindowState = FormWindowState.Minimized;
             this.FormBorderStyle = FormBorderStyle.None;
         }
+        #endregion
+
+        private void symmetricButton_Click(object sender, EventArgs e) => ChangeControls(Procedure, Crypt.CryptoAlgorythm.Symmetric, false);
+        private void asymmetricButton_Click(object sender, EventArgs e) => ChangeControls(Procedure, Crypt.CryptoAlgorythm.Asymmetric, false);
+        private void encryptButton_Click(object sender, EventArgs e) => ChangeControls(Crypt.Procedure.Encrypt, Algorythm, false);
+        private void decryptButton_Click(object sender, EventArgs e) => ChangeControls(Crypt.Procedure.Decrypt, Algorythm, false);
+        private void chatButton_Click(object sender, EventArgs e) => ChangeControls(Procedure, Algorythm, true);
     }
 }

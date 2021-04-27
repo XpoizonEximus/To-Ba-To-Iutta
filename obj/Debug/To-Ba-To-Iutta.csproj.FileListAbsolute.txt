@@ -10,4 +10,4 @@ C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Debug
 C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Debug\To-Ba-To-Iutta.pdb
 C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Debug\To_Ba_To_Iutta.MainForm.resources
 C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Debug\To_Ba_To_Iutta.PanelForm.resources
-C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Debug\To_Ba_To_Iutta.TextCryptForm.resources
+C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Debug\To_Ba_To_Iutta.SymmetricCryptForm.resources

@@ -5,13 +5,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
+using System.IO;
+using System;
 
 namespace To_Ba_To_Iutta
 {
     public static class Crypt
     {
         #region Data Types
-        public enum Procedure { encrypt = 0, decrypt = 1 }
+        public enum Procedure { Encrypt = 0, Decrypt = 1 }
+        public enum CryptoAlgorythm { Symmetric = 0, Asymmetric = 1}
         public interface ISwapProcedure
         {
             void SwapProcedure();
@@ -104,12 +108,84 @@ namespace To_Ba_To_Iutta
 
         public static class Actions
         {
+            public static void Initialize(MainForm form)
+            {
+                form.Procedure = Procedure.Decrypt;
+                form.Algorythm = CryptoAlgorythm.Symmetric;
+                form.Chat = false;
+
+                Data.MainPanelForm = new SymmetricCryptForm(form.Procedure);
+
+                Symmetric.Algorythm = Aes.Create();
+
+                byte[] SymmetricIV = { 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0 };
+                Symmetric.Algorythm.IV = SymmetricIV;
+            }
             public static void ControlRoundBorder(Control Control, Pen pen, DashStyle dashstyle = DashStyle.Solid)
             {
                 pen.DashStyle = dashstyle;
                 ControlRoundBorderComponent c = new ControlRoundBorderComponent(Control, pen);
                 c.PanelRoundBorder_SetRegion();
                 Control.Paint += c.PanelRoundBorder_PaintHandler;
+            }
+            public static void SetMainPanelForm(Procedure procedure, CryptoAlgorythm algorythm, bool chat)
+            {
+
+            }
+        }
+
+
+        public static class Symmetric
+        {
+            public static SymmetricAlgorithm Algorythm { get; set; }
+            public static byte[] KeyTransform(byte[] key)
+            {
+                SHA256 sha;
+                using (sha = SHA256.Create())
+                    return sha.ComputeHash(key);
+            }
+            public static byte[] PerformProcedure(Procedure p, byte[]input, byte[] key = null, bool keytransform = true)
+            {
+                byte[] output = null;
+                try
+                {
+                    if (key != null) 
+                    {
+                        if (keytransform)
+                            key = KeyTransform(key);
+                        Algorythm.Key = key;
+                    }
+                    ICryptoTransform transform = (p == Procedure.Encrypt ? Algorythm.CreateEncryptor() : Algorythm.CreateDecryptor());
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        using (CryptoStream cs = new CryptoStream(ms, transform, CryptoStreamMode.Write))
+                            cs.Write(input, 0, input.Length);
+                        output = ms.ToArray();
+                    }
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                return output;
+            }
+        }
+        public static class Asymmetric
+        {
+            public static byte[] Encrypt(byte[] input, string publicKeyContainerName)
+            {
+                return null;
+            }
+            public static byte[] Decrypt(byte[] input, string privateKeyContainerName)
+            {
+                return null;
+            }
+        }
+        public static class Signature
+        {
+            public static byte[] Sign(byte[] input, string keyContainerName)
+            {
+                return null;
             }
         }
 
