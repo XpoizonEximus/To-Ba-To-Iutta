@@ -194,6 +194,42 @@ namespace To_Ba_To_Iutta
                 }
                 return output;
             }
+            public static byte[] Encrypt(byte[] input, string publicKeyContainerName, bool setCngKey = true)
+            {
+                byte[] output = null;
+                try
+                {
+                    if (setCngKey)
+                    {
+                        if (!CngKey.Exists(publicKeyContainerName))
+                            throw new CryptographicException($"The Key Service Provider does not contain a key with the name: '{publicKeyContainerName}'");
+
+                        cngKey = CngKey.Open(publicKeyContainerName);
+                    }
+                    rsa = new RSACng(cngKey) { KeySize = keySize };
+
+                    output = rsa.Encrypt(input, rsaEncryptionPadding);
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                return output;
+            }
+            public static byte[] Encrypt(byte[] input, byte[] key)
+            {
+                byte[] output = null;
+                try
+                {
+                    cngKey = CngKey.Import(key, CngKeyBlobFormat.GenericPublicBlob);
+                    output = Encrypt(input, "", false);
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                return output;
+            }
         }
         public static class Signature
         {

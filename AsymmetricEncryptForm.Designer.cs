@@ -41,9 +41,11 @@ namespace To_Ba_To_Iutta
             this.getPublicKeyButton = new System.Windows.Forms.Button();
             this.manageKeysButton = new System.Windows.Forms.Button();
             this.keyPanel = new System.Windows.Forms.Panel();
+            this.keyName = new System.Windows.Forms.TextBox();
             this.mainPanel.SuspendLayout();
             this.inputPanel.SuspendLayout();
             this.outputPanel.SuspendLayout();
+            this.keyPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -103,7 +105,7 @@ namespace To_Ba_To_Iutta
             this.keyLabel.AutoSize = true;
             this.keyLabel.Font = new System.Drawing.Font("Helvetica", 13F);
             this.keyLabel.ForeColor = System.Drawing.Color.White;
-            this.keyLabel.Location = new System.Drawing.Point(12, 237);
+            this.keyLabel.Location = new System.Drawing.Point(12, 238);
             this.keyLabel.Name = "keyLabel";
             this.keyLabel.Size = new System.Drawing.Size(96, 21);
             this.keyLabel.TabIndex = 6;
@@ -194,11 +196,23 @@ namespace To_Ba_To_Iutta
             // keyPanel
             // 
             this.keyPanel.BackColor = System.Drawing.Color.Transparent;
+            this.keyPanel.Controls.Add(this.keyName);
             this.keyPanel.ForeColor = System.Drawing.Color.White;
             this.keyPanel.Location = new System.Drawing.Point(114, 236);
             this.keyPanel.Name = "keyPanel";
             this.keyPanel.Size = new System.Drawing.Size(494, 25);
             this.keyPanel.TabIndex = 9;
+            // 
+            // keyName
+            // 
+            this.keyName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(39)))), ((int)(((byte)(74)))));
+            this.keyName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.keyName.Font = new System.Drawing.Font("Helvetica", 11F);
+            this.keyName.ForeColor = System.Drawing.Color.White;
+            this.keyName.Location = new System.Drawing.Point(6, 4);
+            this.keyName.Name = "keyName";
+            this.keyName.Size = new System.Drawing.Size(485, 18);
+            this.keyName.TabIndex = 0;
             // 
             // AsymmetricEncryptForm
             // 
@@ -211,6 +225,8 @@ namespace To_Ba_To_Iutta
             this.inputPanel.PerformLayout();
             this.outputPanel.ResumeLayout(false);
             this.outputPanel.PerformLayout();
+            this.keyPanel.ResumeLayout(false);
+            this.keyPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -227,5 +243,6 @@ namespace To_Ba_To_Iutta
         private System.Windows.Forms.Button getPublicKeyButton;
         private System.Windows.Forms.Button manageKeysButton;
         private System.Windows.Forms.Panel keyPanel;
+        private System.Windows.Forms.TextBox keyName;
     }
 }
