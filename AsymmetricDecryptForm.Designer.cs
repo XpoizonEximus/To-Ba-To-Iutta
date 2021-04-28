@@ -1,7 +1,7 @@
 ﻿
 namespace To_Ba_To_Iutta
 {
-    partial class AsymmetricEncryptForm
+    partial class AsymmetricDecryptForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@ namespace To_Ba_To_Iutta
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AsymmetricEncryptForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AsymmetricDecryptForm));
             this.inputLabel = new System.Windows.Forms.Label();
             this.button = new System.Windows.Forms.Button();
             this.outputLabel = new System.Windows.Forms.Label();
@@ -38,33 +38,22 @@ namespace To_Ba_To_Iutta
             this.inputPanel = new System.Windows.Forms.Panel();
             this.outputPanel = new System.Windows.Forms.Panel();
             this.output = new System.Windows.Forms.TextBox();
+            this.getPublicKeyButton = new System.Windows.Forms.Button();
             this.manageKeysButton = new System.Windows.Forms.Button();
-            this.keyNamePanel = new System.Windows.Forms.Panel();
-            this.keyName = new System.Windows.Forms.TextBox();
-            this.keyLabel = new System.Windows.Forms.Label();
             this.keyPanel = new System.Windows.Forms.Panel();
-            this.key = new System.Windows.Forms.TextBox();
-            this.keyNameRadio = new System.Windows.Forms.RadioButton();
-            this.keyRadio = new System.Windows.Forms.RadioButton();
-            this.uploadKeyButton = new System.Windows.Forms.Button();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.keyName = new System.Windows.Forms.TextBox();
             this.mainPanel.SuspendLayout();
             this.inputPanel.SuspendLayout();
             this.outputPanel.SuspendLayout();
-            this.keyNamePanel.SuspendLayout();
             this.keyPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
             // 
-            this.mainPanel.Controls.Add(this.uploadKeyButton);
-            this.mainPanel.Controls.Add(this.keyRadio);
-            this.mainPanel.Controls.Add(this.keyNameRadio);
-            this.mainPanel.Controls.Add(this.keyPanel);
-            this.mainPanel.Controls.Add(this.keyLabel);
             this.mainPanel.Controls.Add(this.manageKeysButton);
+            this.mainPanel.Controls.Add(this.getPublicKeyButton);
             this.mainPanel.Controls.Add(this.button);
-            this.mainPanel.Controls.Add(this.keyNamePanel);
+            this.mainPanel.Controls.Add(this.keyPanel);
             this.mainPanel.Controls.Add(this.outputPanel);
             this.mainPanel.Controls.Add(this.inputPanel);
             this.mainPanel.Controls.Add(this.keyNameLabel);
@@ -94,7 +83,7 @@ namespace To_Ba_To_Iutta
             this.button.Name = "button";
             this.button.Size = new System.Drawing.Size(167, 58);
             this.button.TabIndex = 2;
-            this.button.Text = "Encrypt";
+            this.button.Text = "Decrypt";
             this.button.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button.UseVisualStyleBackColor = true;
@@ -174,6 +163,22 @@ namespace To_Ba_To_Iutta
             this.output.TabIndex = 0;
             this.output.TabStop = false;
             // 
+            // getPublicKeyButton
+            // 
+            this.getPublicKeyButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.getPublicKeyButton.FlatAppearance.BorderSize = 0;
+            this.getPublicKeyButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.getPublicKeyButton.Font = new System.Drawing.Font("Helvetica", 11F);
+            this.getPublicKeyButton.ForeColor = System.Drawing.Color.White;
+            this.getPublicKeyButton.Location = new System.Drawing.Point(114, 269);
+            this.getPublicKeyButton.Name = "getPublicKeyButton";
+            this.getPublicKeyButton.Size = new System.Drawing.Size(167, 25);
+            this.getPublicKeyButton.TabIndex = 10;
+            this.getPublicKeyButton.Text = "Get Public Key";
+            this.getPublicKeyButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.getPublicKeyButton.UseVisualStyleBackColor = true;
+            this.getPublicKeyButton.Click += new System.EventHandler(this.getPublicKeyButton_Click);
+            // 
             // manageKeysButton
             // 
             this.manageKeysButton.Cursor = System.Windows.Forms.Cursors.Default;
@@ -181,7 +186,7 @@ namespace To_Ba_To_Iutta
             this.manageKeysButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.manageKeysButton.Font = new System.Drawing.Font("Helvetica", 11F);
             this.manageKeysButton.ForeColor = System.Drawing.Color.White;
-            this.manageKeysButton.Location = new System.Drawing.Point(441, 236);
+            this.manageKeysButton.Location = new System.Drawing.Point(289, 269);
             this.manageKeysButton.Name = "manageKeysButton";
             this.manageKeysButton.Size = new System.Drawing.Size(167, 25);
             this.manageKeysButton.TabIndex = 11;
@@ -189,118 +194,38 @@ namespace To_Ba_To_Iutta
             this.manageKeysButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.manageKeysButton.UseVisualStyleBackColor = true;
             // 
-            // keyNamePanel
+            // keyPanel
             // 
-            this.keyNamePanel.BackColor = System.Drawing.Color.Transparent;
-            this.keyNamePanel.Controls.Add(this.keyName);
-            this.keyNamePanel.ForeColor = System.Drawing.Color.White;
-            this.keyNamePanel.Location = new System.Drawing.Point(134, 236);
-            this.keyNamePanel.Name = "keyNamePanel";
-            this.keyNamePanel.Size = new System.Drawing.Size(301, 25);
-            this.keyNamePanel.TabIndex = 9;
+            this.keyPanel.BackColor = System.Drawing.Color.Transparent;
+            this.keyPanel.Controls.Add(this.keyName);
+            this.keyPanel.ForeColor = System.Drawing.Color.White;
+            this.keyPanel.Location = new System.Drawing.Point(114, 236);
+            this.keyPanel.Name = "keyPanel";
+            this.keyPanel.Size = new System.Drawing.Size(494, 25);
+            this.keyPanel.TabIndex = 9;
             // 
             // keyName
             // 
-            this.keyName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.keyName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(39)))), ((int)(((byte)(74)))));
             this.keyName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.keyName.Font = new System.Drawing.Font("Helvetica", 11F);
             this.keyName.ForeColor = System.Drawing.Color.White;
             this.keyName.Location = new System.Drawing.Point(8, 4);
             this.keyName.Name = "keyName";
-            this.keyName.Size = new System.Drawing.Size(290, 18);
+            this.keyName.Size = new System.Drawing.Size(483, 18);
             this.keyName.TabIndex = 0;
             // 
-            // keyLabel
-            // 
-            this.keyLabel.AutoSize = true;
-            this.keyLabel.Font = new System.Drawing.Font("Helvetica", 13F);
-            this.keyLabel.ForeColor = System.Drawing.Color.White;
-            this.keyLabel.Location = new System.Drawing.Point(12, 271);
-            this.keyLabel.Name = "keyLabel";
-            this.keyLabel.Size = new System.Drawing.Size(46, 21);
-            this.keyLabel.TabIndex = 12;
-            this.keyLabel.Text = "Key:";
-            // 
-            // keyPanel
-            // 
-            this.keyPanel.BackColor = System.Drawing.Color.Transparent;
-            this.keyPanel.Controls.Add(this.key);
-            this.keyPanel.ForeColor = System.Drawing.Color.White;
-            this.keyPanel.Location = new System.Drawing.Point(134, 269);
-            this.keyPanel.Name = "keyPanel";
-            this.keyPanel.Size = new System.Drawing.Size(301, 25);
-            this.keyPanel.TabIndex = 10;
-            // 
-            // key
-            // 
-            this.key.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.key.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(39)))), ((int)(((byte)(74)))));
-            this.key.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.key.Font = new System.Drawing.Font("Helvetica", 11F);
-            this.key.ForeColor = System.Drawing.Color.White;
-            this.key.Location = new System.Drawing.Point(8, 4);
-            this.key.Name = "key";
-            this.key.Size = new System.Drawing.Size(290, 18);
-            this.key.TabIndex = 0;
-            // 
-            // keyNameRadio
-            // 
-            this.keyNameRadio.AutoSize = true;
-            this.keyNameRadio.Location = new System.Drawing.Point(114, 243);
-            this.keyNameRadio.Name = "keyNameRadio";
-            this.keyNameRadio.Size = new System.Drawing.Size(14, 13);
-            this.keyNameRadio.TabIndex = 13;
-            this.keyNameRadio.TabStop = true;
-            this.keyNameRadio.UseVisualStyleBackColor = true;
-            // 
-            // keyRadio
-            // 
-            this.keyRadio.AutoSize = true;
-            this.keyRadio.Location = new System.Drawing.Point(114, 276);
-            this.keyRadio.Name = "keyRadio";
-            this.keyRadio.Size = new System.Drawing.Size(14, 13);
-            this.keyRadio.TabIndex = 14;
-            this.keyRadio.TabStop = true;
-            this.keyRadio.UseVisualStyleBackColor = true;
-            // 
-            // uploadKeyButton
-            // 
-            this.uploadKeyButton.Cursor = System.Windows.Forms.Cursors.Default;
-            this.uploadKeyButton.FlatAppearance.BorderSize = 0;
-            this.uploadKeyButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.uploadKeyButton.Font = new System.Drawing.Font("Helvetica", 11F);
-            this.uploadKeyButton.ForeColor = System.Drawing.Color.White;
-            this.uploadKeyButton.Location = new System.Drawing.Point(441, 269);
-            this.uploadKeyButton.Name = "uploadKeyButton";
-            this.uploadKeyButton.Size = new System.Drawing.Size(167, 25);
-            this.uploadKeyButton.TabIndex = 15;
-            this.uploadKeyButton.Text = "Upload Key";
-            this.uploadKeyButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.uploadKeyButton.UseVisualStyleBackColor = true;
-            this.uploadKeyButton.Click += new System.EventHandler(this.uploadKeyButton_Click);
-            // 
-            // openFileDialog
-            // 
-            this.openFileDialog.Filter = "CryptoKey files|*.ck|All files|*.*";
-            // 
-            // AsymmetricEncryptForm
+            // AsymmetricDecryptForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(794, 530);
-            this.Name = "AsymmetricEncryptForm";
+            this.Name = "AsymmetricDecryptForm";
             this.mainPanel.ResumeLayout(false);
             this.mainPanel.PerformLayout();
             this.inputPanel.ResumeLayout(false);
             this.inputPanel.PerformLayout();
             this.outputPanel.ResumeLayout(false);
             this.outputPanel.PerformLayout();
-            this.keyNamePanel.ResumeLayout(false);
-            this.keyNamePanel.PerformLayout();
             this.keyPanel.ResumeLayout(false);
             this.keyPanel.PerformLayout();
             this.ResumeLayout(false);
@@ -316,15 +241,9 @@ namespace To_Ba_To_Iutta
         private System.Windows.Forms.TextBox input;
         private System.Windows.Forms.Panel outputPanel;
         private System.Windows.Forms.TextBox output;
+        private System.Windows.Forms.Button getPublicKeyButton;
         private System.Windows.Forms.Button manageKeysButton;
-        private System.Windows.Forms.Panel keyNamePanel;
-        private System.Windows.Forms.TextBox keyName;
         private System.Windows.Forms.Panel keyPanel;
-        private System.Windows.Forms.TextBox key;
-        private System.Windows.Forms.Label keyLabel;
-        private System.Windows.Forms.RadioButton keyRadio;
-        private System.Windows.Forms.RadioButton keyNameRadio;
-        private System.Windows.Forms.Button uploadKeyButton;
-        private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.TextBox keyName;
     }
 }

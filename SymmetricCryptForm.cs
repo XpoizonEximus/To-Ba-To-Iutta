@@ -10,7 +10,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using System.Security.Cryptography;
 
 namespace To_Ba_To_Iutta
 {
@@ -49,6 +48,7 @@ namespace To_Ba_To_Iutta
         {
             try
             {
+                if (String.IsNullOrWhiteSpace(key.Text)) return;
                 byte[] inputb = (procedure == Crypt.Procedure.Encrypt ? Encoding.UTF8.GetBytes(input.Text) : Convert.FromBase64String(input.Text));
                 byte[] keyb = Encoding.UTF8.GetBytes(key.Text);
 

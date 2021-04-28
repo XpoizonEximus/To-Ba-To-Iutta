@@ -52,7 +52,19 @@
     <Compile Include="AsymmetricEncryptForm.Designer.cs">
       <DependentUpon>AsymmetricEncryptForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AsymmetricDecryptForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AsymmetricDecryptForm.Designer.cs">
+      <DependentUpon>AsymmetricDecryptForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Crypt.cs" />
+    <Compile Include="ExportAsymmetricPublicKeyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ExportAsymmetricPublicKeyForm.Designer.cs">
+      <DependentUpon>ExportAsymmetricPublicKeyForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +93,12 @@
     </Compile>
     <EmbeddedResource Include="AsymmetricEncryptForm.resx">
       <DependentUpon>AsymmetricEncryptForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AsymmetricDecryptForm.resx">
+      <DependentUpon>AsymmetricDecryptForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ExportAsymmetricPublicKeyForm.resx">
+      <DependentUpon>ExportAsymmetricPublicKeyForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

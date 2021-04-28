@@ -111,7 +111,7 @@ namespace To_Ba_To_Iutta
                 form.Algorythm = CryptoAlgorythm.Symmetric;
                 form.Chat = false;
 
-                Data.MainPanelForm = new AsymmetricEncryptForm();
+                Data.MainPanelForm = new AsymmetricDecryptForm();
 
                 Symmetric.Algorythm = Aes.Create();
                 byte[] SymmetricIV = { 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0 };
@@ -119,6 +119,7 @@ namespace To_Ba_To_Iutta
 
                 Asymmetric.keySize = 2048;
                 Asymmetric.rsaEncryptionPadding = RSAEncryptionPadding.OaepSHA512;
+
             }
             public static void ControlRoundBorder(Control Control, Pen pen, DashStyle dashstyle = DashStyle.Solid)
             {
@@ -186,7 +187,8 @@ namespace To_Ba_To_Iutta
                     cngKey = CngKey.Open(keyContainerName);
                     rsa = new RSACng(cngKey) { KeySize = keySize };
 
-                    output = rsa.Decrypt(input, rsaEncryptionPadding);
+                    if(input != null)
+                        output = rsa.Decrypt(input, rsaEncryptionPadding);
                 }
                 catch (System.Exception ex)
                 {
@@ -208,7 +210,8 @@ namespace To_Ba_To_Iutta
                     }
                     rsa = new RSACng(cngKey) { KeySize = keySize };
 
-                    output = rsa.Encrypt(input, rsaEncryptionPadding);
+                    if (input != null) 
+                        output = rsa.Encrypt(input, rsaEncryptionPadding);
                 }
                 catch (System.Exception ex)
                 {
@@ -229,6 +232,22 @@ namespace To_Ba_To_Iutta
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 return output;
+            }
+            public static byte[] GetPublicKeyBlob(string keyContainerName)
+            {
+                try 
+                {
+                    if (!CngKey.Exists(keyContainerName))
+                        throw new CryptographicException($"The Key Service Provider does not contain a key with the name: '{keyContainerName}'");
+                    cngKey = CngKey.Open(keyContainerName);
+                    rsa = new RSACng(cngKey) { KeySize = keySize };
+                    return rsa.Key.Export(CngKeyBlobFormat.GenericPublicBlob);
+                }
+                catch (System.Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
             }
         }
         public static class Signature
