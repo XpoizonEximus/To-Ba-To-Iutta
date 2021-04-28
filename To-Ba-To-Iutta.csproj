@@ -58,6 +58,21 @@
     <Compile Include="AsymmetricDecryptForm.Designer.cs">
       <DependentUpon>AsymmetricDecryptForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChatConnectForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChatConnectForm.Designer.cs">
+      <DependentUpon>ChatConnectForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChatCryptForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChatCryptForm.Designer.cs">
+      <DependentUpon>ChatCryptForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChatElement.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Crypt.cs" />
     <Compile Include="ExportAsymmetricPublicKeyForm.cs">
       <SubType>Form</SubType>
@@ -96,6 +111,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AsymmetricDecryptForm.resx">
       <DependentUpon>AsymmetricDecryptForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChatConnectForm.resx">
+      <DependentUpon>ChatConnectForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChatCryptForm.resx">
+      <DependentUpon>ChatCryptForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ExportAsymmetricPublicKeyForm.resx">
       <DependentUpon>ExportAsymmetricPublicKeyForm.cs</DependentUpon>

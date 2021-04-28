@@ -76,12 +76,12 @@ namespace To_Ba_To_Iutta
             mainPanel.ResumeLayout();
         }
         private void ChangeControls(Crypt.Procedure procedure, Crypt.CryptoAlgorythm algorythm, bool chat)
-        {/*
+        {
             Procedure = procedure;
             Algorythm = algorythm;
             Chat = chat;
             Crypt.Actions.SetMainPanelForm(procedure, algorythm, chat);
-            LoadMainPanel();*/
+            LoadMainPanel();
         }
 
         #region Minimize-Close Buttons

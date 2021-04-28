@@ -38,13 +38,13 @@ namespace To_Ba_To_Iutta
                     byte[] keyb = Convert.FromBase64String(key.Text);
                     outputb = Crypt.Asymmetric.Encrypt(inputb, keyb);
                 }
-                else
+                else if(keyNameRadio.Checked == true)
                 {
                     if (String.IsNullOrWhiteSpace(keyName.Text))
                         return;
                     outputb = Crypt.Asymmetric.Encrypt(inputb, keyName.Text);
                 }
-                output.Text = Convert.ToBase64String(outputb);
+                if(outputb != null) output.Text = Convert.ToBase64String(outputb);
             }
             catch (System.Exception ex)
             {

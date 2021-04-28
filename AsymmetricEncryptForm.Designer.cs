@@ -210,7 +210,7 @@ namespace To_Ba_To_Iutta
             this.keyName.ForeColor = System.Drawing.Color.White;
             this.keyName.Location = new System.Drawing.Point(8, 4);
             this.keyName.Name = "keyName";
-            this.keyName.Size = new System.Drawing.Size(290, 18);
+            this.keyName.Size = new System.Drawing.Size(288, 18);
             this.keyName.TabIndex = 0;
             // 
             // keyLabel
@@ -245,7 +245,7 @@ namespace To_Ba_To_Iutta
             this.key.ForeColor = System.Drawing.Color.White;
             this.key.Location = new System.Drawing.Point(8, 4);
             this.key.Name = "key";
-            this.key.Size = new System.Drawing.Size(290, 18);
+            this.key.Size = new System.Drawing.Size(288, 18);
             this.key.TabIndex = 0;
             // 
             // keyNameRadio

@@ -27,6 +27,8 @@ namespace To_Ba_To_Iutta
         {
             try
             {
+                if (String.IsNullOrWhiteSpace(keyName.Text))
+                    return;
                 byte[] inputb = Convert.FromBase64String(input.Text);
                 byte[] outputb = Crypt.Asymmetric.Decrypt(inputb, keyName.Text);
                 if (outputb != null)

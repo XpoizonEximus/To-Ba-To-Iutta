@@ -212,7 +212,7 @@ namespace To_Ba_To_Iutta
             this.keyName.ForeColor = System.Drawing.Color.White;
             this.keyName.Location = new System.Drawing.Point(8, 4);
             this.keyName.Name = "keyName";
-            this.keyName.Size = new System.Drawing.Size(483, 18);
+            this.keyName.Size = new System.Drawing.Size(481, 18);
             this.keyName.TabIndex = 0;
             // 
             // AsymmetricDecryptForm

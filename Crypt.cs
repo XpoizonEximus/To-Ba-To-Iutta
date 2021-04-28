@@ -16,19 +16,22 @@ namespace To_Ba_To_Iutta
         #region Data Types
         public enum Procedure { Encrypt = 0, Decrypt = 1 }
         public enum CryptoAlgorythm { Symmetric = 0, Asymmetric = 1}
+        public enum ChatElementType { Sender = 0, Receiver = 1}
         public interface ISwapProcedure { void SwapProcedure(); }
         public class ColorTheme
         {
             public Color Primary;
             public Color Secondary;
             public Color Background;
-            public Color TextBackground;
-            public ColorTheme(Color primary, Color secondary, Color background, Color textbackground)
+            public Color ChatSender;
+            public Color ChatReceiver;
+            public ColorTheme(Color primary, Color secondary, Color background, Color chatSender, Color chatReceiver)
             {
                 Primary = primary;
                 Secondary = secondary;
                 Background = background;
-                TextBackground = textbackground;
+                ChatSender = chatSender;
+                ChatReceiver = chatReceiver;
             }
         }
 
@@ -45,13 +48,14 @@ namespace To_Ba_To_Iutta
             }
             public void PanelRoundBorder_SetRegion()
             {
+                float i = pen.Width/2;
                 CornerRadius *= 2;
                 Rectangle Bounds = new Rectangle(0, 0, (int)(Control.Width + pen.Width), (int)(Control.Height + pen.Width));
                 System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
-                path.AddArc(Bounds.X, Bounds.Y, CornerRadius, CornerRadius, 180, 90);
-                path.AddArc(Bounds.X + Bounds.Width - CornerRadius, Bounds.Y, CornerRadius, CornerRadius, 270, 90);
-                path.AddArc(Bounds.X + Bounds.Width - CornerRadius, Bounds.Y + Bounds.Height - CornerRadius, CornerRadius, CornerRadius, 0, 90);
-                path.AddArc(Bounds.X, Bounds.Y + Bounds.Height - CornerRadius, CornerRadius, CornerRadius, 90, 90);
+                path.AddArc(Bounds.X+i, Bounds.Y+i, CornerRadius, CornerRadius, 180, 90);
+                path.AddArc(Bounds.X + Bounds.Width - CornerRadius-i, Bounds.Y+i, CornerRadius, CornerRadius, 270, 90);
+                path.AddArc(Bounds.X + Bounds.Width - CornerRadius-i, Bounds.Y + Bounds.Height - CornerRadius-i, CornerRadius, CornerRadius, 0, 90);
+                path.AddArc(Bounds.X+i, Bounds.Y + Bounds.Height - CornerRadius-i, CornerRadius, CornerRadius, 90, 90);
                 path.CloseAllFigures();
                 CornerRadius /= 2;
 
@@ -63,8 +67,8 @@ namespace To_Ba_To_Iutta
 
                 e.Graphics.DrawLine(pen, i, i + CornerRadius, i, Control.Height - i - CornerRadius);
                 e.Graphics.DrawLine(pen, i + CornerRadius, i, Control.Width - i - CornerRadius, i);
-                e.Graphics.DrawLine(pen, Control.Width - i - CornerRadius, Control.Height - i, i + CornerRadius, Control.Height - i);
-                e.Graphics.DrawLine(pen, Control.Width - i, Control.Height - i - CornerRadius, Control.Width - i, i + CornerRadius);
+                e.Graphics.DrawLine(pen, Control.Width - CornerRadius, Control.Height - i, i + CornerRadius, Control.Height - i);
+                e.Graphics.DrawLine(pen, Control.Width - i, Control.Height - CornerRadius, Control.Width - i, i + CornerRadius);
 
                 e.Graphics.DrawArc(pen, i, i, 2 * CornerRadius, 2 * CornerRadius, 180, 90);
                 e.Graphics.DrawArc(pen, Control.Width - i - 2 * CornerRadius, i, 2 * CornerRadius, 2 * CornerRadius, 270, 90);
@@ -91,13 +95,15 @@ namespace To_Ba_To_Iutta
                     Color.FromArgb(0, 17, 32),
                     Color.FromArgb(0, 22, 42),
                     Color.FromArgb(1, 39, 74),
-                    Color.FromArgb(255, 255, 255)
+                    Color.FromArgb(44, 75, 105),
+                    Color.FromArgb(44, 105, 75)
                 ),
                 new ColorTheme
                 (
                     Color.FromArgb(49, 40, 35),
                     Color.FromArgb(65, 57, 52),
                     Color.FromArgb(90, 82, 78),
+                    Color.FromArgb(0, 0, 0),
                     Color.FromArgb(0, 0, 0)
                 )
             };
@@ -111,7 +117,7 @@ namespace To_Ba_To_Iutta
                 form.Algorythm = CryptoAlgorythm.Symmetric;
                 form.Chat = false;
 
-                Data.MainPanelForm = new AsymmetricDecryptForm();
+                Data.MainPanelForm = new ChatCryptForm();
 
                 Symmetric.Algorythm = Aes.Create();
                 byte[] SymmetricIV = { 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0 };
@@ -130,7 +136,20 @@ namespace To_Ba_To_Iutta
             }
             public static void SetMainPanelForm(Procedure procedure, CryptoAlgorythm algorythm, bool chat)
             {
-
+                if(chat==true)
+                {
+                    Data.MainPanelForm = new ChatCryptForm();
+                    return;
+                }
+                if(algorythm == CryptoAlgorythm.Symmetric)
+                {
+                    Data.MainPanelForm = new SymmetricCryptForm(procedure);
+                    return;
+                }
+                if (procedure == Procedure.Encrypt)
+                    Data.MainPanelForm = new AsymmetricEncryptForm();
+                else
+                    Data.MainPanelForm = new AsymmetricDecryptForm();
             }
         }
 
@@ -248,6 +267,14 @@ namespace To_Ba_To_Iutta
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;
                 }
+            }
+        }
+        public static class Chat
+        {
+            public static ECDiffieHellmanCng Algorythm { get; set; }
+            public static void Connect()
+            {
+
             }
         }
         public static class Signature
