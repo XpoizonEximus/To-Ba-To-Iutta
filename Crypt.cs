@@ -125,7 +125,6 @@ namespace To_Ba_To_Iutta
 
                 Asymmetric.keySize = 2048;
                 Asymmetric.rsaEncryptionPadding = RSAEncryptionPadding.OaepSHA512;
-
             }
             public static void ControlRoundBorder(Control Control, Pen pen, DashStyle dashstyle = DashStyle.Solid)
             {

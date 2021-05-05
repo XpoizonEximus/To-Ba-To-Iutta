@@ -16,3 +16,4 @@ C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Debug
 C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Debug\To_Ba_To_Iutta.ExportAsymmetricPublicKeyForm.resources
 C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Debug\To_Ba_To_Iutta.ChatCryptForm.resources
 C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Debug\To_Ba_To_Iutta.ChatConnectForm.resources
+C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Debug\To_Ba_To_Iutta.SettingsForm.resources

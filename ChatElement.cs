@@ -11,12 +11,12 @@ namespace To_Ba_To_Iutta
     {
         public Crypt.ChatElementType Type { get; set; }
 
-        private string Text { get; set; }
+        private string ShowText { get; set; }
         private Label Label { get; set; }
 
         public ChatElement(string text, Crypt.ChatElementType type)
         {
-            Text = text;
+            ShowText = text;
             Type = type;
             InitializeComponent();
         }
@@ -24,7 +24,7 @@ namespace To_Ba_To_Iutta
         {
             this.BackColor = (Type == Crypt.ChatElementType.Sender ? Crypt.Constants.ColorThemeCollection[0].ChatSender : Crypt.Constants.ColorThemeCollection[0].ChatReceiver);
 
-            Label.Text = Text;
+            Label.Text = ShowText;
             //Label.Location = new System.Drawing.Point()
 
         }

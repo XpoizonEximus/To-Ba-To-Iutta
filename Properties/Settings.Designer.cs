@@ -8,21 +8,126 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-
-namespace To_Ba_To_Iutta.Properties
-{
+namespace To_Ba_To_Iutta.Properties {
+    
+    
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
-    {
-
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.8.1.0")]
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-
-        public static Settings Default
-        {
-            get
-            {
+        
+        public static Settings Default {
+            get {
                 return defaultInstance;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("AES")]
+        public string SymmetricAlgorythm {
+            get {
+                return ((string)(this["SymmetricAlgorythm"]));
+            }
+            set {
+                this["SymmetricAlgorythm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SymmetricIV {
+            get {
+                return ((string)(this["SymmetricIV"]));
+            }
+            set {
+                this["SymmetricIV"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("PKCS7")]
+        public string SymmetricPadding {
+            get {
+                return ((string)(this["SymmetricPadding"]));
+            }
+            set {
+                this["SymmetricPadding"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("CBC")]
+        public string SymmetricMode {
+            get {
+                return ((string)(this["SymmetricMode"]));
+            }
+            set {
+                this["SymmetricMode"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("RSA")]
+        public string AsymmetricAlgorythm {
+            get {
+                return ((string)(this["AsymmetricAlgorythm"]));
+            }
+            set {
+                this["AsymmetricAlgorythm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public int AsymmetricKeySize {
+            get {
+                return ((int)(this["AsymmetricKeySize"]));
+            }
+            set {
+                this["AsymmetricKeySize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("SHA512")]
+        public string AsymmetricPadding {
+            get {
+                return ((string)(this["AsymmetricPadding"]));
+            }
+            set {
+                this["AsymmetricPadding"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PrivateKeyPairs {
+            get {
+                return ((string)(this["PrivateKeyPairs"]));
+            }
+            set {
+                this["PrivateKeyPairs"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string PublicKeyPairs {
+            get {
+                return ((string)(this["PublicKeyPairs"]));
+            }
+            set {
+                this["PublicKeyPairs"] = value;
             }
         }
     }

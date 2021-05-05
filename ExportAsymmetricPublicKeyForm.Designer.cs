@@ -86,6 +86,7 @@ namespace To_Ba_To_Iutta
             // 
             // ExportAsymmetricPublicKeyForm
             // 
+            this.AcceptButton = this.copy;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -95,12 +96,13 @@ namespace To_Ba_To_Iutta
             this.Controls.Add(this.copy);
             this.Controls.Add(this.keyLabel);
             this.Font = new System.Drawing.Font("Helvetica", 11F);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(295, 117);
             this.Name = "ExportAsymmetricPublicKeyForm";
             this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Export Asymmetric Public Key ";
             this.ResumeLayout(false);

@@ -121,6 +121,7 @@ namespace To_Ba_To_Iutta
             // 
             // ChatConnectForm
             // 
+            this.AcceptButton = this.connect;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -139,6 +140,7 @@ namespace To_Ba_To_Iutta
             this.MinimumSize = new System.Drawing.Size(348, 188);
             this.Name = "ChatConnectForm";
             this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Export Asymmetric Public Key ";
             this.Resize += new System.EventHandler(this.ChatConnectForm_Resize);
