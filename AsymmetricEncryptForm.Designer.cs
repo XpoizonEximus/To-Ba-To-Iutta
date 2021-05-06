@@ -139,6 +139,7 @@ namespace To_Ba_To_Iutta
             this.input.Name = "input";
             this.input.Size = new System.Drawing.Size(655, 204);
             this.input.TabIndex = 0;
+            this.input.KeyDown += new System.Windows.Forms.KeyEventHandler(this.input_KeyDown);
             // 
             // inputPanel
             // 
@@ -212,6 +213,8 @@ namespace To_Ba_To_Iutta
             this.keyName.Name = "keyName";
             this.keyName.Size = new System.Drawing.Size(288, 18);
             this.keyName.TabIndex = 0;
+            this.keyName.TextChanged += new System.EventHandler(this.keyName_TextChanged);
+            this.keyName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.keyName_KeyDown);
             // 
             // keyLabel
             // 
@@ -247,6 +250,8 @@ namespace To_Ba_To_Iutta
             this.key.Name = "key";
             this.key.Size = new System.Drawing.Size(288, 18);
             this.key.TabIndex = 0;
+            this.key.TextChanged += new System.EventHandler(this.key_TextChanged);
+            this.key.KeyDown += new System.Windows.Forms.KeyEventHandler(this.key_KeyDown);
             // 
             // keyNameRadio
             // 
@@ -290,6 +295,7 @@ namespace To_Ba_To_Iutta
             // 
             // AsymmetricEncryptForm
             // 
+            this.AcceptButton = this.button;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(794, 530);
             this.Name = "AsymmetricEncryptForm";

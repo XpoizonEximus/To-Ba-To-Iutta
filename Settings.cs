@@ -27,7 +27,6 @@
 
         public new void Reset()
         {
-            Crypt.Asymmetric.DeleteKey();
             base.Reset();
         }
         public new void Save()

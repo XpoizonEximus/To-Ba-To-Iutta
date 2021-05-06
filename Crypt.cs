@@ -132,8 +132,6 @@ namespace To_Ba_To_Iutta
                 byte[] SymmetricIV = { 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0 };
                 Symmetric.Algorythm.IV = SymmetricIV;
 
-                Asymmetric.fOAEP = false;
-                Asymmetric.keySize = 4096;
             }
             public static void ControlRoundBorder(Control Control, Pen pen, DashStyle dashstyle = DashStyle.Solid)
             {
@@ -199,10 +197,11 @@ namespace To_Ba_To_Iutta
         }
         public static class Asymmetric
         {
+            public const int keySize = 4096;
+            public static bool fOAEP = true;
+
             public static RSACryptoServiceProvider rsa;
             public static CspParameters param;
-            public static int keySize;
-            public static bool fOAEP;
             public static bool VerifyKeyContainerExistence(string keyContainerName)
             {
                 CspParameters cspParams = new CspParameters
@@ -220,24 +219,24 @@ namespace To_Ba_To_Iutta
                 }
                 return true;
             }
-            public static void CreateNewKey(string key, bool isPublic = false)
+            public static void CreateNewKeyContainer(string keyContainerName, bool isImported = false, byte[] key = null)
             {
                 try
                 {
-                    if (!isPublic)
+                    if (VerifyKeyContainerExistence(keyContainerName))
+                        throw new Exception("Key set already exists in CSP.");
+                    param = new CspParameters {KeyContainerName = keyContainerName };
+                    rsa = new RSACryptoServiceProvider(param);
+                    if (isImported)
                     {
-                        if (VerifyKeyContainerExistence(key))
-                            throw new Exception("Key set already exists in CSP.");
-                        param = new CspParameters() { KeyContainerName = key };
-                        rsa = new RSACryptoServiceProvider(param);
-                        rsa.PersistKeyInCsp = true;
+                        if (key == null)
+                            throw new ArgumentNullException();
+                        string xml = Encoding.UTF8.GetString(key);
+                        rsa.FromXmlString(xml);
                     }
-                    else
-                    {
-                        
-                    }
+                    rsa.PersistKeyInCsp = true;
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
@@ -267,6 +266,7 @@ namespace To_Ba_To_Iutta
             {
                 try
                 {
+                    if (privateKeyContainerName == null) return null;
                     if (!VerifyKeyContainerExistence(privateKeyContainerName))
                         throw new Exception("This Key does not exist in CSP. Check Key Manager to see which are your saved keys.");
                     param = new CspParameters() { KeyContainerName = privateKeyContainerName, Flags = CspProviderFlags.UseExistingKey };
@@ -317,17 +317,21 @@ namespace To_Ba_To_Iutta
                 }
                 return null;
             }
-            public static byte[] Encrypt(byte[] input, string publicKeyContainerName, bool setKey = true)
+            public static byte[] Encrypt(byte[] input, string publicKeyContainerName, bool setAlgorythm = true)
             {
                 try
                 {
+                    if (publicKeyContainerName == null && setAlgorythm) return null;
                     if (!VerifyKeyContainerExistence(publicKeyContainerName))
                         throw new Exception("This Key does not exist in CSP. Check Key Manager to see which are your saved keys.");
                     Actions.InitializeAlgorythm();
                     byte[] encryptedInput = Symmetric.PerformProcedure(Procedure.Encrypt, input);
 
-                    if(setKey) param = new CspParameters() { KeyContainerName = publicKeyContainerName, Flags = CspProviderFlags.UseExistingKey };
-                    rsa = new RSACryptoServiceProvider(keySize, param);
+                    if (setAlgorythm)
+                    {
+                        param = new CspParameters() { KeyContainerName = publicKeyContainerName, Flags = CspProviderFlags.UseExistingKey };
+                        rsa = new RSACryptoServiceProvider(keySize, param);
+                    }
                     byte[] IV = Symmetric.Algorythm.IV;
                     byte[] key = Symmetric.Algorythm.Key;
                     byte[] encryptedKey = rsa.Encrypt(key, fOAEP); Clipboard.SetText(Convert.ToBase64String(encryptedKey));
@@ -353,10 +357,28 @@ namespace To_Ba_To_Iutta
             }
             public static byte[] Encrypt(byte[] input, byte[] key)
             {
-                return null;
+                string xml = Encoding.UTF8.GetString(key);
+                param = new CspParameters { Flags = CspProviderFlags.CreateEphemeralKey };
+                rsa = new RSACryptoServiceProvider(param);
+                rsa.FromXmlString(xml);
+                rsa.PersistKeyInCsp = false;
+                return Encrypt(input, null, false);
             }
-            public static byte[] GetPublicKeyXmlBlob(string keyContainerName)
+            public static byte[] GetKeyXmlBlob(string keyContainerName, bool includePrivate = false)
             {
+                try
+                {
+                    if (!VerifyKeyContainerExistence(keyContainerName))
+                        throw new Exception("This Key does not exist in CSP. Check Key Manager to see which are your saved keys.");
+                    param = new CspParameters { KeyContainerName = keyContainerName, Flags = CspProviderFlags.UseExistingKey };
+                    rsa = new RSACryptoServiceProvider(keySize, param);
+                    string xml = rsa.ToXmlString(includePrivate);
+                    return Encoding.UTF8.GetBytes(xml);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 return null;
             }
         }

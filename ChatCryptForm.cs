@@ -21,6 +21,7 @@ namespace To_Ba_To_Iutta
             ipLabel.Text = IPAddress.Parse(externalIpString).ToString();
 
             Crypt.Actions.ControlRoundBorder(connect, new Pen(Color.White, 1f));
+            Crypt.Actions.ControlRoundBorder(disconnect, new Pen(Color.White, 1f));
             Crypt.Actions.ControlRoundBorder(containerPanel, new Pen(Color.Silver, 1f));
             Crypt.Actions.ControlRoundBorder(baseContainerPanel, new Pen(Color.Silver, 1f));
             Crypt.Actions.ControlRoundBorder(send, new Pen(Color.Silver, 1f));
@@ -38,6 +39,18 @@ namespace To_Ba_To_Iutta
         {
             Pen p = new Pen(Color.Silver, 1f);
             e.Graphics.DrawLine(p, 0, 0, 0, baseContainerPanel.Height);
+        }
+
+        private void sendTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                send.PerformClick();
+        }
+
+        private void ReciveTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                recive.PerformClick();
         }
     }
 }

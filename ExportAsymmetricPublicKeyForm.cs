@@ -19,7 +19,7 @@ namespace To_Ba_To_Iutta
         {
             InitializeComponent();
             KeyContainerName = keyContainerName;
-            Key = Crypt.Asymmetric.GetPublicKeyXmlBlob(keyContainerName);
+            Key = Crypt.Asymmetric.GetKeyXmlBlob(keyContainerName);
 
             key.Text = Convert.ToBase64String(Key);
 

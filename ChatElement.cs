@@ -1,32 +1,20 @@
 ﻿using System;
-using System.Windows.Forms;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace To_Ba_To_Iutta
 {
-    public class ChatElement : Panel
+    public partial class ChatElement : UserControl
     {
-        public Crypt.ChatElementType Type { get; set; }
-
-        private string ShowText { get; set; }
-        private Label Label { get; set; }
-
-        public ChatElement(string text, Crypt.ChatElementType type)
+        public ChatElement()
         {
-            ShowText = text;
-            Type = type;
             InitializeComponent();
-        }
-        private void InitializeComponent()
-        {
-            this.BackColor = (Type == Crypt.ChatElementType.Sender ? Crypt.Constants.ColorThemeCollection[0].ChatSender : Crypt.Constants.ColorThemeCollection[0].ChatReceiver);
-
-            Label.Text = ShowText;
-            //Label.Location = new System.Drawing.Point()
-
         }
     }
 }

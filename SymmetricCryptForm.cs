@@ -61,5 +61,17 @@ namespace To_Ba_To_Iutta
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void key_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                button.PerformClick();
+        }
+
+        private void input_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                button.PerformClick();
+        }
     }
 }

@@ -113,6 +113,7 @@ namespace To_Ba_To_Iutta
             this.key.Name = "key";
             this.key.Size = new System.Drawing.Size(482, 40);
             this.key.TabIndex = 5;
+            this.key.KeyDown += new System.Windows.Forms.KeyEventHandler(this.key_KeyDown);
             // 
             // keyLabel
             // 
@@ -141,6 +142,7 @@ namespace To_Ba_To_Iutta
             this.input.Name = "input";
             this.input.Size = new System.Drawing.Size(655, 208);
             this.input.TabIndex = 0;
+            this.input.KeyDown += new System.Windows.Forms.KeyEventHandler(this.input_KeyDown);
             // 
             // inputPanel
             // 
@@ -183,6 +185,7 @@ namespace To_Ba_To_Iutta
             // 
             // SymmetricCryptForm
             // 
+            this.AcceptButton = this.button;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(794, 530);
             this.Name = "SymmetricCryptForm";

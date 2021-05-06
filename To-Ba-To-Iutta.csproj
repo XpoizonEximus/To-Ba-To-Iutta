@@ -71,7 +71,10 @@
       <DependentUpon>ChatCryptForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ChatElement.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ChatElement.Designer.cs">
+      <DependentUpon>ChatElement.cs</DependentUpon>
     </Compile>
     <Compile Include="Crypt.cs" />
     <Compile Include="ExportAsymmetricPublicKeyForm.cs">
@@ -124,6 +127,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ChatCryptForm.resx">
       <DependentUpon>ChatCryptForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChatElement.resx">
+      <DependentUpon>ChatElement.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ExportAsymmetricPublicKeyForm.resx">
       <DependentUpon>ExportAsymmetricPublicKeyForm.cs</DependentUpon>

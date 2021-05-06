@@ -67,12 +67,35 @@ namespace To_Ba_To_Iutta
                     key.Text = Convert.ToBase64String(keyb);
 
                     keyRadio.Checked = true;
+                    key.Focus();
                 }
                 catch (System.Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void keyName_TextChanged(object sender, EventArgs e) => keyNameRadio.Checked = true;
+
+        private void key_TextChanged(object sender, EventArgs e) => keyRadio.Checked = true;
+
+        private void input_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                button.PerformClick();
+        }
+
+        private void keyName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                button.PerformClick();
+        }
+
+        private void key_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                button.PerformClick();
         }
     }
 }
