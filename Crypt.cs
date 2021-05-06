@@ -111,20 +111,29 @@ namespace To_Ba_To_Iutta
 
         public static class Actions
         {
-            public static void Initialize(MainForm form)
+            public static void Initialize(MainForm form = null)
             {
+                if (form != null) Data.MainForm = form;
+                else  form = Data.MainForm;
+                if (form == null) return;
+
                 form.Procedure = Procedure.Encrypt;
                 form.Algorythm = CryptoAlgorythm.Symmetric;
                 form.Chat = false;
 
                 Data.MainPanelForm = new ChatCryptForm();
 
+                InitializeAlgorythm();
+
+            }
+            public static void InitializeAlgorythm()
+            {
                 Symmetric.Algorythm = Aes.Create();
                 byte[] SymmetricIV = { 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0, 0x34, 0xf0 };
                 Symmetric.Algorythm.IV = SymmetricIV;
 
-                Asymmetric.keySize = 2048;
-                Asymmetric.rsaEncryptionPadding = RSAEncryptionPadding.OaepSHA512;
+                Asymmetric.fOAEP = false;
+                Asymmetric.keySize = 4096;
             }
             public static void ControlRoundBorder(Control Control, Pen pen, DashStyle dashstyle = DashStyle.Solid)
             {
@@ -190,82 +199,165 @@ namespace To_Ba_To_Iutta
         }
         public static class Asymmetric
         {
-            public static RSACng rsa;
-            public static CngKey cngKey;
+            public static RSACryptoServiceProvider rsa;
+            public static CspParameters param;
             public static int keySize;
-            public static RSAEncryptionPadding rsaEncryptionPadding;
-            public static byte[] Decrypt(byte[] input, string keyContainerName)
+            public static bool fOAEP;
+            public static bool VerifyKeyContainerExistence(string keyContainerName)
             {
-                byte[] output = null;
+                CspParameters cspParams = new CspParameters
+                {
+                    Flags = CspProviderFlags.UseExistingKey,
+                    KeyContainerName = keyContainerName
+                };
                 try
                 {
-                    if (!CngKey.Exists(keyContainerName))
-                        throw new CryptographicException($"The Key Service Provider does not contain a key with the name '{keyContainerName}'");
-
-                    cngKey = CngKey.Open(keyContainerName);
-                    rsa = new RSACng(cngKey) { KeySize = keySize };
-
-                    if(input != null)
-                        output = rsa.Decrypt(input, rsaEncryptionPadding);
+                    using (var provider = new RSACryptoServiceProvider(cspParams)) { }
                 }
-                catch (System.Exception ex)
+                catch
                 {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
                 }
-                return output;
+                return true;
             }
-            public static byte[] Encrypt(byte[] input, string publicKeyContainerName, bool setCngKey = true)
+            public static void CreateNewKey(string key, bool isPublic = false)
             {
-                byte[] output = null;
                 try
                 {
-                    if (setCngKey)
+                    if (!isPublic)
                     {
-                        if (!CngKey.Exists(publicKeyContainerName))
-                            throw new CryptographicException($"The Key Service Provider does not contain a key with the name: '{publicKeyContainerName}'");
-
-                        cngKey = CngKey.Open(publicKeyContainerName);
+                        if (VerifyKeyContainerExistence(key))
+                            throw new Exception("Key set already exists in CSP.");
+                        param = new CspParameters() { KeyContainerName = key };
+                        rsa = new RSACryptoServiceProvider(param);
+                        rsa.PersistKeyInCsp = true;
                     }
-                    rsa = new RSACng(cngKey) { KeySize = keySize };
-
-                    if (input != null) 
-                        output = rsa.Encrypt(input, rsaEncryptionPadding);
+                    else
+                    {
+                        
+                    }
                 }
-                catch (System.Exception ex)
+                catch(Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                return output;
+            }
+            public static void DeleteKey(string keyContainerName)
+            {
+                try
+                {
+                    if (!VerifyKeyContainerExistence(keyContainerName))
+                        throw new Exception("This Key does not exist in CSP.");
+                    CspParameters cspParams = new CspParameters
+                    {
+                        Flags = CspProviderFlags.UseExistingKey,
+                        KeyContainerName = keyContainerName
+                    };
+                    using (var provider = new RSACryptoServiceProvider(cspParams)) 
+                    {
+                        provider.PersistKeyInCsp = false;
+                    }
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            public static byte[] Decrypt(byte[] input, string privateKeyContainerName)
+            {
+                try
+                {
+                    if (!VerifyKeyContainerExistence(privateKeyContainerName))
+                        throw new Exception("This Key does not exist in CSP. Check Key Manager to see which are your saved keys.");
+                    param = new CspParameters() { KeyContainerName = privateKeyContainerName, Flags = CspProviderFlags.UseExistingKey };
+                    rsa = new RSACryptoServiceProvider(keySize, param);
+                    if(rsa.PublicOnly)
+                        throw new Exception("This Key is public. Choose a private key for decryption. Check Key Manager to see which are your saved keys.");
+
+                    Actions.InitializeAlgorythm();
+
+                    byte[] lenk = new byte[4];
+                    byte[] lenIV = new byte[4];
+
+                    byte[] encryptedKey = null;
+                    byte[] IV = null;
+
+                    byte[] encryptedOutput = null;
+
+                    using(MemoryStream ms = new MemoryStream())
+                    {
+                        ms.Write(input, 0, input.Length);
+                        ms.Flush();
+                        ms.Position = 0;
+
+                        ms.Read(lenk, 0, 4);
+                        ms.Read(lenIV, 0, 4);
+
+                        int lk = BitConverter.ToInt32(lenk, 0);
+                        int liv = BitConverter.ToInt32(lenIV, 0);
+
+                        encryptedKey = new byte[lk];
+                        IV = new byte[liv];
+                        encryptedOutput = new byte[input.Length - (8 + lk + liv)];
+
+                        ms.Read(encryptedKey, 0, lk);
+                        ms.Read(IV, 0, liv);
+
+                        ms.Read(encryptedOutput, 0, input.Length - (8 + lk + liv));
+                    }
+
+                    byte[] key = rsa.Decrypt(encryptedKey, fOAEP);
+                    byte[] output = Symmetric.PerformProcedure(Procedure.Decrypt, encryptedOutput, key, false);
+
+                    return output;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                return null;
+            }
+            public static byte[] Encrypt(byte[] input, string publicKeyContainerName, bool setKey = true)
+            {
+                try
+                {
+                    if (!VerifyKeyContainerExistence(publicKeyContainerName))
+                        throw new Exception("This Key does not exist in CSP. Check Key Manager to see which are your saved keys.");
+                    Actions.InitializeAlgorythm();
+                    byte[] encryptedInput = Symmetric.PerformProcedure(Procedure.Encrypt, input);
+
+                    if(setKey) param = new CspParameters() { KeyContainerName = publicKeyContainerName, Flags = CspProviderFlags.UseExistingKey };
+                    rsa = new RSACryptoServiceProvider(keySize, param);
+                    byte[] IV = Symmetric.Algorythm.IV;
+                    byte[] key = Symmetric.Algorythm.Key;
+                    byte[] encryptedKey = rsa.Encrypt(key, fOAEP); Clipboard.SetText(Convert.ToBase64String(encryptedKey));
+
+                    byte[] lenk = BitConverter.GetBytes(encryptedKey.Length);
+                    byte[] lenIV = BitConverter.GetBytes(IV.Length);
+
+                    List<byte> list = new List<byte>();
+                    list.AddRange(lenk);
+                    list.AddRange(lenIV);
+                    list.AddRange(encryptedKey);
+                    list.AddRange(IV);
+                    list.AddRange(encryptedInput);
+
+                    byte[] output = list.ToArray();
+                    return output;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                return null;
             }
             public static byte[] Encrypt(byte[] input, byte[] key)
             {
-                byte[] output = null;
-                try
-                {
-                    cngKey = CngKey.Import(key, CngKeyBlobFormat.GenericPublicBlob);
-                    output = Encrypt(input, "", false);
-                }
-                catch (System.Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                return output;
+                return null;
             }
-            public static byte[] GetPublicKeyBlob(string keyContainerName)
+            public static byte[] GetPublicKeyXmlBlob(string keyContainerName)
             {
-                try 
-                {
-                    if (!CngKey.Exists(keyContainerName))
-                        throw new CryptographicException($"The Key Service Provider does not contain a key with the name: '{keyContainerName}'");
-                    cngKey = CngKey.Open(keyContainerName);
-                    rsa = new RSACng(cngKey) { KeySize = keySize };
-                    return rsa.Key.Export(CngKeyBlobFormat.GenericPublicBlob);
-                }
-                catch (System.Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return null;
-                }
+                return null;
             }
         }
         public static class Chat
@@ -287,6 +379,7 @@ namespace To_Ba_To_Iutta
         public static class Data
         {
             public static PanelForm MainPanelForm { get; set; }
+            public static MainForm MainForm { get; set; }
         }
     }
 }

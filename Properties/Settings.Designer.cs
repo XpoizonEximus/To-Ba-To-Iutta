@@ -130,5 +130,89 @@ namespace To_Ba_To_Iutta.Properties {
                 this["PublicKeyPairs"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool LastEnctrypt {
+            get {
+                return ((bool)(this["LastEnctrypt"]));
+            }
+            set {
+                this["LastEnctrypt"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool LastSymmetric {
+            get {
+                return ((bool)(this["LastSymmetric"]));
+            }
+            set {
+                this["LastSymmetric"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool LastChat {
+            get {
+                return ((bool)(this["LastChat"]));
+            }
+            set {
+                this["LastChat"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastSymmetricEncryptInput {
+            get {
+                return ((string)(this["LastSymmetricEncryptInput"]));
+            }
+            set {
+                this["LastSymmetricEncryptInput"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastAsymmetricEncryptInput {
+            get {
+                return ((string)(this["LastAsymmetricEncryptInput"]));
+            }
+            set {
+                this["LastAsymmetricEncryptInput"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastSymmetricDecryptInput {
+            get {
+                return ((string)(this["LastSymmetricDecryptInput"]));
+            }
+            set {
+                this["LastSymmetricDecryptInput"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastAsymmetricDecryptInput {
+            get {
+                return ((string)(this["LastAsymmetricDecryptInput"]));
+            }
+            set {
+                this["LastAsymmetricDecryptInput"] = value;
+            }
+        }
     }
 }

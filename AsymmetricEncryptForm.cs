@@ -27,8 +27,8 @@ namespace To_Ba_To_Iutta
 
         private void button_Click(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 byte[] inputb = Encoding.UTF8.GetBytes(input.Text);
                 byte[] outputb = null;
                 if(keyRadio.Checked == true)
@@ -45,11 +45,11 @@ namespace To_Ba_To_Iutta
                     outputb = Crypt.Asymmetric.Encrypt(inputb, keyName.Text);
                 }
                 if(outputb != null) output.Text = Convert.ToBase64String(outputb);
-            }
-            catch (System.Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Button Click Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //}
+            //catch (System.Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
 
         private void uploadKeyButton_Click(object sender, EventArgs e)

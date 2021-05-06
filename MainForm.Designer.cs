@@ -31,8 +31,9 @@ namespace To_Ba_To_Iutta
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.leftContainerPanel = new System.Windows.Forms.Panel();
-            this.leftSecondPanel = new System.Windows.Forms.Panel();
             this.chatButton = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.leftSecondPanel = new System.Windows.Forms.Panel();
             this.decryptButton = new System.Windows.Forms.Button();
             this.encryptButton = new System.Windows.Forms.Button();
             this.leftSecondSeparatorPanel = new System.Windows.Forms.Panel();
@@ -50,7 +51,6 @@ namespace To_Ba_To_Iutta
             this.titleLabel = new System.Windows.Forms.Label();
             this.minimzeButton = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.leftContainerPanel.SuspendLayout();
             this.leftSecondPanel.SuspendLayout();
             this.leftFirstPanel.SuspendLayout();
@@ -76,16 +76,6 @@ namespace To_Ba_To_Iutta
             this.leftContainerPanel.Size = new System.Drawing.Size(231, 561);
             this.leftContainerPanel.TabIndex = 0;
             // 
-            // leftSecondPanel
-            // 
-            this.leftSecondPanel.Controls.Add(this.decryptButton);
-            this.leftSecondPanel.Controls.Add(this.encryptButton);
-            this.leftSecondPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.leftSecondPanel.Location = new System.Drawing.Point(0, 250);
-            this.leftSecondPanel.Name = "leftSecondPanel";
-            this.leftSecondPanel.Size = new System.Drawing.Size(231, 142);
-            this.leftSecondPanel.TabIndex = 7;
-            // 
             // chatButton
             // 
             this.chatButton.Cursor = System.Windows.Forms.Cursors.Default;
@@ -104,6 +94,27 @@ namespace To_Ba_To_Iutta
             this.chatButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.chatButton.UseVisualStyleBackColor = true;
             this.chatButton.Click += new System.EventHandler(this.chatButton_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 392);
+            this.panel1.Name = "panel1";
+            this.panel1.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.panel1.Size = new System.Drawing.Size(231, 3);
+            this.panel1.TabIndex = 7;
+            // 
+            // leftSecondPanel
+            // 
+            this.leftSecondPanel.Controls.Add(this.decryptButton);
+            this.leftSecondPanel.Controls.Add(this.encryptButton);
+            this.leftSecondPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.leftSecondPanel.Location = new System.Drawing.Point(0, 250);
+            this.leftSecondPanel.Name = "leftSecondPanel";
+            this.leftSecondPanel.Size = new System.Drawing.Size(231, 142);
+            this.leftSecondPanel.TabIndex = 7;
             // 
             // decryptButton
             // 
@@ -361,17 +372,6 @@ namespace To_Ba_To_Iutta
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.closeFormHandler);
             // 
-            // panel1
-            // 
-            this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 392);
-            this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.panel1.Size = new System.Drawing.Size(231, 3);
-            this.panel1.TabIndex = 7;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -383,6 +383,7 @@ namespace To_Ba_To_Iutta
             this.Font = new System.Drawing.Font("Helvetica", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
             this.leftContainerPanel.ResumeLayout(false);
             this.leftSecondPanel.ResumeLayout(false);

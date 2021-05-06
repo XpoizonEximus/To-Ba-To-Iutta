@@ -21,7 +21,7 @@ namespace To_Ba_To_Iutta
             this.OnResize(new EventArgs());
 
             KeyContainerName = keyContainerName;
-            Key = Crypt.Asymmetric.GetPublicKeyBlob(keyContainerName);
+            Key = Crypt.Asymmetric.GetPublicKeyXmlBlob(keyContainerName);
 
             sendKey.Text = Convert.ToBase64String(Key);
 
