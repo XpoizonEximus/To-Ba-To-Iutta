@@ -171,7 +171,7 @@ namespace To_Ba_To_Iutta
             this.output.Multiline = true;
             this.output.Name = "output";
             this.output.ReadOnly = true;
-            this.output.Size = new System.Drawing.Size(682, 208);
+            this.output.Size = new System.Drawing.Size(655, 208);
             this.output.TabIndex = 0;
             this.output.TabStop = false;
             // 

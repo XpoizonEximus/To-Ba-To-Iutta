@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,16 +13,11 @@ namespace To_Ba_To_Iutta
 {
     public partial class MainForm : Form
     {
-        public Crypt.Procedure Procedure { get; set; }
-        public Crypt.CryptoAlgorythm Algorythm { get; set; }
-        public bool Chat { get; set; }
-
-
         public MainForm(bool splash = true)
         {
             if (splash) ShowSplashForm();
             InitializeComponent();
-            Crypt.Actions.Initialize(this);
+            Crypt.Actions.Settings.LoadSettings();
             RoundCorners();
             LoadMainPanel();
 
@@ -77,9 +73,9 @@ namespace To_Ba_To_Iutta
         }
         private void ChangeControls(Crypt.Procedure procedure, Crypt.CryptoAlgorythm algorythm, bool chat)
         {
-            Procedure = procedure;
-            Algorythm = algorythm;
-            Chat = chat;
+            Crypt.Data.Procedure = procedure;
+            Crypt.Data.Algorythm = algorythm;
+            Crypt.Data.Chat = chat;
             Crypt.Actions.SetMainPanelForm(procedure, algorythm, chat);
             LoadMainPanel();
         }
@@ -98,16 +94,27 @@ namespace To_Ba_To_Iutta
         }
         #endregion
 
-        private void symmetricButton_Click(object sender, EventArgs e) => ChangeControls(Procedure, Crypt.CryptoAlgorythm.Symmetric, false);
-        private void asymmetricButton_Click(object sender, EventArgs e) => ChangeControls(Procedure, Crypt.CryptoAlgorythm.Asymmetric, false);
-        private void encryptButton_Click(object sender, EventArgs e) => ChangeControls(Crypt.Procedure.Encrypt, Algorythm, false);
-        private void decryptButton_Click(object sender, EventArgs e) => ChangeControls(Crypt.Procedure.Decrypt, Algorythm, false);
-        private void chatButton_Click(object sender, EventArgs e) => ChangeControls(Procedure, Algorythm, !Chat);
+        private void symmetricButton_Click(object sender, EventArgs e) => ChangeControls(Crypt.Data.Procedure, Crypt.CryptoAlgorythm.Symmetric, false);
+        private void asymmetricButton_Click(object sender, EventArgs e) => ChangeControls(Crypt.Data.Procedure, Crypt.CryptoAlgorythm.Asymmetric, false);
+        private void encryptButton_Click(object sender, EventArgs e) => ChangeControls(Crypt.Procedure.Encrypt, Crypt.Data.Algorythm, false);
+        private void decryptButton_Click(object sender, EventArgs e) => ChangeControls(Crypt.Procedure.Decrypt, Crypt.Data.Algorythm, false);
+        private void chatButton_Click(object sender, EventArgs e) => ChangeControls(Crypt.Data.Procedure, Crypt.Data.Algorythm, !Crypt.Data.Chat);
 
         private void settingsButton_Click(object sender, EventArgs e)
         {
             SettingsForm f = new SettingsForm();
             f.ShowDialog();
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Crypt.Actions.Settings.Save();
+        }
+
+        private void helpButton_Click(object sender, EventArgs e)
+        {
+            ProcessStartInfo pInfo = new ProcessStartInfo("https://github.com/XpoizonEximus/To-Ba-To-Iutta");
+            Process.Start(pInfo);
         }
     }
 }

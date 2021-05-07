@@ -59,11 +59,13 @@ namespace To_Ba_To_Iutta
             this.asymmetricPage = new System.Windows.Forms.TabPage();
             this.asymmetricKeysGroupBox = new System.Windows.Forms.GroupBox();
             this.publicKeysGroupBox = new System.Windows.Forms.GroupBox();
+            this.exportPublicKeyButton = new System.Windows.Forms.Button();
             this.publicKeysListView = new System.Windows.Forms.ListView();
             this.publicListName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.deletePublicButton = new System.Windows.Forms.Button();
             this.newPublicKeyButton = new System.Windows.Forms.Button();
             this.privateKeysGroupBox = new System.Windows.Forms.GroupBox();
+            this.exportPrivateKeyButton = new System.Windows.Forms.Button();
             this.deletePrivateKeyButton = new System.Windows.Forms.Button();
             this.privateKeysListView = new System.Windows.Forms.ListView();
             this.privateListName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -72,8 +74,6 @@ namespace To_Ba_To_Iutta
             this.RSAradioButton = new System.Windows.Forms.RadioButton();
             this.defaultsButton = new System.Windows.Forms.Button();
             this.customIVToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.exportPrivateKeyButton = new System.Windows.Forms.Button();
-            this.exportPublicKeyButton = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.symmetricPage.SuspendLayout();
             this.symmetricModeGroupBox.SuspendLayout();
@@ -432,6 +432,18 @@ namespace To_Ba_To_Iutta
             this.publicKeysGroupBox.TabStop = false;
             this.publicKeysGroupBox.Text = "Public";
             // 
+            // exportPublicKeyButton
+            // 
+            this.exportPublicKeyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.exportPublicKeyButton.Location = new System.Drawing.Point(223, 423);
+            this.exportPublicKeyButton.Margin = new System.Windows.Forms.Padding(6);
+            this.exportPublicKeyButton.Name = "exportPublicKeyButton";
+            this.exportPublicKeyButton.Size = new System.Drawing.Size(101, 30);
+            this.exportPublicKeyButton.TabIndex = 7;
+            this.exportPublicKeyButton.Text = "Export";
+            this.exportPublicKeyButton.UseVisualStyleBackColor = true;
+            this.exportPublicKeyButton.Click += new System.EventHandler(this.exportPublicKeyButton_Click);
+            // 
             // publicKeysListView
             // 
             this.publicKeysListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -491,6 +503,18 @@ namespace To_Ba_To_Iutta
             this.privateKeysGroupBox.TabIndex = 5;
             this.privateKeysGroupBox.TabStop = false;
             this.privateKeysGroupBox.Text = "Private";
+            // 
+            // exportPrivateKeyButton
+            // 
+            this.exportPrivateKeyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.exportPrivateKeyButton.Location = new System.Drawing.Point(222, 423);
+            this.exportPrivateKeyButton.Margin = new System.Windows.Forms.Padding(6);
+            this.exportPrivateKeyButton.Name = "exportPrivateKeyButton";
+            this.exportPrivateKeyButton.Size = new System.Drawing.Size(101, 30);
+            this.exportPrivateKeyButton.TabIndex = 6;
+            this.exportPrivateKeyButton.Text = "Export";
+            this.exportPrivateKeyButton.UseVisualStyleBackColor = true;
+            this.exportPrivateKeyButton.Click += new System.EventHandler(this.exportPrivateKeyButton_Click);
             // 
             // deletePrivateKeyButton
             // 
@@ -570,6 +594,7 @@ namespace To_Ba_To_Iutta
             this.defaultsButton.TabIndex = 4;
             this.defaultsButton.Text = "Defaults";
             this.defaultsButton.UseVisualStyleBackColor = true;
+            this.defaultsButton.Click += new System.EventHandler(this.defaultsButton_Click);
             // 
             // customIVToolTip
             // 
@@ -577,30 +602,6 @@ namespace To_Ba_To_Iutta
             this.customIVToolTip.AutoPopDelay = 20000;
             this.customIVToolTip.InitialDelay = 5;
             this.customIVToolTip.ReshowDelay = 1;
-            // 
-            // exportPrivateKeyButton
-            // 
-            this.exportPrivateKeyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.exportPrivateKeyButton.Location = new System.Drawing.Point(222, 423);
-            this.exportPrivateKeyButton.Margin = new System.Windows.Forms.Padding(6);
-            this.exportPrivateKeyButton.Name = "exportPrivateKeyButton";
-            this.exportPrivateKeyButton.Size = new System.Drawing.Size(101, 30);
-            this.exportPrivateKeyButton.TabIndex = 6;
-            this.exportPrivateKeyButton.Text = "Export";
-            this.exportPrivateKeyButton.UseVisualStyleBackColor = true;
-            this.exportPrivateKeyButton.Click += new System.EventHandler(this.exportPrivateKeyButton_Click);
-            // 
-            // exportPublicKeyButton
-            // 
-            this.exportPublicKeyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.exportPublicKeyButton.Location = new System.Drawing.Point(223, 423);
-            this.exportPublicKeyButton.Margin = new System.Windows.Forms.Padding(6);
-            this.exportPublicKeyButton.Name = "exportPublicKeyButton";
-            this.exportPublicKeyButton.Size = new System.Drawing.Size(101, 30);
-            this.exportPublicKeyButton.TabIndex = 7;
-            this.exportPublicKeyButton.Text = "Export";
-            this.exportPublicKeyButton.UseVisualStyleBackColor = true;
-            this.exportPublicKeyButton.Click += new System.EventHandler(this.exportPublicKeyButton_Click);
             // 
             // SettingsForm
             // 

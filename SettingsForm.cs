@@ -186,9 +186,10 @@ namespace To_Ba_To_Iutta
             Settings.PublicKeyPairs = vals;
         }
         #endregion
-        public SettingsForm()
+        public SettingsForm(int index = 0)
         {
             InitializeComponent();
+            tabControl.SelectedIndex = index;
         }
 
         private void cancelButton_Click(object sender, EventArgs e) => this.Close();
@@ -280,6 +281,12 @@ namespace To_Ba_To_Iutta
                 ExportAsymmetricKeyForm f = new ExportAsymmetricKeyForm(i.Text, false);
                 f.ShowDialog();
             }
+        }
+
+        private void defaultsButton_Click(object sender, EventArgs e)
+        {
+            Settings.Reset();
+            LoadSettings();
         }
     }
 }

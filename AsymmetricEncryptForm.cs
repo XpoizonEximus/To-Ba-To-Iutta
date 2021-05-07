@@ -97,5 +97,11 @@ namespace To_Ba_To_Iutta
             if (e.KeyCode == Keys.Enter)
                 button.PerformClick();
         }
+
+        private void manageKeysButton_Click(object sender, EventArgs e)
+        {
+            SettingsForm f = new SettingsForm(1);
+            f.ShowDialog();
+        }
     }
 }

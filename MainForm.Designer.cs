@@ -272,6 +272,7 @@ namespace To_Ba_To_Iutta
             this.helpButton.Size = new System.Drawing.Size(50, 45);
             this.helpButton.TabIndex = 2;
             this.helpButton.UseVisualStyleBackColor = true;
+            this.helpButton.Click += new System.EventHandler(this.helpButton_Click);
             // 
             // logoPanel
             // 
@@ -386,6 +387,7 @@ namespace To_Ba_To_Iutta
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.leftContainerPanel.ResumeLayout(false);
             this.leftSecondPanel.ResumeLayout(false);
             this.leftFirstPanel.ResumeLayout(false);

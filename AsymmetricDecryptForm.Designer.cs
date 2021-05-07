@@ -194,6 +194,7 @@ namespace To_Ba_To_Iutta
             this.manageKeysButton.Text = "Manage Keys";
             this.manageKeysButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.manageKeysButton.UseVisualStyleBackColor = true;
+            this.manageKeysButton.Click += new System.EventHandler(this.manageKeysButton_Click);
             // 
             // keyPanel
             // 

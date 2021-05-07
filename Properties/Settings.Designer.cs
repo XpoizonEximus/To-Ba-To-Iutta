@@ -110,12 +110,12 @@ namespace To_Ba_To_Iutta.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool LastEnctrypt {
+        public bool LastEncrypt {
             get {
-                return ((bool)(this["LastEnctrypt"]));
+                return ((bool)(this["LastEncrypt"]));
             }
             set {
-                this["LastEnctrypt"] = value;
+                this["LastEncrypt"] = value;
             }
         }
         

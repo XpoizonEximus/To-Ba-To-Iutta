@@ -36,7 +36,7 @@
         public new void Save()
         {
             base.Save();
-            Crypt.Actions.Initialize();
+            Crypt.Actions.Settings.LoadSettings();
         }
     }
 }
