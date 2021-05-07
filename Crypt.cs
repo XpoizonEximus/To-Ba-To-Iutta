@@ -50,7 +50,7 @@ namespace To_Ba_To_Iutta
             {
                 float i = pen.Width/2;
                 CornerRadius *= 2;
-                Rectangle Bounds = new Rectangle(0, 0, (int)(Control.Width + pen.Width), (int)(Control.Height + pen.Width));
+                Rectangle Bounds = new Rectangle(0, 0, (int)(Control.Size.Width + pen.Width), (int)(Control.Size.Height + pen.Width));
                 System.Drawing.Drawing2D.GraphicsPath path = new System.Drawing.Drawing2D.GraphicsPath();
                 path.AddArc(Bounds.X+i, Bounds.Y+i, CornerRadius, CornerRadius, 180, 90);
                 path.AddArc(Bounds.X + Bounds.Width - CornerRadius-i, Bounds.Y+i, CornerRadius, CornerRadius, 270, 90);

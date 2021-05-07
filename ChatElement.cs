@@ -17,10 +17,8 @@ namespace To_Ba_To_Iutta
         public Crypt.ChatElementType Type { get => chatType; set { chatType = value; InitializeTypeDependent(); } }
         public ChatElement(Crypt.ChatElementType type)
         {
-            Type = type;
             InitializeComponent();
-            Crypt.Actions.ControlRoundBorder(this, new Pen(Color.Transparent, 1f));
-            Crypt.Actions.ControlRoundBorder(this, new Pen(this.BackColor, 1f));
+            Type = type;
             Crypt.Actions.ControlRoundBorder(copyCipherButton, new Pen(Color.White, 1f));
             Crypt.Actions.ControlRoundBorder(senderDelete, new Pen(Color.White, 1f));
             Crypt.Actions.ControlRoundBorder(recieverDelete, new Pen(Color.White, 1f));
@@ -29,8 +27,6 @@ namespace To_Ba_To_Iutta
         {
             InitializeComponent();
             Type = Crypt.ChatElementType.Sender;
-            Crypt.Actions.ControlRoundBorder(this, new Pen(Color.Transparent, 1f));
-            Crypt.Actions.ControlRoundBorder(this, new Pen(this.BackColor, 1f));
             Crypt.Actions.ControlRoundBorder(copyCipherButton, new Pen(Color.White, 1f));
             Crypt.Actions.ControlRoundBorder(senderDelete, new Pen(Color.White, 1f));
             Crypt.Actions.ControlRoundBorder(recieverDelete, new Pen(Color.White, 1f));
@@ -42,6 +38,9 @@ namespace To_Ba_To_Iutta
                 this.BackColor = Crypt.Constants.ColorThemeCollection[0].ChatSender;
 
                 recieverDelete.Visible = false;
+
+                senderDelete.Visible = true;
+                copyCipherButton.Visible = true;
             }
             else
             {
@@ -49,10 +48,12 @@ namespace To_Ba_To_Iutta
 
                 senderDelete.Visible = false;
                 copyCipherButton.Visible = false;
+
+                recieverDelete.Visible = true;
             }
         }
 
-        public new string Text
+        public override string Text
         { 
             get => textLabel.Text;
             set => textLabel.Text = value;
@@ -91,11 +92,11 @@ namespace To_Ba_To_Iutta
             int h;
 
             h = textLabel.Location.Y + textLabel.Size.Height;
-            h += 3;
+            h += 6;
             separatorPanel.Location = new Point(separatorPanel.Location.X, h);
 
             h = separatorPanel.Location.Y + separatorPanel.Size.Height;
-            h += 3;
+            h += 6;
             cipherLabel.Location = new Point(cipherLabel.Location.X, h);
 
             h = cipherLabel.Location.Y + cipherLabel.Size.Height;
@@ -103,6 +104,7 @@ namespace To_Ba_To_Iutta
             h += 25;
             h += 6;
             this.Size = new Size(this.Size.Width, h);
+            this.Height = h;
         }
         private void ChatElement_Load(object sender, EventArgs e) => SetSize();
         private void textLabel_TextChanged(object sender, EventArgs e) => SetSize();
