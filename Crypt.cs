@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.IO;
-using System.Linq;
 using System;
 
 namespace To_Ba_To_Iutta
@@ -27,13 +26,15 @@ namespace To_Ba_To_Iutta
             public Color Background;
             public Color ChatSender;
             public Color ChatReceiver;
-            public ColorTheme(Color primary, Color secondary, Color background, Color chatSender, Color chatReceiver)
+            public Color PrimaryClicked;
+            public ColorTheme(Color primary, Color secondary, Color background, Color chatSender, Color chatReceiver, Color primaryClicked)
             {
                 Primary = primary;
                 Secondary = secondary;
                 Background = background;
                 ChatSender = chatSender;
                 ChatReceiver = chatReceiver;
+                PrimaryClicked = primaryClicked;
             }
         }
 
@@ -94,19 +95,12 @@ namespace To_Ba_To_Iutta
             {
                 new ColorTheme
                 (
-                    Color.FromArgb(0, 17, 32),
-                    Color.FromArgb(0, 22, 42),
-                    Color.FromArgb(1, 39, 74),
-                    Color.FromArgb(44, 75, 105),
-                    Color.FromArgb(44, 105, 75)
-                ),
-                new ColorTheme
-                (
-                    Color.FromArgb(49, 40, 35),
-                    Color.FromArgb(65, 57, 52),
-                    Color.FromArgb(90, 82, 78),
-                    Color.FromArgb(0, 0, 0),
-                    Color.FromArgb(0, 0, 0)
+                    Color.FromArgb( 0,  17,  32),
+                    Color.FromArgb( 0,  22,  42),
+                    Color.FromArgb( 1,  39,  74),
+                    Color.FromArgb(44,  75, 105),
+                    Color.FromArgb(44, 105,  75),
+                    Color.FromArgb(20,  40, 100)
                 )
             };
         }
@@ -152,7 +146,7 @@ namespace To_Ba_To_Iutta
                     Data.Procedure = settings.LastEncrypt ? Procedure.Encrypt : Procedure.Decrypt;
                     Data.Algorythm = settings.LastSymmetric ? CryptoAlgorythm.Symmetric : CryptoAlgorythm.Asymmetric;
                     Data.Chat = settings.LastChat;
-                    SetMainPanelForm(Data.Procedure, Data.Algorythm, Data.Chat);
+                    SetMainPanelForm();
                 }
                 public static void LoadInput()
                 {
@@ -187,16 +181,16 @@ namespace To_Ba_To_Iutta
                         if (Symmetric.Algorythm.BlockSize != IV.Length * 8)
                         {
                             MessageBox.Show($"The size of the initialization vector must be {Symmetric.Algorythm.BlockSize} bits for the algorythm you selected.", "IV size error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            Symmetric.DeriveIVFromKey = true;
+                            Symmetric.RandomIV = true;
                         }
                         else
                         {
-                            Symmetric.DeriveIVFromKey = false;
+                            Symmetric.RandomIV = false;
                             Symmetric.Algorythm.IV = IV;
                         }
                     }
                     else
-                        Symmetric.DeriveIVFromKey = true;
+                        Symmetric.RandomIV = true;
                 }
                 public static void LoadSymmetricPadding()
                 {
@@ -242,7 +236,6 @@ namespace To_Ba_To_Iutta
                     settings.LastEncrypt = Data.Procedure == Procedure.Encrypt ? true : false;
                     settings.LastSymmetric = Data.Algorythm == CryptoAlgorythm.Symmetric ? true : false;
                     settings.LastChat = Data.Chat;
-                    SetMainPanelForm(Data.Procedure, Data.Algorythm, Data.Chat);
                 }
                 public static void SaveInput()
                 {
@@ -259,19 +252,19 @@ namespace To_Ba_To_Iutta
                 c.PanelRoundBorder_SetRegion();
                 Control.Paint += c.PanelRoundBorder_PaintHandler;
             }
-            public static void SetMainPanelForm(Procedure procedure, CryptoAlgorythm algorythm, bool chat)
+            public static void SetMainPanelForm()
             {
-                if(chat==true)
+                if(Data.Chat==true)
                 {
                     Data.MainPanelForm = new ChatCryptForm();
                     return;
                 }
-                if(algorythm == CryptoAlgorythm.Symmetric)
+                if(Data.Algorythm == CryptoAlgorythm.Symmetric)
                 {
-                    Data.MainPanelForm = new SymmetricCryptForm(procedure);
+                    Data.MainPanelForm = new SymmetricCryptForm(Data.Procedure);
                     return;
                 }
-                if (procedure == Procedure.Encrypt)
+                if (Data.Procedure == Procedure.Encrypt)
                     Data.MainPanelForm = new AsymmetricEncryptForm();
                 else
                     Data.MainPanelForm = new AsymmetricDecryptForm();
@@ -282,7 +275,7 @@ namespace To_Ba_To_Iutta
         public static class Symmetric
         {
             public static SymmetricAlgorithm Algorythm { get; set; }
-            public static bool DeriveIVFromKey { get; set; }
+            public static bool RandomIV { get; set; }
             private static byte[] KeyTransform(byte[] key)
             {
                 SHA256 sha;
@@ -387,8 +380,8 @@ namespace To_Ba_To_Iutta
                             key = KeyTransform(key);
                         Algorythm.Key = key;
                     }
-                    if (DeriveIVFromKey)
-                        Array.Copy(Algorythm.Key, 0, Algorythm.IV, 0, Algorythm.BlockSize / 8);
+                    if (RandomIV)
+                        Algorythm.GenerateIV();
 
                     byte[] header = HeaderBytes;
                     byte[] iv = Algorythm.IV;

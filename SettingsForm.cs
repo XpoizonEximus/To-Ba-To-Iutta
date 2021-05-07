@@ -52,7 +52,7 @@ namespace To_Ba_To_Iutta
         private void LoadSymmetricIV()
         {
             if (String.IsNullOrWhiteSpace(Settings.SymmetricIV))
-                deriveIVRadioButton.Checked = true;
+                randomIVRadioButton.Checked = true;
             else
             {
                 customIVRadioButton.Checked = true;
@@ -137,7 +137,7 @@ namespace To_Ba_To_Iutta
         }
         private void SaveSymmetricIV()
         {
-            if (deriveIVRadioButton.Checked)
+            if (randomIVRadioButton.Checked)
                 Settings.SymmetricIV = "";
             else
                 Settings.SymmetricIV = customIVTextBox.Text;

@@ -50,7 +50,7 @@ namespace To_Ba_To_Iutta
             this.symmetricIVGroupBox = new System.Windows.Forms.GroupBox();
             this.customIVTextBox = new System.Windows.Forms.TextBox();
             this.customIVRadioButton = new System.Windows.Forms.RadioButton();
-            this.deriveIVRadioButton = new System.Windows.Forms.RadioButton();
+            this.randomIVRadioButton = new System.Windows.Forms.RadioButton();
             this.symmetricAlgorythmGroupBox = new System.Windows.Forms.GroupBox();
             this.DESRadioButton = new System.Windows.Forms.RadioButton();
             this.RC2RadioButton = new System.Windows.Forms.RadioButton();
@@ -288,7 +288,7 @@ namespace To_Ba_To_Iutta
             | System.Windows.Forms.AnchorStyles.Right)));
             this.symmetricIVGroupBox.Controls.Add(this.customIVTextBox);
             this.symmetricIVGroupBox.Controls.Add(this.customIVRadioButton);
-            this.symmetricIVGroupBox.Controls.Add(this.deriveIVRadioButton);
+            this.symmetricIVGroupBox.Controls.Add(this.randomIVRadioButton);
             this.symmetricIVGroupBox.Location = new System.Drawing.Point(6, 144);
             this.symmetricIVGroupBox.Name = "symmetricIVGroupBox";
             this.symmetricIVGroupBox.Size = new System.Drawing.Size(676, 81);
@@ -319,16 +319,16 @@ namespace To_Ba_To_Iutta
             this.customIVRadioButton.UseVisualStyleBackColor = true;
             this.customIVRadioButton.CheckedChanged += new System.EventHandler(this.customIVRadioButton_CheckedChanged);
             // 
-            // deriveIVRadioButton
+            // randomIVRadioButton
             // 
-            this.deriveIVRadioButton.AutoSize = true;
-            this.deriveIVRadioButton.Location = new System.Drawing.Point(6, 24);
-            this.deriveIVRadioButton.Name = "deriveIVRadioButton";
-            this.deriveIVRadioButton.Size = new System.Drawing.Size(240, 21);
-            this.deriveIVRadioButton.TabIndex = 0;
-            this.deriveIVRadioButton.TabStop = true;
-            this.deriveIVRadioButton.Text = "Derive from key (recommended)";
-            this.deriveIVRadioButton.UseVisualStyleBackColor = true;
+            this.randomIVRadioButton.AutoSize = true;
+            this.randomIVRadioButton.Location = new System.Drawing.Point(6, 24);
+            this.randomIVRadioButton.Name = "randomIVRadioButton";
+            this.randomIVRadioButton.Size = new System.Drawing.Size(191, 21);
+            this.randomIVRadioButton.TabIndex = 0;
+            this.randomIVRadioButton.TabStop = true;
+            this.randomIVRadioButton.Text = "Random (recommended)";
+            this.randomIVRadioButton.UseVisualStyleBackColor = true;
             // 
             // symmetricAlgorythmGroupBox
             // 
@@ -659,7 +659,7 @@ namespace To_Ba_To_Iutta
         private System.Windows.Forms.RadioButton DES3RadioButton;
         private System.Windows.Forms.GroupBox symmetricIVGroupBox;
         private System.Windows.Forms.RadioButton customIVRadioButton;
-        private System.Windows.Forms.RadioButton deriveIVRadioButton;
+        private System.Windows.Forms.RadioButton randomIVRadioButton;
         private System.Windows.Forms.TextBox customIVTextBox;
         private System.Windows.Forms.GroupBox symmetricPaddingGroupBox;
         private System.Windows.Forms.RadioButton symmetricZerosRadioButton;

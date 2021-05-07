@@ -20,6 +20,7 @@ namespace To_Ba_To_Iutta
             Crypt.Actions.Settings.LoadSettings();
             RoundCorners();
             LoadMainPanel();
+            SetButtonColors();
 
             titleLabel.Text = System.Reflection.Assembly.GetEntryAssembly().Location;
         }
@@ -71,13 +72,52 @@ namespace To_Ba_To_Iutta
             this.mainPanel.Controls.AddRange(Crypt.Data.MainPanelForm.ControlsArray);
             mainPanel.ResumeLayout();
         }
+        private void SetButtonColors()
+        {
+            if(Crypt.Data.Chat)
+            {
+                symmetricButton.BackColor = Crypt.Constants.ColorThemeCollection[0].Primary;
+                asymmetricButton.BackColor = Crypt.Constants.ColorThemeCollection[0].Primary;
+                encryptButton.BackColor = Crypt.Constants.ColorThemeCollection[0].Primary;
+                decryptButton.BackColor = Crypt.Constants.ColorThemeCollection[0].Primary;
+
+                chatButton.BackColor = Crypt.Constants.ColorThemeCollection[0].PrimaryClicked;
+            }
+            else
+            {
+                chatButton.BackColor = Crypt.Constants.ColorThemeCollection[0].Primary;
+
+                if(Crypt.Data.Procedure == Crypt.Procedure.Encrypt)
+                {
+                    encryptButton.BackColor = Crypt.Constants.ColorThemeCollection[0].PrimaryClicked;
+                    decryptButton.BackColor = Crypt.Constants.ColorThemeCollection[0].Primary;
+                }
+                else
+                {
+                    encryptButton.BackColor = Crypt.Constants.ColorThemeCollection[0].Primary;
+                    decryptButton.BackColor = Crypt.Constants.ColorThemeCollection[0].PrimaryClicked;
+                }
+
+                if(Crypt.Data.Algorythm == Crypt.CryptoAlgorythm.Symmetric)
+                {
+                    symmetricButton.BackColor = Crypt.Constants.ColorThemeCollection[0].PrimaryClicked;
+                    asymmetricButton.BackColor = Crypt.Constants.ColorThemeCollection[0].Primary;
+                }
+                else
+                {
+                    symmetricButton.BackColor = Crypt.Constants.ColorThemeCollection[0].Primary;
+                    asymmetricButton.BackColor = Crypt.Constants.ColorThemeCollection[0].PrimaryClicked;
+                }
+            }
+        }
         private void ChangeControls(Crypt.Procedure procedure, Crypt.CryptoAlgorythm algorythm, bool chat)
         {
             Crypt.Data.Procedure = procedure;
             Crypt.Data.Algorythm = algorythm;
             Crypt.Data.Chat = chat;
-            Crypt.Actions.SetMainPanelForm(procedure, algorythm, chat);
+            Crypt.Actions.SetMainPanelForm();
             LoadMainPanel();
+            SetButtonColors();
         }
 
         #region Minimize-Close Buttons
