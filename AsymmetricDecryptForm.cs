@@ -43,7 +43,7 @@ namespace To_Ba_To_Iutta
         {
             try
             {
-                ExportAsymmetricPublicKeyForm f = new ExportAsymmetricPublicKeyForm(keyName.Text);
+                ExportAsymmetricKeyForm f = new ExportAsymmetricKeyForm(keyName.Text);
                 f.ShowDialog();
             }
             catch (System.Exception ex)

@@ -254,6 +254,7 @@ namespace To_Ba_To_Iutta
             this.settingsButton.Size = new System.Drawing.Size(50, 45);
             this.settingsButton.TabIndex = 3;
             this.settingsButton.UseVisualStyleBackColor = true;
+            this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
             // 
             // helpButton
             // 

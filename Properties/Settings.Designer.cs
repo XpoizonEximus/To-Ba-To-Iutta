@@ -85,30 +85,6 @@ namespace To_Ba_To_Iutta.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2")]
-        public int AsymmetricKeySize {
-            get {
-                return ((int)(this["AsymmetricKeySize"]));
-            }
-            set {
-                this["AsymmetricKeySize"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("SHA512")]
-        public string AsymmetricPadding {
-            get {
-                return ((string)(this["AsymmetricPadding"]));
-            }
-            set {
-                this["AsymmetricPadding"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string PrivateKeyPairs {
             get {

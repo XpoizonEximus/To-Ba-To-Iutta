@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,8 +27,8 @@ namespace To_Ba_To_Iutta
 
                 //Asymmetric
                 LoadAsymmetricAlgorythm();
-                LoadAsymmetricKeySize();
-                LoadAsymmetricPadding();
+                LoadAsymmetricPrivateKeys();
+                LoadAsymmetricPublicKeys();
             }
             catch (Exception ex)
             {
@@ -35,7 +36,8 @@ namespace To_Ba_To_Iutta
                 Settings.Reset();
                 this.Close();
             }
-}       //Symmetric
+        }       
+        //Symmetric
         private void LoadSymmetricAlgorythm()
         {
             switch (Settings.SymmetricAlgorythm)
@@ -86,29 +88,31 @@ namespace To_Ba_To_Iutta
         {
             //
         }
-        private void LoadAsymmetricKeySize()
+        private void LoadAsymmetricPrivateKeys()
         {
-            int size = Settings.AsymmetricKeySize;
-            if(size < 1 || size > 10) throw new Exception("Symmetric Mode Settings error. Resetting all settings.");
-            keySizeNumericUpDown.Value = size;
-        }
-        private void LoadAsymmetricPadding()
-        {
-            switch (Settings.AsymmetricPadding)
+            string str = Settings.PrivateKeyPairs;
+            string[] vals = str.Split(new string[]{ "\r\r" }, StringSplitOptions.RemoveEmptyEntries);
+            privateKeysListView.Items.Clear();
+            foreach(string val in vals)
             {
-                case "PKCS1": { asymmetricPKCS1RadioButton.Checked = true; break; }
-                case "SHA256": { asymmetricSHA256RadioButton.Checked = true; break; }
-                case "SHA384": { asymmetricSHA384RadioButton.Checked = true; break; }
-                case "SHA512": { asymmetricSHA512RadioButton.Checked = true; break; }
-                case "SHA1": { asymmetricSHA1RadioButton.Checked = true; break; }
-                default: { throw new Exception("Asymmetric Padding Settings error. Resetting all settings."); }
+                privateKeysListView.Items.Add(new ListViewItem(val));
+            }
+        }
+        private void LoadAsymmetricPublicKeys()
+        {
+            string str = Settings.PublicKeyPairs;
+            string[] vals = str.Split(new string[] { "\r\r" }, StringSplitOptions.RemoveEmptyEntries);
+            publicKeysListView.Items.Clear();
+            foreach (string val in vals)
+            {
+                publicKeysListView.Items.Add(new ListViewItem(val));
             }
         }
         #endregion
         #region Save Settings
         private void SaveSettings()
         {
-            /*
+            
             //Symmetric
             SaveSymmetricAlgorythm();
             SaveSymmetricIV();
@@ -117,9 +121,69 @@ namespace To_Ba_To_Iutta
 
             //Asymmetric
             SaveAsymmetricAlgorythm();
-            SaveAsymmetricKeySize();
-            SaveAsymmetricPadding();
-            */
+            SaveAsymmetricPrivateKeys();
+            SaveAsymmetricPublicKeys();
+
+            //Save
+            Settings.Save();
+        }
+        //Symmetric
+        private void SaveSymmetricAlgorythm()
+        {
+            if (AESRadioButton.Checked) Settings.SymmetricAlgorythm = "AES";
+            else if (DES3RadioButton.Checked) Settings.SymmetricAlgorythm = "DES3";
+            else if (RC2RadioButton.Checked) Settings.SymmetricAlgorythm = "RC2";
+            else if (DESRadioButton.Checked) Settings.SymmetricAlgorythm = "DES";
+        }
+        private void SaveSymmetricIV()
+        {
+            if (deriveIVRadioButton.Checked)
+                Settings.SymmetricIV = "";
+            else
+                Settings.SymmetricIV = customIVTextBox.Text;
+        }
+        private void SaveSymmetricPadding()
+        {
+            if (symmetricPKCS7RadioButton.Checked) Settings.SymmetricPadding = "PKCS7";
+            else if (symmetricANSIX923RadioButton.Checked) Settings.SymmetricPadding = "ANSIX923";
+            else if (symmetricISO10126RadioButton.Checked) Settings.SymmetricPadding = "ISO10126";
+            else if (symmetricZerosRadioButton.Checked) Settings.SymmetricPadding = "Zeros";
+            else if (symmetricNoneRadioButton.Checked) Settings.SymmetricPadding = "None";
+        }
+        private void SaveSymmetricMode()
+        {
+            if (CBCRadioButton.Checked) Settings.SymmetricMode = "CBC";
+            else if (ECBRadioButton.Checked) Settings.SymmetricMode = "ECB";
+            else if (CFBRadioButton.Checked) Settings.SymmetricMode = "CFB";
+            else if (CTSRadioButton.Checked) Settings.SymmetricMode = "CTS";
+            else if (OFBRadioButton.Checked) Settings.SymmetricMode = "OFB";
+        }
+        //Asymmetric
+        private void SaveAsymmetricAlgorythm()
+        {
+            //
+        }
+        private void SaveAsymmetricPrivateKeys()
+        {
+            List<char> list = new List<char>();
+            foreach(ListViewItem i in privateKeysListView.Items)
+            {
+                list.AddRange(i.Text);
+                list.AddRange("\r\r");
+            }
+            string vals = new string(list.ToArray());
+            Settings.PrivateKeyPairs = vals;
+        }
+        private void SaveAsymmetricPublicKeys()
+        {
+            List<char> list = new List<char>();
+            foreach (ListViewItem i in publicKeysListView.Items)
+            {
+                list.AddRange(i.Text);
+                list.AddRange("\r\r");
+            }
+            string vals = new string(list.ToArray());
+            Settings.PublicKeyPairs = vals;
         }
         #endregion
         public SettingsForm()
@@ -143,8 +207,8 @@ namespace To_Ba_To_Iutta
 
             publicKeysGroupBox.Location = new Point(width + 12, publicKeysGroupBox.Location.Y);
 
-            privateListName.Width = privateKeysListView.Size.Width;
-            publicListName.Width = publicKeysListView.Size.Width;
+            privateListName.Width = privateKeysListView.Size.Width - 2;
+            publicListName.Width = publicKeysListView.Size.Width - 2;
         }
         private void customIVRadioButton_CheckedChanged(object sender, EventArgs e)
         {
@@ -154,6 +218,68 @@ namespace To_Ba_To_Iutta
         private void SettingsForm_Load(object sender, EventArgs e)
         {
             LoadSettings();
+        }
+
+        private void newPrivateKeyButton_Click(object sender, EventArgs e)
+        {
+            NewAsymmetricKeyForm f = new NewAsymmetricKeyForm(false);
+            if (f.ShowDialog() == DialogResult.OK)
+                this.LoadAsymmetricPrivateKeys();
+            Settings.Save();
+        }
+        private void newPublicKeyButton_Click(object sender, EventArgs e)
+        {
+            NewAsymmetricKeyForm f = new NewAsymmetricKeyForm(true);
+            if (f.ShowDialog() == DialogResult.OK)
+                this.LoadAsymmetricPublicKeys();
+            Settings.Save();
+        }
+
+        private void deletePrivateKeyButton_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deleting keys loses their data forever. Consider saving them first.", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) != DialogResult.OK) return;
+            foreach (ListViewItem i in privateKeysListView.SelectedItems)
+            {
+                Crypt.Asymmetric.DeleteKey(i.Text);
+                privateKeysListView.Items.Remove(i);
+            }
+            SaveAsymmetricPrivateKeys();
+            Settings.Save();
+        }
+        private void deletePublicButton_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deleting keys loses their data forever. Consider saving them first.", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) != DialogResult.OK) return;
+            foreach (ListViewItem i in publicKeysListView.SelectedItems)
+            {
+                Crypt.Asymmetric.DeleteKey(i.Text);
+                publicKeysListView.Items.Remove(i);
+            }
+            SaveAsymmetricPublicKeys();
+            Settings.Save();
+        }
+
+        private void exportPrivateKeyButton_Click(object sender, EventArgs e)
+        {
+            if (privateKeysListView.SelectedItems.Count == 0) return;
+            bool includePrivate;
+            if (MessageBox.Show("Do you want to include the private paramters?", "Include private parameters", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes) includePrivate = true;
+            else includePrivate = false;
+            if (includePrivate) if (MessageBox.Show("Exporting the private parameters should be done only for backup purposes. After restoring the backup, *.ck files should be permanently deleted as they store private information. For encryption, public paramenters are the only one needed. Do you want to continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
+
+            foreach (ListViewItem i in privateKeysListView.SelectedItems)
+            {
+                ExportAsymmetricKeyForm f = new ExportAsymmetricKeyForm(i.Text, includePrivate);
+                f.ShowDialog();
+            }
+        }
+        private void exportPublicKeyButton_Click(object sender, EventArgs e)
+        {
+            if (publicKeysListView.SelectedItems.Count == 0) return;
+            foreach (ListViewItem i in publicKeysListView.SelectedItems)
+            {
+                ExportAsymmetricKeyForm f = new ExportAsymmetricKeyForm(i.Text, false);
+                f.ShowDialog();
+            }
         }
     }
 }

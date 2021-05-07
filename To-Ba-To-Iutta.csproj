@@ -77,17 +77,23 @@
       <DependentUpon>ChatElement.cs</DependentUpon>
     </Compile>
     <Compile Include="Crypt.cs" />
-    <Compile Include="ExportAsymmetricPublicKeyForm.cs">
+    <Compile Include="ExportAsymmetricKeyForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ExportAsymmetricPublicKeyForm.Designer.cs">
-      <DependentUpon>ExportAsymmetricPublicKeyForm.cs</DependentUpon>
+    <Compile Include="ExportAsymmetricKeyForm.Designer.cs">
+      <DependentUpon>ExportAsymmetricKeyForm.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewAsymmetricKeyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewAsymmetricKeyForm.Designer.cs">
+      <DependentUpon>NewAsymmetricKeyForm.cs</DependentUpon>
     </Compile>
     <Compile Include="PanelForm.cs">
       <SubType>Form</SubType>
@@ -131,11 +137,14 @@
     <EmbeddedResource Include="ChatElement.resx">
       <DependentUpon>ChatElement.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ExportAsymmetricPublicKeyForm.resx">
-      <DependentUpon>ExportAsymmetricPublicKeyForm.cs</DependentUpon>
+    <EmbeddedResource Include="ExportAsymmetricKeyForm.resx">
+      <DependentUpon>ExportAsymmetricKeyForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewAsymmetricKeyForm.resx">
+      <DependentUpon>NewAsymmetricKeyForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PanelForm.resx">
       <DependentUpon>PanelForm.cs</DependentUpon>

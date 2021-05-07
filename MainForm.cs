@@ -103,5 +103,11 @@ namespace To_Ba_To_Iutta
         private void encryptButton_Click(object sender, EventArgs e) => ChangeControls(Crypt.Procedure.Encrypt, Algorythm, false);
         private void decryptButton_Click(object sender, EventArgs e) => ChangeControls(Crypt.Procedure.Decrypt, Algorythm, false);
         private void chatButton_Click(object sender, EventArgs e) => ChangeControls(Procedure, Algorythm, !Chat);
+
+        private void settingsButton_Click(object sender, EventArgs e)
+        {
+            SettingsForm f = new SettingsForm();
+            f.ShowDialog();
+        }
     }
 }

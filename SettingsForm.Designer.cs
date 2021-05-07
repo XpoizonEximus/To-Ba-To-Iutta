@@ -57,15 +57,6 @@ namespace To_Ba_To_Iutta
             this.DES3RadioButton = new System.Windows.Forms.RadioButton();
             this.AESRadioButton = new System.Windows.Forms.RadioButton();
             this.asymmetricPage = new System.Windows.Forms.TabPage();
-            this.asymmetricPaddingGroupBox = new System.Windows.Forms.GroupBox();
-            this.asymmetricSHA1RadioButton = new System.Windows.Forms.RadioButton();
-            this.asymmetricSHA512RadioButton = new System.Windows.Forms.RadioButton();
-            this.asymmetricSHA384RadioButton = new System.Windows.Forms.RadioButton();
-            this.asymmetricSHA256RadioButton = new System.Windows.Forms.RadioButton();
-            this.asymmetricPKCS1RadioButton = new System.Windows.Forms.RadioButton();
-            this.keySizeGroupBox = new System.Windows.Forms.GroupBox();
-            this.keySizeLabel = new System.Windows.Forms.Label();
-            this.keySizeNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.asymmetricKeysGroupBox = new System.Windows.Forms.GroupBox();
             this.publicKeysGroupBox = new System.Windows.Forms.GroupBox();
             this.publicKeysListView = new System.Windows.Forms.ListView();
@@ -81,6 +72,8 @@ namespace To_Ba_To_Iutta
             this.RSAradioButton = new System.Windows.Forms.RadioButton();
             this.defaultsButton = new System.Windows.Forms.Button();
             this.customIVToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.exportPrivateKeyButton = new System.Windows.Forms.Button();
+            this.exportPublicKeyButton = new System.Windows.Forms.Button();
             this.tabControl.SuspendLayout();
             this.symmetricPage.SuspendLayout();
             this.symmetricModeGroupBox.SuspendLayout();
@@ -88,9 +81,6 @@ namespace To_Ba_To_Iutta
             this.symmetricIVGroupBox.SuspendLayout();
             this.symmetricAlgorythmGroupBox.SuspendLayout();
             this.asymmetricPage.SuspendLayout();
-            this.asymmetricPaddingGroupBox.SuspendLayout();
-            this.keySizeGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.keySizeNumericUpDown)).BeginInit();
             this.asymmetricKeysGroupBox.SuspendLayout();
             this.publicKeysGroupBox.SuspendLayout();
             this.privateKeysGroupBox.SuspendLayout();
@@ -402,8 +392,6 @@ namespace To_Ba_To_Iutta
             // asymmetricPage
             // 
             this.asymmetricPage.AutoScroll = true;
-            this.asymmetricPage.Controls.Add(this.asymmetricPaddingGroupBox);
-            this.asymmetricPage.Controls.Add(this.keySizeGroupBox);
             this.asymmetricPage.Controls.Add(this.asymmetricKeysGroupBox);
             this.asymmetricPage.Controls.Add(this.asymmetricAlgorythmGroupBox);
             this.asymmetricPage.Location = new System.Drawing.Point(4, 26);
@@ -414,121 +402,6 @@ namespace To_Ba_To_Iutta
             this.asymmetricPage.Text = "Asymmetric";
             this.asymmetricPage.UseVisualStyleBackColor = true;
             // 
-            // asymmetricPaddingGroupBox
-            // 
-            this.asymmetricPaddingGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.asymmetricPaddingGroupBox.Controls.Add(this.asymmetricSHA1RadioButton);
-            this.asymmetricPaddingGroupBox.Controls.Add(this.asymmetricSHA512RadioButton);
-            this.asymmetricPaddingGroupBox.Controls.Add(this.asymmetricSHA384RadioButton);
-            this.asymmetricPaddingGroupBox.Controls.Add(this.asymmetricSHA256RadioButton);
-            this.asymmetricPaddingGroupBox.Controls.Add(this.asymmetricPKCS1RadioButton);
-            this.asymmetricPaddingGroupBox.Location = new System.Drawing.Point(6, 124);
-            this.asymmetricPaddingGroupBox.Name = "asymmetricPaddingGroupBox";
-            this.asymmetricPaddingGroupBox.Size = new System.Drawing.Size(676, 159);
-            this.asymmetricPaddingGroupBox.TabIndex = 5;
-            this.asymmetricPaddingGroupBox.TabStop = false;
-            this.asymmetricPaddingGroupBox.Text = "Padding";
-            // 
-            // asymmetricSHA1RadioButton
-            // 
-            this.asymmetricSHA1RadioButton.AutoSize = true;
-            this.asymmetricSHA1RadioButton.Location = new System.Drawing.Point(6, 132);
-            this.asymmetricSHA1RadioButton.Name = "asymmetricSHA1RadioButton";
-            this.asymmetricSHA1RadioButton.Size = new System.Drawing.Size(116, 21);
-            this.asymmetricSHA1RadioButton.TabIndex = 4;
-            this.asymmetricSHA1RadioButton.TabStop = true;
-            this.asymmetricSHA1RadioButton.Text = "OAEP SHA-1";
-            this.asymmetricSHA1RadioButton.UseVisualStyleBackColor = true;
-            // 
-            // asymmetricSHA512RadioButton
-            // 
-            this.asymmetricSHA512RadioButton.AutoSize = true;
-            this.asymmetricSHA512RadioButton.Location = new System.Drawing.Point(6, 105);
-            this.asymmetricSHA512RadioButton.Name = "asymmetricSHA512RadioButton";
-            this.asymmetricSHA512RadioButton.Size = new System.Drawing.Size(132, 21);
-            this.asymmetricSHA512RadioButton.TabIndex = 3;
-            this.asymmetricSHA512RadioButton.TabStop = true;
-            this.asymmetricSHA512RadioButton.Text = "OAEP SHA-512";
-            this.asymmetricSHA512RadioButton.UseVisualStyleBackColor = true;
-            // 
-            // asymmetricSHA384RadioButton
-            // 
-            this.asymmetricSHA384RadioButton.AutoSize = true;
-            this.asymmetricSHA384RadioButton.Location = new System.Drawing.Point(6, 78);
-            this.asymmetricSHA384RadioButton.Name = "asymmetricSHA384RadioButton";
-            this.asymmetricSHA384RadioButton.Size = new System.Drawing.Size(132, 21);
-            this.asymmetricSHA384RadioButton.TabIndex = 2;
-            this.asymmetricSHA384RadioButton.TabStop = true;
-            this.asymmetricSHA384RadioButton.Text = "OAEP SHA-384";
-            this.asymmetricSHA384RadioButton.UseVisualStyleBackColor = true;
-            // 
-            // asymmetricSHA256RadioButton
-            // 
-            this.asymmetricSHA256RadioButton.AutoSize = true;
-            this.asymmetricSHA256RadioButton.Location = new System.Drawing.Point(6, 51);
-            this.asymmetricSHA256RadioButton.Name = "asymmetricSHA256RadioButton";
-            this.asymmetricSHA256RadioButton.Size = new System.Drawing.Size(132, 21);
-            this.asymmetricSHA256RadioButton.TabIndex = 1;
-            this.asymmetricSHA256RadioButton.TabStop = true;
-            this.asymmetricSHA256RadioButton.Text = "OAEP SHA-256";
-            this.asymmetricSHA256RadioButton.UseVisualStyleBackColor = true;
-            // 
-            // asymmetricPKCS1RadioButton
-            // 
-            this.asymmetricPKCS1RadioButton.AutoSize = true;
-            this.asymmetricPKCS1RadioButton.Location = new System.Drawing.Point(6, 24);
-            this.asymmetricPKCS1RadioButton.Name = "asymmetricPKCS1RadioButton";
-            this.asymmetricPKCS1RadioButton.Size = new System.Drawing.Size(75, 21);
-            this.asymmetricPKCS1RadioButton.TabIndex = 0;
-            this.asymmetricPKCS1RadioButton.TabStop = true;
-            this.asymmetricPKCS1RadioButton.Text = "PKCS1";
-            this.asymmetricPKCS1RadioButton.UseVisualStyleBackColor = true;
-            // 
-            // keySizeGroupBox
-            // 
-            this.keySizeGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.keySizeGroupBox.Controls.Add(this.keySizeLabel);
-            this.keySizeGroupBox.Controls.Add(this.keySizeNumericUpDown);
-            this.keySizeGroupBox.Location = new System.Drawing.Point(6, 63);
-            this.keySizeGroupBox.Name = "keySizeGroupBox";
-            this.keySizeGroupBox.Size = new System.Drawing.Size(676, 55);
-            this.keySizeGroupBox.TabIndex = 2;
-            this.keySizeGroupBox.TabStop = false;
-            this.keySizeGroupBox.Text = "Key Size";
-            // 
-            // keySizeLabel
-            // 
-            this.keySizeLabel.AutoSize = true;
-            this.keySizeLabel.Location = new System.Drawing.Point(137, 26);
-            this.keySizeLabel.Name = "keySizeLabel";
-            this.keySizeLabel.Size = new System.Drawing.Size(53, 17);
-            this.keySizeLabel.TabIndex = 1;
-            this.keySizeLabel.Text = "× 1024";
-            // 
-            // keySizeNumericUpDown
-            // 
-            this.keySizeNumericUpDown.Location = new System.Drawing.Point(6, 24);
-            this.keySizeNumericUpDown.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.keySizeNumericUpDown.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.keySizeNumericUpDown.Name = "keySizeNumericUpDown";
-            this.keySizeNumericUpDown.Size = new System.Drawing.Size(125, 25);
-            this.keySizeNumericUpDown.TabIndex = 0;
-            this.keySizeNumericUpDown.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
             // asymmetricKeysGroupBox
             // 
             this.asymmetricKeysGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -536,9 +409,9 @@ namespace To_Ba_To_Iutta
             | System.Windows.Forms.AnchorStyles.Right)));
             this.asymmetricKeysGroupBox.Controls.Add(this.publicKeysGroupBox);
             this.asymmetricKeysGroupBox.Controls.Add(this.privateKeysGroupBox);
-            this.asymmetricKeysGroupBox.Location = new System.Drawing.Point(6, 289);
+            this.asymmetricKeysGroupBox.Location = new System.Drawing.Point(6, 63);
             this.asymmetricKeysGroupBox.Name = "asymmetricKeysGroupBox";
-            this.asymmetricKeysGroupBox.Size = new System.Drawing.Size(676, 265);
+            this.asymmetricKeysGroupBox.Size = new System.Drawing.Size(676, 491);
             this.asymmetricKeysGroupBox.TabIndex = 2;
             this.asymmetricKeysGroupBox.TabStop = false;
             this.asymmetricKeysGroupBox.Text = "Keys";
@@ -548,12 +421,13 @@ namespace To_Ba_To_Iutta
             this.publicKeysGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.publicKeysGroupBox.Controls.Add(this.exportPublicKeyButton);
             this.publicKeysGroupBox.Controls.Add(this.publicKeysListView);
             this.publicKeysGroupBox.Controls.Add(this.deletePublicButton);
             this.publicKeysGroupBox.Controls.Add(this.newPublicKeyButton);
             this.publicKeysGroupBox.Location = new System.Drawing.Point(341, 24);
             this.publicKeysGroupBox.Name = "publicKeysGroupBox";
-            this.publicKeysGroupBox.Size = new System.Drawing.Size(329, 235);
+            this.publicKeysGroupBox.Size = new System.Drawing.Size(329, 461);
             this.publicKeysGroupBox.TabIndex = 6;
             this.publicKeysGroupBox.TabStop = false;
             this.publicKeysGroupBox.Text = "Public";
@@ -568,10 +442,10 @@ namespace To_Ba_To_Iutta
             this.publicKeysListView.HideSelection = false;
             this.publicKeysListView.Location = new System.Drawing.Point(8, 24);
             this.publicKeysListView.Name = "publicKeysListView";
-            this.publicKeysListView.Size = new System.Drawing.Size(315, 167);
+            this.publicKeysListView.Size = new System.Drawing.Size(315, 393);
             this.publicKeysListView.TabIndex = 6;
             this.publicKeysListView.UseCompatibleStateImageBehavior = false;
-            this.publicKeysListView.View = System.Windows.Forms.View.Details;
+            this.publicKeysListView.View = System.Windows.Forms.View.List;
             // 
             // publicListName
             // 
@@ -581,36 +455,39 @@ namespace To_Ba_To_Iutta
             // deletePublicButton
             // 
             this.deletePublicButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.deletePublicButton.Location = new System.Drawing.Point(211, 198);
-            this.deletePublicButton.Margin = new System.Windows.Forms.Padding(4);
+            this.deletePublicButton.Location = new System.Drawing.Point(115, 423);
+            this.deletePublicButton.Margin = new System.Windows.Forms.Padding(6);
             this.deletePublicButton.Name = "deletePublicButton";
-            this.deletePublicButton.Size = new System.Drawing.Size(112, 30);
+            this.deletePublicButton.Size = new System.Drawing.Size(101, 30);
             this.deletePublicButton.TabIndex = 5;
             this.deletePublicButton.Text = "Delete";
             this.deletePublicButton.UseVisualStyleBackColor = true;
+            this.deletePublicButton.Click += new System.EventHandler(this.deletePublicButton_Click);
             // 
             // newPublicKeyButton
             // 
             this.newPublicKeyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.newPublicKeyButton.Location = new System.Drawing.Point(91, 198);
-            this.newPublicKeyButton.Margin = new System.Windows.Forms.Padding(4);
+            this.newPublicKeyButton.Location = new System.Drawing.Point(7, 423);
+            this.newPublicKeyButton.Margin = new System.Windows.Forms.Padding(6);
             this.newPublicKeyButton.Name = "newPublicKeyButton";
-            this.newPublicKeyButton.Size = new System.Drawing.Size(112, 30);
+            this.newPublicKeyButton.Size = new System.Drawing.Size(101, 30);
             this.newPublicKeyButton.TabIndex = 4;
             this.newPublicKeyButton.Text = "New";
             this.newPublicKeyButton.UseVisualStyleBackColor = true;
+            this.newPublicKeyButton.Click += new System.EventHandler(this.newPublicKeyButton_Click);
             // 
             // privateKeysGroupBox
             // 
             this.privateKeysGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.privateKeysGroupBox.Controls.Add(this.exportPrivateKeyButton);
             this.privateKeysGroupBox.Controls.Add(this.deletePrivateKeyButton);
             this.privateKeysGroupBox.Controls.Add(this.privateKeysListView);
             this.privateKeysGroupBox.Controls.Add(this.newPrivateKeyButton);
             this.privateKeysGroupBox.Location = new System.Drawing.Point(6, 24);
             this.privateKeysGroupBox.Name = "privateKeysGroupBox";
-            this.privateKeysGroupBox.Size = new System.Drawing.Size(329, 235);
+            this.privateKeysGroupBox.Size = new System.Drawing.Size(329, 461);
             this.privateKeysGroupBox.TabIndex = 5;
             this.privateKeysGroupBox.TabStop = false;
             this.privateKeysGroupBox.Text = "Private";
@@ -618,13 +495,14 @@ namespace To_Ba_To_Iutta
             // deletePrivateKeyButton
             // 
             this.deletePrivateKeyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.deletePrivateKeyButton.Location = new System.Drawing.Point(126, 198);
-            this.deletePrivateKeyButton.Margin = new System.Windows.Forms.Padding(4);
+            this.deletePrivateKeyButton.Location = new System.Drawing.Point(114, 423);
+            this.deletePrivateKeyButton.Margin = new System.Windows.Forms.Padding(6);
             this.deletePrivateKeyButton.Name = "deletePrivateKeyButton";
-            this.deletePrivateKeyButton.Size = new System.Drawing.Size(112, 30);
+            this.deletePrivateKeyButton.Size = new System.Drawing.Size(101, 30);
             this.deletePrivateKeyButton.TabIndex = 5;
             this.deletePrivateKeyButton.Text = "Delete";
             this.deletePrivateKeyButton.UseVisualStyleBackColor = true;
+            this.deletePrivateKeyButton.Click += new System.EventHandler(this.deletePrivateKeyButton_Click);
             // 
             // privateKeysListView
             // 
@@ -636,10 +514,10 @@ namespace To_Ba_To_Iutta
             this.privateKeysListView.HideSelection = false;
             this.privateKeysListView.Location = new System.Drawing.Point(7, 24);
             this.privateKeysListView.Name = "privateKeysListView";
-            this.privateKeysListView.Size = new System.Drawing.Size(315, 167);
+            this.privateKeysListView.Size = new System.Drawing.Size(315, 393);
             this.privateKeysListView.TabIndex = 0;
             this.privateKeysListView.UseCompatibleStateImageBehavior = false;
-            this.privateKeysListView.View = System.Windows.Forms.View.Details;
+            this.privateKeysListView.View = System.Windows.Forms.View.List;
             // 
             // privateListName
             // 
@@ -649,13 +527,14 @@ namespace To_Ba_To_Iutta
             // newPrivateKeyButton
             // 
             this.newPrivateKeyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.newPrivateKeyButton.Location = new System.Drawing.Point(6, 198);
-            this.newPrivateKeyButton.Margin = new System.Windows.Forms.Padding(4);
+            this.newPrivateKeyButton.Location = new System.Drawing.Point(6, 423);
+            this.newPrivateKeyButton.Margin = new System.Windows.Forms.Padding(6);
             this.newPrivateKeyButton.Name = "newPrivateKeyButton";
-            this.newPrivateKeyButton.Size = new System.Drawing.Size(112, 30);
+            this.newPrivateKeyButton.Size = new System.Drawing.Size(101, 30);
             this.newPrivateKeyButton.TabIndex = 4;
             this.newPrivateKeyButton.Text = "New";
             this.newPrivateKeyButton.UseVisualStyleBackColor = true;
+            this.newPrivateKeyButton.Click += new System.EventHandler(this.newPrivateKeyButton_Click);
             // 
             // asymmetricAlgorythmGroupBox
             // 
@@ -699,6 +578,30 @@ namespace To_Ba_To_Iutta
             this.customIVToolTip.InitialDelay = 5;
             this.customIVToolTip.ReshowDelay = 1;
             // 
+            // exportPrivateKeyButton
+            // 
+            this.exportPrivateKeyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.exportPrivateKeyButton.Location = new System.Drawing.Point(222, 423);
+            this.exportPrivateKeyButton.Margin = new System.Windows.Forms.Padding(6);
+            this.exportPrivateKeyButton.Name = "exportPrivateKeyButton";
+            this.exportPrivateKeyButton.Size = new System.Drawing.Size(101, 30);
+            this.exportPrivateKeyButton.TabIndex = 6;
+            this.exportPrivateKeyButton.Text = "Export";
+            this.exportPrivateKeyButton.UseVisualStyleBackColor = true;
+            this.exportPrivateKeyButton.Click += new System.EventHandler(this.exportPrivateKeyButton_Click);
+            // 
+            // exportPublicKeyButton
+            // 
+            this.exportPublicKeyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.exportPublicKeyButton.Location = new System.Drawing.Point(223, 423);
+            this.exportPublicKeyButton.Margin = new System.Windows.Forms.Padding(6);
+            this.exportPublicKeyButton.Name = "exportPublicKeyButton";
+            this.exportPublicKeyButton.Size = new System.Drawing.Size(101, 30);
+            this.exportPublicKeyButton.TabIndex = 7;
+            this.exportPublicKeyButton.Text = "Export";
+            this.exportPublicKeyButton.UseVisualStyleBackColor = true;
+            this.exportPublicKeyButton.Click += new System.EventHandler(this.exportPublicKeyButton_Click);
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
@@ -714,7 +617,7 @@ namespace To_Ba_To_Iutta
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(567, 600);
+            this.MinimumSize = new System.Drawing.Size(736, 400);
             this.Name = "SettingsForm";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -732,11 +635,6 @@ namespace To_Ba_To_Iutta
             this.symmetricAlgorythmGroupBox.ResumeLayout(false);
             this.symmetricAlgorythmGroupBox.PerformLayout();
             this.asymmetricPage.ResumeLayout(false);
-            this.asymmetricPaddingGroupBox.ResumeLayout(false);
-            this.asymmetricPaddingGroupBox.PerformLayout();
-            this.keySizeGroupBox.ResumeLayout(false);
-            this.keySizeGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.keySizeNumericUpDown)).EndInit();
             this.asymmetricKeysGroupBox.ResumeLayout(false);
             this.publicKeysGroupBox.ResumeLayout(false);
             this.privateKeysGroupBox.ResumeLayout(false);
@@ -784,19 +682,12 @@ namespace To_Ba_To_Iutta
         private System.Windows.Forms.GroupBox privateKeysGroupBox;
         private System.Windows.Forms.Button deletePrivateKeyButton;
         private System.Windows.Forms.Button newPrivateKeyButton;
-        private System.Windows.Forms.GroupBox keySizeGroupBox;
-        private System.Windows.Forms.Label keySizeLabel;
-        private System.Windows.Forms.NumericUpDown keySizeNumericUpDown;
-        private System.Windows.Forms.GroupBox asymmetricPaddingGroupBox;
-        private System.Windows.Forms.RadioButton asymmetricSHA1RadioButton;
-        private System.Windows.Forms.RadioButton asymmetricSHA512RadioButton;
-        private System.Windows.Forms.RadioButton asymmetricSHA384RadioButton;
-        private System.Windows.Forms.RadioButton asymmetricSHA256RadioButton;
-        private System.Windows.Forms.RadioButton asymmetricPKCS1RadioButton;
         private System.Windows.Forms.ListView publicKeysListView;
         private System.Windows.Forms.ColumnHeader publicListName;
         private System.Windows.Forms.ColumnHeader privateListName;
         private System.Windows.Forms.Button defaultsButton;
         private System.Windows.Forms.ToolTip customIVToolTip;
+        private System.Windows.Forms.Button exportPublicKeyButton;
+        private System.Windows.Forms.Button exportPrivateKeyButton;
     }
 }

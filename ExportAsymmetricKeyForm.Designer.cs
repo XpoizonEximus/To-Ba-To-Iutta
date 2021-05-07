@@ -1,7 +1,7 @@
 ﻿
 namespace To_Ba_To_Iutta
 {
-    partial class ExportAsymmetricPublicKeyForm
+    partial class ExportAsymmetricKeyForm
     {
         /// <summary>
         /// Required designer variable.

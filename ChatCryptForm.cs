@@ -28,15 +28,14 @@ namespace To_Ba_To_Iutta
             Crypt.Actions.ControlRoundBorder(sendTextBoxPanel, new Pen(Color.Silver, 1f));
             Crypt.Actions.ControlRoundBorder(recive, new Pen(Color.Silver, 1f));
             Crypt.Actions.ControlRoundBorder(reciveTextBoxPanel, new Pen(Color.Silver, 1f));
-            AddElem();
         }
         private void AddElem()
         {
             ChatElement ch = new ChatElement();
-            ch.Location = new Point(6, 6);
+            ch.Location = new Point(0, 0);
             ch.Text = "sfdsdf\nsdfsdf\nsdff\nsdfsdf\ndfs";
             chatElementContainerPanel.Controls.Add(ch);
-            //Crypt.Actions.ControlRoundBorder(ch, new Pen(Color.Silver, 1f));
+            Crypt.Actions.ControlRoundBorder(ch.panel, new Pen(ch.panel.BackColor, 1f));
         }
         private void connect_Click(object sender, EventArgs e)
         {

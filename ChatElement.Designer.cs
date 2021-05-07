@@ -37,13 +37,15 @@ namespace To_Ba_To_Iutta
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.copyCipherButton = new System.Windows.Forms.Button();
-            this.senderDelete = new System.Windows.Forms.Button();
-            this.recieverDelete = new System.Windows.Forms.Button();
-            this.textLabel = new System.Windows.Forms.Label();
-            this.separatorPanel = new System.Windows.Forms.Panel();
+            this.panel = new System.Windows.Forms.Panel();
             this.cipherLabel = new System.Windows.Forms.Label();
+            this.separatorPanel = new System.Windows.Forms.Panel();
+            this.textLabel = new System.Windows.Forms.Label();
+            this.recieverDelete = new System.Windows.Forms.Button();
+            this.senderDelete = new System.Windows.Forms.Button();
+            this.copyCipherButton = new System.Windows.Forms.Button();
             this.contextMenuStrip.SuspendLayout();
+            this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // saveFileDialog
@@ -88,39 +90,55 @@ namespace To_Ba_To_Iutta
             this.contextMenuStrip.Name = "contextMenuStrip";
             this.contextMenuStrip.Size = new System.Drawing.Size(141, 92);
             // 
-            // copyCipherButton
+            // panel
             // 
-            this.copyCipherButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.copyCipherButton.Cursor = System.Windows.Forms.Cursors.Default;
-            this.copyCipherButton.FlatAppearance.BorderSize = 0;
-            this.copyCipherButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.copyCipherButton.Font = new System.Drawing.Font("Helvetica", 11F);
-            this.copyCipherButton.ForeColor = System.Drawing.Color.White;
-            this.copyCipherButton.Location = new System.Drawing.Point(437, 418);
-            this.copyCipherButton.Name = "copyCipherButton";
-            this.copyCipherButton.Size = new System.Drawing.Size(167, 25);
-            this.copyCipherButton.TabIndex = 12;
-            this.copyCipherButton.Text = "Copy Cipher";
-            this.copyCipherButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.copyCipherButton.UseVisualStyleBackColor = true;
-            this.copyCipherButton.Click += new System.EventHandler(this.DeleteHandler);
+            this.panel.BackColor = System.Drawing.Color.Black;
+            this.panel.Controls.Add(this.cipherLabel);
+            this.panel.Controls.Add(this.separatorPanel);
+            this.panel.Controls.Add(this.textLabel);
+            this.panel.Controls.Add(this.recieverDelete);
+            this.panel.Controls.Add(this.senderDelete);
+            this.panel.Controls.Add(this.copyCipherButton);
+            this.panel.Location = new System.Drawing.Point(0, 0);
+            this.panel.Margin = new System.Windows.Forms.Padding(0);
+            this.panel.Name = "panel";
+            this.panel.Size = new System.Drawing.Size(608, 458);
+            this.panel.TabIndex = 1;
             // 
-            // senderDelete
+            // cipherLabel
             // 
-            this.senderDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.senderDelete.Cursor = System.Windows.Forms.Cursors.Default;
-            this.senderDelete.FlatAppearance.BorderSize = 0;
-            this.senderDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.senderDelete.Font = new System.Drawing.Font("Helvetica", 11F);
-            this.senderDelete.ForeColor = System.Drawing.Color.White;
-            this.senderDelete.Location = new System.Drawing.Point(264, 418);
-            this.senderDelete.Name = "senderDelete";
-            this.senderDelete.Size = new System.Drawing.Size(167, 25);
-            this.senderDelete.TabIndex = 13;
-            this.senderDelete.Text = "Delete";
-            this.senderDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.senderDelete.UseVisualStyleBackColor = true;
-            this.senderDelete.Click += new System.EventHandler(this.DeleteHandler);
+            this.cipherLabel.AutoEllipsis = true;
+            this.cipherLabel.AutoSize = true;
+            this.cipherLabel.ForeColor = System.Drawing.Color.White;
+            this.cipherLabel.Location = new System.Drawing.Point(6, 38);
+            this.cipherLabel.MaximumSize = new System.Drawing.Size(594, 17);
+            this.cipherLabel.MinimumSize = new System.Drawing.Size(0, 17);
+            this.cipherLabel.Name = "cipherLabel";
+            this.cipherLabel.Size = new System.Drawing.Size(48, 17);
+            this.cipherLabel.TabIndex = 24;
+            this.cipherLabel.Text = "cipher";
+            // 
+            // separatorPanel
+            // 
+            this.separatorPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("separatorPanel.BackgroundImage")));
+            this.separatorPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.separatorPanel.Location = new System.Drawing.Point(0, 29);
+            this.separatorPanel.Name = "separatorPanel";
+            this.separatorPanel.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.separatorPanel.Size = new System.Drawing.Size(608, 3);
+            this.separatorPanel.TabIndex = 23;
+            // 
+            // textLabel
+            // 
+            this.textLabel.AutoEllipsis = true;
+            this.textLabel.AutoSize = true;
+            this.textLabel.ForeColor = System.Drawing.Color.White;
+            this.textLabel.Location = new System.Drawing.Point(6, 6);
+            this.textLabel.MaximumSize = new System.Drawing.Size(594, 0);
+            this.textLabel.Name = "textLabel";
+            this.textLabel.Size = new System.Drawing.Size(32, 17);
+            this.textLabel.TabIndex = 22;
+            this.textLabel.Text = "text";
             // 
             // recieverDelete
             // 
@@ -130,73 +148,67 @@ namespace To_Ba_To_Iutta
             this.recieverDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.recieverDelete.Font = new System.Drawing.Font("Helvetica", 11F);
             this.recieverDelete.ForeColor = System.Drawing.Color.White;
-            this.recieverDelete.Location = new System.Drawing.Point(6, 418);
+            this.recieverDelete.Location = new System.Drawing.Point(6, 427);
             this.recieverDelete.Name = "recieverDelete";
             this.recieverDelete.Size = new System.Drawing.Size(167, 25);
-            this.recieverDelete.TabIndex = 14;
+            this.recieverDelete.TabIndex = 21;
             this.recieverDelete.Text = "Delete";
             this.recieverDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.recieverDelete.UseVisualStyleBackColor = true;
             this.recieverDelete.Click += new System.EventHandler(this.DeleteHandler);
             // 
-            // textLabel
+            // senderDelete
             // 
-            this.textLabel.AutoEllipsis = true;
-            this.textLabel.AutoSize = true;
-            this.textLabel.ForeColor = System.Drawing.Color.White;
-            this.textLabel.Location = new System.Drawing.Point(8, 4);
-            this.textLabel.MaximumSize = new System.Drawing.Size(594, 0);
-            this.textLabel.Name = "textLabel";
-            this.textLabel.Size = new System.Drawing.Size(32, 17);
-            this.textLabel.TabIndex = 16;
-            this.textLabel.Text = "text";
-            this.textLabel.TextChanged += new System.EventHandler(this.textLabel_TextChanged);
+            this.senderDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.senderDelete.Cursor = System.Windows.Forms.Cursors.Default;
+            this.senderDelete.FlatAppearance.BorderSize = 0;
+            this.senderDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.senderDelete.Font = new System.Drawing.Font("Helvetica", 11F);
+            this.senderDelete.ForeColor = System.Drawing.Color.White;
+            this.senderDelete.Location = new System.Drawing.Point(262, 427);
+            this.senderDelete.Name = "senderDelete";
+            this.senderDelete.Size = new System.Drawing.Size(167, 25);
+            this.senderDelete.TabIndex = 20;
+            this.senderDelete.Text = "Delete";
+            this.senderDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.senderDelete.UseVisualStyleBackColor = true;
+            this.senderDelete.Click += new System.EventHandler(this.DeleteHandler);
             // 
-            // separatorPanel
+            // copyCipherButton
             // 
-            this.separatorPanel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("separatorPanel.BackgroundImage")));
-            this.separatorPanel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.separatorPanel.Location = new System.Drawing.Point(0, 27);
-            this.separatorPanel.Name = "separatorPanel";
-            this.separatorPanel.Padding = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.separatorPanel.Size = new System.Drawing.Size(610, 3);
-            this.separatorPanel.TabIndex = 17;
-            // 
-            // cipherLabel
-            // 
-            this.cipherLabel.AutoEllipsis = true;
-            this.cipherLabel.AutoSize = true;
-            this.cipherLabel.ForeColor = System.Drawing.Color.White;
-            this.cipherLabel.Location = new System.Drawing.Point(8, 36);
-            this.cipherLabel.MaximumSize = new System.Drawing.Size(594, 17);
-            this.cipherLabel.MinimumSize = new System.Drawing.Size(0, 17);
-            this.cipherLabel.Name = "cipherLabel";
-            this.cipherLabel.Size = new System.Drawing.Size(48, 17);
-            this.cipherLabel.TabIndex = 18;
-            this.cipherLabel.Text = "cipher";
+            this.copyCipherButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.copyCipherButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.copyCipherButton.FlatAppearance.BorderSize = 0;
+            this.copyCipherButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.copyCipherButton.Font = new System.Drawing.Font("Helvetica", 11F);
+            this.copyCipherButton.ForeColor = System.Drawing.Color.White;
+            this.copyCipherButton.Location = new System.Drawing.Point(435, 427);
+            this.copyCipherButton.Name = "copyCipherButton";
+            this.copyCipherButton.Size = new System.Drawing.Size(167, 25);
+            this.copyCipherButton.TabIndex = 19;
+            this.copyCipherButton.Text = "Copy Cipher";
+            this.copyCipherButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.copyCipherButton.UseVisualStyleBackColor = true;
+            this.copyCipherButton.Click += new System.EventHandler(this.CopyCipherHandler);
             // 
             // ChatElement
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(39)))), ((int)(((byte)(74)))));
             this.ContextMenuStrip = this.contextMenuStrip;
-            this.Controls.Add(this.cipherLabel);
-            this.Controls.Add(this.separatorPanel);
-            this.Controls.Add(this.textLabel);
-            this.Controls.Add(this.recieverDelete);
-            this.Controls.Add(this.senderDelete);
-            this.Controls.Add(this.copyCipherButton);
+            this.Controls.Add(this.panel);
             this.Font = new System.Drawing.Font("Helvetica", 11F);
             this.MaximumSize = new System.Drawing.Size(610, 1000);
             this.MinimumSize = new System.Drawing.Size(610, 90);
             this.Name = "ChatElement";
-            this.Size = new System.Drawing.Size(610, 449);
+            this.Size = new System.Drawing.Size(610, 458);
             this.Load += new System.EventHandler(this.ChatElement_Load);
             this.contextMenuStrip.ResumeLayout(false);
+            this.panel.ResumeLayout(false);
+            this.panel.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -208,11 +220,12 @@ namespace To_Ba_To_Iutta
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
-        private System.Windows.Forms.Button copyCipherButton;
-        private System.Windows.Forms.Button senderDelete;
-        private System.Windows.Forms.Button recieverDelete;
-        private System.Windows.Forms.Label textLabel;
-        private System.Windows.Forms.Panel separatorPanel;
         private System.Windows.Forms.Label cipherLabel;
+        private System.Windows.Forms.Panel separatorPanel;
+        private System.Windows.Forms.Label textLabel;
+        private System.Windows.Forms.Button recieverDelete;
+        private System.Windows.Forms.Button senderDelete;
+        private System.Windows.Forms.Button copyCipherButton;
+        public System.Windows.Forms.Panel panel;
     }
 }

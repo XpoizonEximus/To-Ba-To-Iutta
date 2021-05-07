@@ -27,12 +27,16 @@
 
         public new void Reset()
         {
+            string privateString = this.PrivateKeyPairs;
+            string publicString = this.PublicKeyPairs;
             base.Reset();
+            this.PrivateKeyPairs = privateString;
+            this.PublicKeyPairs = publicString;
         }
         public new void Save()
         {
-            Crypt.Actions.Initialize();
             base.Save();
+            Crypt.Actions.Initialize();
         }
     }
 }

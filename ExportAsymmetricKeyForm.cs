@@ -11,15 +11,15 @@ using System.Windows.Forms;
 
 namespace To_Ba_To_Iutta
 {
-    public partial class ExportAsymmetricPublicKeyForm : Form
+    public partial class ExportAsymmetricKeyForm : Form
     {
         private byte[] Key { get; set; }
         private string KeyContainerName { get; set; }
-        public ExportAsymmetricPublicKeyForm(string keyContainerName)
+        public ExportAsymmetricKeyForm(string keyContainerName, bool includePrivate = false)
         {
             InitializeComponent();
             KeyContainerName = keyContainerName;
-            Key = Crypt.Asymmetric.GetKeyXmlBlob(keyContainerName);
+            Key = Crypt.Asymmetric.GetKeyXmlBlob(keyContainerName, includePrivate);
 
             key.Text = Convert.ToBase64String(Key);
 

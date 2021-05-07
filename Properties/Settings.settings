@@ -17,12 +17,6 @@
     <Setting Name="AsymmetricAlgorythm" Type="System.String" Scope="User">
       <Value Profile="(Default)">RSA</Value>
     </Setting>
-    <Setting Name="AsymmetricKeySize" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">2</Value>
-    </Setting>
-    <Setting Name="AsymmetricPadding" Type="System.String" Scope="User">
-      <Value Profile="(Default)">SHA512</Value>
-    </Setting>
     <Setting Name="PrivateKeyPairs" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>

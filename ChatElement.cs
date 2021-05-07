@@ -35,7 +35,7 @@ namespace To_Ba_To_Iutta
         {
             if (Type == Crypt.ChatElementType.Sender)
             {
-                this.BackColor = Crypt.Constants.ColorThemeCollection[0].ChatSender;
+                panel.BackColor = Crypt.Constants.ColorThemeCollection[0].ChatSender;
 
                 recieverDelete.Visible = false;
 
@@ -44,7 +44,7 @@ namespace To_Ba_To_Iutta
             }
             else
             {
-                this.BackColor = Crypt.Constants.ColorThemeCollection[0].ChatReceiver;
+                panel.BackColor = Crypt.Constants.ColorThemeCollection[0].ChatReceiver;
 
                 senderDelete.Visible = false;
                 copyCipherButton.Visible = false;
@@ -103,10 +103,11 @@ namespace To_Ba_To_Iutta
             h += 6;
             h += 25;
             h += 6;
-            this.Size = new Size(this.Size.Width, h);
-            this.Height = h;
+            panel.Size = new Size(this.Size.Width, h);
+            panel.Height = h;
         }
         private void ChatElement_Load(object sender, EventArgs e) => SetSize();
         private void textLabel_TextChanged(object sender, EventArgs e) => SetSize();
+
     }
 }
