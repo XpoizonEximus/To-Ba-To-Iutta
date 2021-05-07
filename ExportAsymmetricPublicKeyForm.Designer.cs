@@ -69,6 +69,7 @@ namespace To_Ba_To_Iutta
             // 
             // saveFileDialog
             // 
+            this.saveFileDialog.DefaultExt = "ck";
             this.saveFileDialog.Filter = "CryptoKey files|*.ck|All files|*.*";
             // 
             // key

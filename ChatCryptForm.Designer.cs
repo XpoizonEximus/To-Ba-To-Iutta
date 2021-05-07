@@ -29,6 +29,7 @@ namespace To_Ba_To_Iutta
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatCryptForm));
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.ipLabel = new System.Windows.Forms.ToolStripStatusLabel();
@@ -44,8 +45,9 @@ namespace To_Ba_To_Iutta
             this.reciveTextBoxPanel = new System.Windows.Forms.Panel();
             this.ReciveTextBox = new System.Windows.Forms.TextBox();
             this.recive = new System.Windows.Forms.Button();
-            this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             this.disconnect = new System.Windows.Forms.Button();
+            this.chatElementContainerPanel = new System.Windows.Forms.Panel();
+            this.chatElement1 = new To_Ba_To_Iutta.ChatElement();
             this.mainPanel.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.containerPanel.SuspendLayout();
@@ -54,6 +56,7 @@ namespace To_Ba_To_Iutta
             this.sendTextBoxPanel.SuspendLayout();
             this.leftContainerPanel.SuspendLayout();
             this.reciveTextBoxPanel.SuspendLayout();
+            this.chatElementContainerPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -116,7 +119,7 @@ namespace To_Ba_To_Iutta
             // containerPanel
             // 
             this.containerPanel.Controls.Add(this.baseContainerPanel);
-            this.containerPanel.Controls.Add(this.vScrollBar1);
+            this.containerPanel.Controls.Add(this.chatElementContainerPanel);
             this.containerPanel.Location = new System.Drawing.Point(12, 12);
             this.containerPanel.Name = "containerPanel";
             this.containerPanel.Size = new System.Drawing.Size(770, 420);
@@ -234,13 +237,6 @@ namespace To_Ba_To_Iutta
             this.recive.TabIndex = 4;
             this.recive.UseVisualStyleBackColor = true;
             // 
-            // vScrollBar1
-            // 
-            this.vScrollBar1.Location = new System.Drawing.Point(753, 0);
-            this.vScrollBar1.Name = "vScrollBar1";
-            this.vScrollBar1.Size = new System.Drawing.Size(17, 363);
-            this.vScrollBar1.TabIndex = 1;
-            // 
             // disconnect
             // 
             this.disconnect.FlatAppearance.BorderSize = 0;
@@ -256,6 +252,27 @@ namespace To_Ba_To_Iutta
             this.disconnect.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.disconnect.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.disconnect.UseVisualStyleBackColor = true;
+            // 
+            // chatElementContainerPanel
+            // 
+            this.chatElementContainerPanel.AutoScroll = true;
+            this.chatElementContainerPanel.Controls.Add(this.chatElement1);
+            this.chatElementContainerPanel.Location = new System.Drawing.Point(0, 0);
+            this.chatElementContainerPanel.Name = "chatElementContainerPanel";
+            this.chatElementContainerPanel.Size = new System.Drawing.Size(770, 363);
+            this.chatElementContainerPanel.TabIndex = 1;
+            // 
+            // chatElement1
+            // 
+            this.chatElement1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(75)))), ((int)(((byte)(105)))));
+            this.chatElement1.Font = new System.Drawing.Font("Helvetica", 11F);
+            this.chatElement1.Location = new System.Drawing.Point(113, 81);
+            this.chatElement1.MaximumSize = new System.Drawing.Size(610, 0);
+            this.chatElement1.MinimumSize = new System.Drawing.Size(610, 161);
+            this.chatElement1.Name = "chatElement1";
+            this.chatElement1.Size = new System.Drawing.Size(610, 161);
+            this.chatElement1.TabIndex = 0;
+            this.chatElement1.Type = To_Ba_To_Iutta.Crypt.ChatElementType.Sender;
             // 
             // ChatCryptForm
             // 
@@ -274,6 +291,7 @@ namespace To_Ba_To_Iutta
             this.leftContainerPanel.ResumeLayout(false);
             this.reciveTextBoxPanel.ResumeLayout(false);
             this.reciveTextBoxPanel.PerformLayout();
+            this.chatElementContainerPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -292,8 +310,9 @@ namespace To_Ba_To_Iutta
         private System.Windows.Forms.TextBox sendTextBox;
         private System.Windows.Forms.Panel reciveTextBoxPanel;
         private System.Windows.Forms.TextBox ReciveTextBox;
-        private System.Windows.Forms.VScrollBar vScrollBar1;
         private System.Windows.Forms.ToolStripStatusLabel ipLabel;
         private System.Windows.Forms.Button disconnect;
+        private System.Windows.Forms.Panel chatElementContainerPanel;
+        private ChatElement chatElement1;
     }
 }

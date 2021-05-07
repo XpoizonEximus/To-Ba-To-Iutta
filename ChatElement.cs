@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,98 @@ namespace To_Ba_To_Iutta
 {
     public partial class ChatElement : UserControl
     {
+        private Crypt.ChatElementType chatType;
+        public Crypt.ChatElementType Type { get => chatType; set { chatType = value; InitializeTypeDependent(); } }
+        public ChatElement(Crypt.ChatElementType type)
+        {
+            Type = type;
+            InitializeComponent();
+            Crypt.Actions.ControlRoundBorder(this, new Pen(Color.Transparent, 1f));
+            Crypt.Actions.ControlRoundBorder(this, new Pen(this.BackColor, 1f));
+            Crypt.Actions.ControlRoundBorder(copyCipherButton, new Pen(Color.White, 1f));
+            Crypt.Actions.ControlRoundBorder(senderDelete, new Pen(Color.White, 1f));
+            Crypt.Actions.ControlRoundBorder(recieverDelete, new Pen(Color.White, 1f));
+        }
         public ChatElement()
         {
             InitializeComponent();
+            Type = Crypt.ChatElementType.Sender;
+            Crypt.Actions.ControlRoundBorder(this, new Pen(Color.Transparent, 1f));
+            Crypt.Actions.ControlRoundBorder(this, new Pen(this.BackColor, 1f));
+            Crypt.Actions.ControlRoundBorder(copyCipherButton, new Pen(Color.White, 1f));
+            Crypt.Actions.ControlRoundBorder(senderDelete, new Pen(Color.White, 1f));
+            Crypt.Actions.ControlRoundBorder(recieverDelete, new Pen(Color.White, 1f));
         }
+        private void InitializeTypeDependent()
+        {
+            if (Type == Crypt.ChatElementType.Sender)
+            {
+                this.BackColor = Crypt.Constants.ColorThemeCollection[0].ChatSender;
+
+                recieverDelete.Visible = false;
+            }
+            else
+            {
+                this.BackColor = Crypt.Constants.ColorThemeCollection[0].ChatReceiver;
+
+                senderDelete.Visible = false;
+                copyCipherButton.Visible = false;
+            }
+        }
+
+        public new string Text
+        { 
+            get => textLabel.Text;
+            set => textLabel.Text = value;
+        }
+        public string Cipher
+        {
+            get => cipherLabel.Text;
+            set => cipherLabel.Text = value;
+        }
+
+        private void CopyTextHandler(object sender, EventArgs e) => Clipboard.SetText(Text);
+        private void CopyCipherHandler(object sender, EventArgs e) => Clipboard.SetText(Cipher);
+        private void DeleteHandler(object sender, EventArgs e)
+        {
+            this.Parent.Controls.Remove(this);
+            this.Dispose();
+        }
+        private void SaveHandler(object sender, EventArgs e)
+        {
+            if(saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                using (Stream stream = saveFileDialog.OpenFile())
+                {
+                    using (StreamWriter wr = new StreamWriter(stream))
+                    {
+                        wr.WriteLine(Text);
+                        wr.WriteLine("-------------------------------------------------------------------------------------");
+                        wr.WriteLine(Cipher);
+                    }
+                }
+            }
+        }
+
+        private void SetSize()
+        {
+            int h;
+
+            h = textLabel.Location.Y + textLabel.Size.Height;
+            h += 3;
+            separatorPanel.Location = new Point(separatorPanel.Location.X, h);
+
+            h = separatorPanel.Location.Y + separatorPanel.Size.Height;
+            h += 3;
+            cipherLabel.Location = new Point(cipherLabel.Location.X, h);
+
+            h = cipherLabel.Location.Y + cipherLabel.Size.Height;
+            h += 6;
+            h += 25;
+            h += 6;
+            this.Size = new Size(this.Size.Width, h);
+        }
+        private void ChatElement_Load(object sender, EventArgs e) => SetSize();
+        private void textLabel_TextChanged(object sender, EventArgs e) => SetSize();
     }
 }
