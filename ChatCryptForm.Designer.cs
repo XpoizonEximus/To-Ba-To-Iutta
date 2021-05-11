@@ -32,6 +32,7 @@ namespace To_Ba_To_Iutta
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatCryptForm));
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.ipLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusConstantTextLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.connect = new System.Windows.Forms.Button();
             this.containerPanel = new System.Windows.Forms.Panel();
@@ -42,11 +43,10 @@ namespace To_Ba_To_Iutta
             this.send = new System.Windows.Forms.Button();
             this.leftContainerPanel = new System.Windows.Forms.Panel();
             this.reciveTextBoxPanel = new System.Windows.Forms.Panel();
-            this.ReciveTextBox = new System.Windows.Forms.TextBox();
+            this.reciveTextBox = new System.Windows.Forms.TextBox();
             this.recive = new System.Windows.Forms.Button();
             this.chatElementContainerPanel = new System.Windows.Forms.Panel();
             this.disconnect = new System.Windows.Forms.Button();
-            this.statusConstantTextLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mainPanel.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.containerPanel.SuspendLayout();
@@ -87,6 +87,13 @@ namespace To_Ba_To_Iutta
             this.ipLabel.Name = "ipLabel";
             this.ipLabel.Size = new System.Drawing.Size(124, 17);
             this.ipLabel.Text = "toolStripStatusLabel2";
+            // 
+            // statusConstantTextLabel
+            // 
+            this.statusConstantTextLabel.BackColor = System.Drawing.Color.Transparent;
+            this.statusConstantTextLabel.Name = "statusConstantTextLabel";
+            this.statusConstantTextLabel.Size = new System.Drawing.Size(44, 17);
+            this.statusConstantTextLabel.Text = "Status:";
             // 
             // statusLabel
             // 
@@ -185,6 +192,7 @@ namespace To_Ba_To_Iutta
             this.send.Size = new System.Drawing.Size(64, 62);
             this.send.TabIndex = 3;
             this.send.UseVisualStyleBackColor = true;
+            this.send.Click += new System.EventHandler(this.send_Click);
             // 
             // leftContainerPanel
             // 
@@ -199,28 +207,28 @@ namespace To_Ba_To_Iutta
             // reciveTextBoxPanel
             // 
             this.reciveTextBoxPanel.BackColor = System.Drawing.Color.Transparent;
-            this.reciveTextBoxPanel.Controls.Add(this.ReciveTextBox);
+            this.reciveTextBoxPanel.Controls.Add(this.reciveTextBox);
             this.reciveTextBoxPanel.ForeColor = System.Drawing.Color.White;
             this.reciveTextBoxPanel.Location = new System.Drawing.Point(70, 6);
             this.reciveTextBoxPanel.Name = "reciveTextBoxPanel";
             this.reciveTextBoxPanel.Size = new System.Drawing.Size(309, 50);
             this.reciveTextBoxPanel.TabIndex = 10;
             // 
-            // ReciveTextBox
+            // reciveTextBox
             // 
-            this.ReciveTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.reciveTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ReciveTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(39)))), ((int)(((byte)(74)))));
-            this.ReciveTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ReciveTextBox.Font = new System.Drawing.Font("Helvetica", 11F);
-            this.ReciveTextBox.ForeColor = System.Drawing.Color.White;
-            this.ReciveTextBox.Location = new System.Drawing.Point(8, 4);
-            this.ReciveTextBox.Multiline = true;
-            this.ReciveTextBox.Name = "ReciveTextBox";
-            this.ReciveTextBox.Size = new System.Drawing.Size(293, 45);
-            this.ReciveTextBox.TabIndex = 0;
-            this.ReciveTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ReciveTextBox_KeyDown);
+            this.reciveTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(39)))), ((int)(((byte)(74)))));
+            this.reciveTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.reciveTextBox.Font = new System.Drawing.Font("Helvetica", 11F);
+            this.reciveTextBox.ForeColor = System.Drawing.Color.White;
+            this.reciveTextBox.Location = new System.Drawing.Point(8, 4);
+            this.reciveTextBox.Multiline = true;
+            this.reciveTextBox.Name = "reciveTextBox";
+            this.reciveTextBox.Size = new System.Drawing.Size(293, 45);
+            this.reciveTextBox.TabIndex = 0;
+            this.reciveTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ReciveTextBox_KeyDown);
             // 
             // recive
             // 
@@ -235,6 +243,7 @@ namespace To_Ba_To_Iutta
             this.recive.Size = new System.Drawing.Size(64, 62);
             this.recive.TabIndex = 4;
             this.recive.UseVisualStyleBackColor = true;
+            this.recive.Click += new System.EventHandler(this.recive_Click);
             // 
             // chatElementContainerPanel
             // 
@@ -260,13 +269,6 @@ namespace To_Ba_To_Iutta
             this.disconnect.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.disconnect.UseVisualStyleBackColor = true;
             this.disconnect.Click += new System.EventHandler(this.disconnect_Click);
-            // 
-            // statusConstantTextLabel
-            // 
-            this.statusConstantTextLabel.BackColor = System.Drawing.Color.Transparent;
-            this.statusConstantTextLabel.Name = "statusConstantTextLabel";
-            this.statusConstantTextLabel.Size = new System.Drawing.Size(44, 17);
-            this.statusConstantTextLabel.Text = "Status:";
             // 
             // ChatCryptForm
             // 
@@ -302,7 +304,7 @@ namespace To_Ba_To_Iutta
         private System.Windows.Forms.Panel sendTextBoxPanel;
         private System.Windows.Forms.TextBox sendTextBox;
         private System.Windows.Forms.Panel reciveTextBoxPanel;
-        private System.Windows.Forms.TextBox ReciveTextBox;
+        private System.Windows.Forms.TextBox reciveTextBox;
         private System.Windows.Forms.ToolStripStatusLabel ipLabel;
         private System.Windows.Forms.Button disconnect;
         private System.Windows.Forms.Panel chatElementContainerPanel;

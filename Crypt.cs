@@ -644,10 +644,14 @@ namespace To_Ba_To_Iutta
             }
             public static byte[] Encrypt(byte[] input)
             {
+                if (Algorythm == null)
+                    throw new ArgumentException("There is not any connection established. Please connect first.");
                 return Symmetric.Encrypt(input, Key);
             }
             public static byte[] Decrypt(byte[] input)
             {
+                if (Algorythm == null)
+                    throw new ArgumentException("There is not any connection established. Please connect first.");
                 return Symmetric.Decrypt(input, Key);
             }
         }

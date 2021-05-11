@@ -91,5 +91,27 @@ namespace To_Ba_To_Iutta
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void send_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Clipboard.SetText(Convert.ToBase64String(Crypt.Chat.Encrypt(Encoding.UTF8.GetBytes(sendTextBox.Text))));
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void recive_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                MessageBox.Show(Encoding.UTF8.GetString(Crypt.Chat.Decrypt(Convert.FromBase64String(reciveTextBox.Text))));
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
