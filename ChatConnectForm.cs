@@ -52,8 +52,12 @@ namespace To_Ba_To_Iutta
 
         private void connect_Click(object sender, EventArgs e)
         {
-
-            this.DialogResult = DialogResult.OK;
+            if (reciveKey.Text != null)
+            {
+                RecivedKey = Convert.FromBase64String(reciveKey.Text);
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
         }
 
         private void import_Click(object sender, EventArgs e)
