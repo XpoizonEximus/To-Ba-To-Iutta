@@ -37,6 +37,8 @@ namespace To_Ba_To_Iutta
             this.recivedKeyLabel = new System.Windows.Forms.Label();
             this.reciveKey = new System.Windows.Forms.TextBox();
             this.connect = new System.Windows.Forms.Button();
+            this.import = new System.Windows.Forms.Button();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // keyToSendLabel
@@ -50,7 +52,7 @@ namespace To_Ba_To_Iutta
             // 
             // copy
             // 
-            this.copy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.copy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.copy.Location = new System.Drawing.Point(587, 111);
             this.copy.Name = "copy";
             this.copy.Size = new System.Drawing.Size(101, 29);
@@ -61,7 +63,7 @@ namespace To_Ba_To_Iutta
             // 
             // save
             // 
-            this.save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.save.Location = new System.Drawing.Point(480, 111);
             this.save.Name = "save";
             this.save.Size = new System.Drawing.Size(101, 29);
@@ -107,12 +109,11 @@ namespace To_Ba_To_Iutta
             this.reciveKey.Name = "reciveKey";
             this.reciveKey.Size = new System.Drawing.Size(573, 112);
             this.reciveKey.TabIndex = 6;
-            this.reciveKey.Text = "key";
             // 
             // connect
             // 
             this.connect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.connect.Location = new System.Drawing.Point(587, 272);
+            this.connect.Location = new System.Drawing.Point(587, 306);
             this.connect.Name = "connect";
             this.connect.Size = new System.Drawing.Size(101, 29);
             this.connect.TabIndex = 7;
@@ -120,13 +121,30 @@ namespace To_Ba_To_Iutta
             this.connect.UseVisualStyleBackColor = true;
             this.connect.Click += new System.EventHandler(this.connect_Click);
             // 
+            // import
+            // 
+            this.import.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.import.Location = new System.Drawing.Point(587, 271);
+            this.import.Name = "import";
+            this.import.Size = new System.Drawing.Size(101, 29);
+            this.import.TabIndex = 8;
+            this.import.Text = "Import";
+            this.import.UseVisualStyleBackColor = true;
+            this.import.Click += new System.EventHandler(this.import_Click);
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.DefaultExt = "ck";
+            this.openFileDialog.Filter = "CryptoKey files|*.ck|All files|*.*";
+            // 
             // ChatConnectForm
             // 
             this.AcceptButton = this.connect;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(699, 313);
+            this.ClientSize = new System.Drawing.Size(699, 347);
+            this.Controls.Add(this.import);
             this.Controls.Add(this.connect);
             this.Controls.Add(this.reciveKey);
             this.Controls.Add(this.recivedKeyLabel);
@@ -138,12 +156,12 @@ namespace To_Ba_To_Iutta
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(348, 188);
+            this.MinimumSize = new System.Drawing.Size(348, 235);
             this.Name = "ChatConnectForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Export Asymmetric Public Key ";
+            this.Text = "Connect chat";
             this.Resize += new System.EventHandler(this.ChatConnectForm_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -160,5 +178,7 @@ namespace To_Ba_To_Iutta
         private System.Windows.Forms.Label recivedKeyLabel;
         private System.Windows.Forms.TextBox reciveKey;
         private System.Windows.Forms.Button connect;
+        private System.Windows.Forms.Button import;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
     }
 }

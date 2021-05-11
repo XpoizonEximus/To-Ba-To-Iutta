@@ -14,23 +14,21 @@ namespace To_Ba_To_Iutta
     public partial class ChatConnectForm : Form
     {
         private byte[] Key { get; set; }
-        private string KeyContainerName { get; set; }
-        public ChatConnectForm(string keyContainerName)
+        public byte[] RecivedKey { get; private set; }
+        public ChatConnectForm(byte[] key)
         {
             InitializeComponent();
             this.OnResize(new EventArgs());
 
-            KeyContainerName = keyContainerName;
-            Key = Crypt.Asymmetric.GetKeyXmlBlob(keyContainerName);
-
-            sendKey.Text = Convert.ToBase64String(Key);
+            Key = key;
+            this.sendKey.Text = Convert.ToBase64String(Key);
 
             this.DialogResult = DialogResult.Cancel;
         }
 
         private void ChatConnectForm_Resize(object sender, EventArgs e)
         {
-            int height = (this.Size.Height - 12 - 12 - save.Size.Height - 6 - 6 - 38 - connect.Size.Height - 8) / 2;
+            int height = (this.Size.Height - 12 - 12 - save.Size.Height - 6 - 6 - 38 - connect.Size.Height - 8 - 29 - 6) / 2;
             int buttony = 12 + height + 6;
             int secondy = 12 + height + 6 + save.Size.Height + 6;
 
@@ -44,7 +42,6 @@ namespace To_Ba_To_Iutta
         }
         private void save_Click(object sender, EventArgs e)
         {
-            saveFileDialog.FileName = KeyContainerName;
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 using (Stream fs = saveFileDialog.OpenFile())
@@ -56,6 +53,19 @@ namespace To_Ba_To_Iutta
         private void connect_Click(object sender, EventArgs e)
         {
 
+            this.DialogResult = DialogResult.OK;
+        }
+
+        private void import_Click(object sender, EventArgs e)
+        {
+            if(openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                using (Stream stream = openFileDialog.OpenFile())
+                {
+                    RecivedKey = new byte[stream.Length];
+                    stream.Read(RecivedKey, 0, (int)stream.Length);
+                }
+            }
         }
     }
 }

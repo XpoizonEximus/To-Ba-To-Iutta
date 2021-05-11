@@ -37,11 +37,6 @@ namespace To_Ba_To_Iutta
             chatElementContainerPanel.Controls.Add(ch);
             Crypt.Actions.ControlRoundBorder(ch.panel, new Pen(ch.panel.BackColor, 1f));
         }
-        private void connect_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void rightContainerPanel_Paint(object sender, PaintEventArgs e)
         {
             Pen p = new Pen(Color.Silver, 1f);
@@ -53,11 +48,48 @@ namespace To_Ba_To_Iutta
             if (e.KeyCode == Keys.Enter)
                 send.PerformClick();
         }
-
         private void ReciveTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
                 recive.PerformClick();
+        }
+
+        private void connect_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                statusLabel.Text = "Connecting";
+                statusLabel.ForeColor = Color.DarkGoldenrod;
+
+                ChatConnectForm f = new ChatConnectForm(Crypt.Chat.Initialize());
+                if (f.ShowDialog() == DialogResult.OK)
+                {
+                    Crypt.Chat.Connect(f.RecivedKey);
+
+                    statusLabel.Text = "Connected";
+                    statusLabel.ForeColor = Color.Lime;
+                }
+                else disconnect.PerformClick();
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                statusLabel.Text = "Not connected";
+                statusLabel.ForeColor = Color.Red;
+            }
+        }
+        private void disconnect_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Crypt.Chat.Disconnect(false);
+                statusLabel.Text = "Not connected";
+                statusLabel.ForeColor = Color.Red;
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

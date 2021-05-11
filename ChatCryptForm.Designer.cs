@@ -46,6 +46,7 @@ namespace To_Ba_To_Iutta
             this.recive = new System.Windows.Forms.Button();
             this.chatElementContainerPanel = new System.Windows.Forms.Panel();
             this.disconnect = new System.Windows.Forms.Button();
+            this.statusConstantTextLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.mainPanel.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.containerPanel.SuspendLayout();
@@ -70,6 +71,7 @@ namespace To_Ba_To_Iutta
             this.statusStrip.Font = new System.Drawing.Font("Helvetica", 9F);
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ipLabel,
+            this.statusConstantTextLabel,
             this.statusLabel});
             this.statusStrip.Location = new System.Drawing.Point(0, 508);
             this.statusStrip.Name = "statusStrip";
@@ -93,8 +95,8 @@ namespace To_Ba_To_Iutta
             this.statusLabel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.statusLabel.ForeColor = System.Drawing.Color.Red;
             this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(126, 17);
-            this.statusLabel.Text = "Status: Not connected";
+            this.statusLabel.Size = new System.Drawing.Size(86, 17);
+            this.statusLabel.Text = "Not connected";
             // 
             // connect
             // 
@@ -257,6 +259,14 @@ namespace To_Ba_To_Iutta
             this.disconnect.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.disconnect.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.disconnect.UseVisualStyleBackColor = true;
+            this.disconnect.Click += new System.EventHandler(this.disconnect_Click);
+            // 
+            // statusConstantTextLabel
+            // 
+            this.statusConstantTextLabel.BackColor = System.Drawing.Color.Transparent;
+            this.statusConstantTextLabel.Name = "statusConstantTextLabel";
+            this.statusConstantTextLabel.Size = new System.Drawing.Size(44, 17);
+            this.statusConstantTextLabel.Text = "Status:";
             // 
             // ChatCryptForm
             // 
@@ -296,5 +306,6 @@ namespace To_Ba_To_Iutta
         private System.Windows.Forms.ToolStripStatusLabel ipLabel;
         private System.Windows.Forms.Button disconnect;
         private System.Windows.Forms.Panel chatElementContainerPanel;
+        private System.Windows.Forms.ToolStripStatusLabel statusConstantTextLabel;
     }
 }

@@ -111,14 +111,6 @@ namespace To_Ba_To_Iutta
             public static Procedure Procedure { get; set; }
             public static CryptoAlgorythm Algorythm { get; set; }
             public static bool Chat { get; set; }
-
-            public static class Input
-            {
-                public static string SymmetricEncrypt { get; set; }
-                public static string SymmetricDecrypt { get; set; }
-                public static string AsymmetricEncrypt { get; set; }
-                public static string AsymmetricDecrypt { get; set; }
-            }
         }
 
         public static class Actions
@@ -132,7 +124,6 @@ namespace To_Ba_To_Iutta
                     try
                     {
                         LoadForm();
-                        LoadInput();
                         LoadAlgorythm();
                     }
                     catch (Exception ex)
@@ -147,13 +138,6 @@ namespace To_Ba_To_Iutta
                     Data.Algorythm = settings.LastSymmetric ? CryptoAlgorythm.Symmetric : CryptoAlgorythm.Asymmetric;
                     Data.Chat = settings.LastChat;
                     SetMainPanelForm();
-                }
-                public static void LoadInput()
-                {
-                    Data.Input.SymmetricEncrypt = settings.LastSymmetricEncryptInput;
-                    Data.Input.SymmetricDecrypt = settings.LastSymmetricDecryptInput;
-                    Data.Input.AsymmetricEncrypt = settings.LastAsymmetricEncryptInput;
-                    Data.Input.AsymmetricDecrypt = settings.LastAsymmetricDecryptInput;
                 }
                 public static void LoadAlgorythm()
                 {
@@ -222,7 +206,6 @@ namespace To_Ba_To_Iutta
                     try
                     {
                         SaveForm();
-                        SaveInput();
                         settings.Save();
                     }
                     catch (Exception ex)
@@ -236,13 +219,6 @@ namespace To_Ba_To_Iutta
                     settings.LastEncrypt = Data.Procedure == Procedure.Encrypt ? true : false;
                     settings.LastSymmetric = Data.Algorythm == CryptoAlgorythm.Symmetric ? true : false;
                     settings.LastChat = Data.Chat;
-                }
-                public static void SaveInput()
-                {
-                    settings.LastSymmetricEncryptInput = Data.Input.SymmetricEncrypt;
-                    settings.LastSymmetricDecryptInput = Data.Input.SymmetricDecrypt;
-                    settings.LastAsymmetricEncryptInput = Data.Input.AsymmetricEncrypt;
-                    settings.LastAsymmetricDecryptInput = Data.Input.AsymmetricDecrypt;
                 }
             }
             public static void ControlRoundBorder(Control Control, Pen pen, DashStyle dashstyle = DashStyle.Solid)
@@ -635,10 +611,44 @@ namespace To_Ba_To_Iutta
         }
         public static class Chat
         {
-            public static ECDiffieHellmanCng Algorythm { get; set; }
-            public static void Connect()
+            public static ECDiffieHellmanCng Algorythm { get; set; } = null;
+            private static byte[] Key { get; set; }
+            public static byte[] Initialize()
             {
+                if (Algorythm != null)
+                    throw new ArgumentException("There is already a connection established. Please disconnect first.");
 
+                Algorythm = new ECDiffieHellmanCng
+                {
+                    KeyDerivationFunction = ECDiffieHellmanKeyDerivationFunction.Hash,
+                    HashAlgorithm = CngAlgorithm.Sha256
+                };
+
+                return Algorythm.PublicKey.ToByteArray();
+            }
+            public static void Connect(byte[] publicKey)
+            {
+                if (Algorythm == null)
+                    throw new ArgumentException("Algorythm null.");
+
+                Key = Algorythm.DeriveKeyMaterial(CngKey.Import(publicKey, CngKeyBlobFormat.EccPublicBlob));
+            }
+            public static void Disconnect(bool showMessage = true)
+            {
+                if (Algorythm == null)
+                    throw new ArgumentException("There is not any connection established. Please connect first.");
+
+                Algorythm = null;
+                Key = null;
+                if(showMessage) MessageBox.Show("Disconected succesfully!", "Disconnected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            public static byte[] Encrypt(byte[] input)
+            {
+                return Symmetric.Encrypt(input, Key);
+            }
+            public static byte[] Decrypt(byte[] input)
+            {
+                return Symmetric.Decrypt(input, Key);
             }
         }
         public static class Signature
