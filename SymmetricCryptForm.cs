@@ -24,6 +24,11 @@ namespace To_Ba_To_Iutta
             Crypt.Actions.ControlRoundBorder(outputPanel, new Pen(Color.Silver, 1.0f));
             Crypt.Actions.ControlRoundBorder(keyPanel, new Pen(Color.Silver, 1.0f));
             Crypt.Actions.ControlRoundBorder(button, new Pen(Color.White, 2f));
+
+            if (Procedure == Crypt.Procedure.Encrypt)
+                input.Text = Properties.Settings.Default.LastSymmetricEncryptInput;
+            else
+                input.Text = Properties.Settings.Default.LastSymmetricDecryptInput;
         }
         public Crypt.Procedure Procedure
         {
@@ -76,6 +81,14 @@ namespace To_Ba_To_Iutta
         {
             if (e.KeyCode == Keys.Enter)
                 button.PerformClick();
+        }
+
+        private void input_TextChanged(object sender, EventArgs e)
+        {
+            if (Procedure == Crypt.Procedure.Encrypt)
+                Properties.Settings.Default.LastSymmetricEncryptInput = input.Text;
+            else
+                Properties.Settings.Default.LastSymmetricDecryptInput = input.Text;
         }
     }
 }

@@ -119,6 +119,7 @@ namespace To_Ba_To_Iutta
             | System.Windows.Forms.AnchorStyles.Right)));
             this.input.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(39)))), ((int)(((byte)(74)))));
             this.input.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.input.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::To_Ba_To_Iutta.Properties.Settings.Default, "LastAsymmetricDecryptInput", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.input.Font = new System.Drawing.Font("Helvetica", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.input.ForeColor = System.Drawing.Color.White;
             this.input.ImeMode = System.Windows.Forms.ImeMode.NoControl;
@@ -128,6 +129,7 @@ namespace To_Ba_To_Iutta
             this.input.Name = "input";
             this.input.Size = new System.Drawing.Size(655, 204);
             this.input.TabIndex = 0;
+            this.input.Text = global::To_Ba_To_Iutta.Properties.Settings.Default.LastAsymmetricDecryptInput;
             this.input.KeyDown += new System.Windows.Forms.KeyEventHandler(this.input_KeyDown);
             // 
             // inputPanel

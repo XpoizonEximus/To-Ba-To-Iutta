@@ -142,6 +142,7 @@ namespace To_Ba_To_Iutta
             this.input.Name = "input";
             this.input.Size = new System.Drawing.Size(655, 208);
             this.input.TabIndex = 0;
+            this.input.TextChanged += new System.EventHandler(this.input_TextChanged);
             this.input.KeyDown += new System.Windows.Forms.KeyEventHandler(this.input_KeyDown);
             // 
             // inputPanel
