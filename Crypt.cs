@@ -111,6 +111,8 @@ namespace To_Ba_To_Iutta
             public static Procedure Procedure { get; set; }
             public static CryptoAlgorythm Algorythm { get; set; }
             public static bool Chat { get; set; }
+            public static int ChatCurrentY { get; set; }
+            public static Control[] ChatControls { get; set; }
         }
 
         public static class Actions
@@ -613,6 +615,7 @@ namespace To_Ba_To_Iutta
         {
             public static ECDiffieHellmanCng Algorythm { get; set; } = null;
             private static byte[] Key { get; set; }
+            public static bool Connected { get => (Algorythm != null); }
             public static byte[] Initialize()
             {
                 if (Algorythm != null)
@@ -653,13 +656,6 @@ namespace To_Ba_To_Iutta
                 if (Algorythm == null)
                     throw new ArgumentException("There is not any connection established. Please connect first.");
                 return Symmetric.Decrypt(input, Key);
-            }
-        }
-        public static class Signature
-        {
-            public static byte[] Sign(byte[] input, string keyContainerName)
-            {
-                return null;
             }
         }
         #endregion

@@ -71,13 +71,13 @@ namespace To_Ba_To_Iutta
             }
         }
 
-        private void key_KeyDown(object sender, KeyEventArgs e)
+        private void key_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
                 button.PerformClick();
         }
 
-        private void input_KeyDown(object sender, KeyEventArgs e)
+        private void input_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
                 button.PerformClick();

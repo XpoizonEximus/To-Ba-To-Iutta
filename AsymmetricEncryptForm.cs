@@ -80,22 +80,31 @@ namespace To_Ba_To_Iutta
 
         private void key_TextChanged(object sender, EventArgs e) => keyRadio.Checked = true;
 
-        private void input_KeyDown(object sender, KeyEventArgs e)
+        private void input_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
+            {
                 button.PerformClick();
+                input.Text.Trim();
+            }
         }
 
-        private void keyName_KeyDown(object sender, KeyEventArgs e)
+        private void keyName_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
+            {
                 button.PerformClick();
+                keyName.Text.Trim();
+            }
         }
 
-        private void key_KeyDown(object sender, KeyEventArgs e)
+        private void key_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
+            {
                 button.PerformClick();
+                key.Text.Trim();
+            }
         }
 
         private void manageKeysButton_Click(object sender, EventArgs e)

@@ -1,4 +1,6 @@
-﻿namespace To_Ba_To_Iutta.Properties {
+﻿using System.Windows.Forms;
+
+namespace To_Ba_To_Iutta.Properties {
     
     
     // This class allows you to handle specific events on the settings class:
@@ -35,8 +37,22 @@
         }
         public new void Save()
         {
+            VerifyInputs();
             base.Save();
             Crypt.Actions.Settings.LoadSettings();
+        }
+        private void VerifyInputs()
+        {
+            if (VerifyInput(this.LastAsymmetricDecryptInput)) LastAsymmetricDecryptInput = "";
+            if (VerifyInput(this.LastAsymmetricEncryptInput)) LastAsymmetricEncryptInput = "";
+            if (VerifyInput(this.LastSymmetricDecryptInput )) LastSymmetricDecryptInput  = "";
+            if (VerifyInput(this.LastSymmetricEncryptInput )) LastSymmetricEncryptInput  = "";
+        }
+        private bool VerifyInput(string input)
+        {
+            if (input.Length>5000)
+                return true;
+            return false;
         }
     }
 }

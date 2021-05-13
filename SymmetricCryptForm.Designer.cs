@@ -113,7 +113,7 @@ namespace To_Ba_To_Iutta
             this.key.Name = "key";
             this.key.Size = new System.Drawing.Size(482, 40);
             this.key.TabIndex = 5;
-            this.key.KeyDown += new System.Windows.Forms.KeyEventHandler(this.key_KeyDown);
+            this.key.KeyUp += new System.Windows.Forms.KeyEventHandler(this.key_KeyUp);
             // 
             // keyLabel
             // 
@@ -143,7 +143,7 @@ namespace To_Ba_To_Iutta
             this.input.Size = new System.Drawing.Size(655, 208);
             this.input.TabIndex = 0;
             this.input.TextChanged += new System.EventHandler(this.input_TextChanged);
-            this.input.KeyDown += new System.Windows.Forms.KeyEventHandler(this.input_KeyDown);
+            this.input.KeyUp += new System.Windows.Forms.KeyEventHandler(this.input_KeyUp);
             // 
             // inputPanel
             // 

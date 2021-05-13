@@ -43,15 +43,19 @@ namespace To_Ba_To_Iutta
             e.Graphics.DrawLine(p, 0, 0, 0, baseContainerPanel.Height);
         }
 
-        private void sendTextBox_KeyDown(object sender, KeyEventArgs e)
+        private void sendTextBox_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
+            {
                 send.PerformClick();
+                sendTextBox.Text.Trim();
+            }
         }
-        private void ReciveTextBox_KeyDown(object sender, KeyEventArgs e)
+        private void ReciveTextBox_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
                 recive.PerformClick();
+            reciveTextBox.Text.Trim();
         }
 
         private void connect_Click(object sender, EventArgs e)
@@ -69,7 +73,12 @@ namespace To_Ba_To_Iutta
                     statusLabel.Text = "Connected";
                     statusLabel.ForeColor = Color.Lime;
                 }
-                else disconnect.PerformClick();
+                else
+                {
+                    Crypt.Chat.Disconnect(false);
+                    statusLabel.Text = "Not connected";
+                    statusLabel.ForeColor = Color.Red;
+                }
             }
             catch (System.Exception ex)
             {
@@ -82,7 +91,7 @@ namespace To_Ba_To_Iutta
         {
             try
             {
-                Crypt.Chat.Disconnect(false);
+                Crypt.Chat.Disconnect();
                 statusLabel.Text = "Not connected";
                 statusLabel.ForeColor = Color.Red;
             }

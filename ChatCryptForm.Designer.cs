@@ -177,7 +177,7 @@ namespace To_Ba_To_Iutta
             this.sendTextBox.Name = "sendTextBox";
             this.sendTextBox.Size = new System.Drawing.Size(293, 45);
             this.sendTextBox.TabIndex = 0;
-            this.sendTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.sendTextBox_KeyDown);
+            this.sendTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.sendTextBox_KeyUp);
             // 
             // send
             // 
@@ -228,7 +228,7 @@ namespace To_Ba_To_Iutta
             this.reciveTextBox.Name = "reciveTextBox";
             this.reciveTextBox.Size = new System.Drawing.Size(293, 45);
             this.reciveTextBox.TabIndex = 0;
-            this.reciveTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ReciveTextBox_KeyDown);
+            this.reciveTextBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.ReciveTextBox_KeyUp);
             // 
             // recive
             // 
