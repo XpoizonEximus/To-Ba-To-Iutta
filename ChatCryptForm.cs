@@ -29,20 +29,35 @@ namespace To_Ba_To_Iutta
             Crypt.Actions.ControlRoundBorder(recive, new Pen(Color.Silver, 1f));
             Crypt.Actions.ControlRoundBorder(reciveTextBoxPanel, new Pen(Color.Silver, 1f));
         }
-        private void AddElem()
+        private void AddElem(string text, string cipher, Crypt.ChatElementType type)
         {
-            ChatElement ch = new ChatElement();
-            ch.Location = new Point(0, 0);
-            ch.Text = "sfdsdf\nsdfsdf\nsdff\nsdfsdf\ndfs";
-            chatElementContainerPanel.Controls.Add(ch);
-            Crypt.Actions.ControlRoundBorder(ch.panel, new Pen(ch.panel.BackColor, 1f));
+            ChatElement message = new ChatElement(type)
+            {
+                Text = text,
+                Cipher = cipher
+            };
+            chatElementContainerPanel.Controls.Add(message);
+
+            int x, y;
+            y = Crypt.Data.ChatCurrentY + 8;
+            if (type == Crypt.ChatElementType.Receiver) x = 8;
+            else x = chatElementContainerPanel.Width - message.Width - 8;
+            message.Location = new Point(x, y);
+
+            Crypt.Data.ChatCurrentY += message.Height + 8;
+
+            Crypt.Actions.ControlRoundBorder(message, new Pen(Color.Transparent, 1f));
+
+            Crypt.Data.ChatControls.Add(message);
         }
+
         private void rightContainerPanel_Paint(object sender, PaintEventArgs e)
         {
             Pen p = new Pen(Color.Silver, 1f);
             e.Graphics.DrawLine(p, 0, 0, 0, baseContainerPanel.Height);
         }
 
+        #region KeyUp
         private void sendTextBox_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -57,7 +72,8 @@ namespace To_Ba_To_Iutta
                 recive.PerformClick();
             reciveTextBox.Text.Trim();
         }
-
+        #endregion
+        #region Click
         private void connect_Click(object sender, EventArgs e)
         {
             try
@@ -104,7 +120,11 @@ namespace To_Ba_To_Iutta
         {
             try
             {
-                Clipboard.SetText(Convert.ToBase64String(Crypt.Chat.Encrypt(Encoding.UTF8.GetBytes(sendTextBox.Text))));
+                string text = sendTextBox.Text;
+                string cipher = Convert.ToBase64String(Crypt.Chat.Encrypt(Encoding.UTF8.GetBytes(text)));
+                AddElem(text, cipher, Crypt.ChatElementType.Sender);
+
+                sendTextBox.Text = "";
             }
             catch (System.Exception ex)
             {
@@ -115,12 +135,17 @@ namespace To_Ba_To_Iutta
         {
             try
             {
-                MessageBox.Show(Encoding.UTF8.GetString(Crypt.Chat.Decrypt(Convert.FromBase64String(reciveTextBox.Text))));
+                string cipher = reciveTextBox.Text;
+                string text = Encoding.UTF8.GetString(Crypt.Chat.Decrypt(Convert.FromBase64String(cipher)));
+                AddElem(text, cipher, Crypt.ChatElementType.Receiver);
+
+                reciveTextBox.Text = "";
             }
             catch (System.Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        #endregion
     }
 }

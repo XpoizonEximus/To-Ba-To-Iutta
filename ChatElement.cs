@@ -23,14 +23,6 @@ namespace To_Ba_To_Iutta
             Crypt.Actions.ControlRoundBorder(senderDelete, new Pen(Color.White, 1f));
             Crypt.Actions.ControlRoundBorder(recieverDelete, new Pen(Color.White, 1f));
         }
-        public ChatElement()
-        {
-            InitializeComponent();
-            Type = Crypt.ChatElementType.Sender;
-            Crypt.Actions.ControlRoundBorder(copyCipherButton, new Pen(Color.White, 1f));
-            Crypt.Actions.ControlRoundBorder(senderDelete, new Pen(Color.White, 1f));
-            Crypt.Actions.ControlRoundBorder(recieverDelete, new Pen(Color.White, 1f));
-        }
         private void InitializeTypeDependent()
         {
             if (Type == Crypt.ChatElementType.Sender)
@@ -68,6 +60,13 @@ namespace To_Ba_To_Iutta
         private void CopyCipherHandler(object sender, EventArgs e) => Clipboard.SetText(Cipher);
         private void DeleteHandler(object sender, EventArgs e)
         {
+            int index = Parent.Controls.IndexOf(this);
+
+            for (int i = index + 1; i < Parent.Controls.Count; ++i)
+                Parent.Controls[i].Location = new Point(Parent.Controls[i].Location.X, Parent.Controls[i].Location.Y - 8 - this.Height);
+
+            Crypt.Data.ChatControls.Remove(this);
+
             this.Parent.Controls.Remove(this);
             this.Dispose();
         }
@@ -108,6 +107,6 @@ namespace To_Ba_To_Iutta
         }
         private void ChatElement_Load(object sender, EventArgs e) => SetSize();
         private void textLabel_TextChanged(object sender, EventArgs e) => SetSize();
-
+        private void cipherLabel_TextChanged(object sender, EventArgs e) => SetSize();
     }
 }

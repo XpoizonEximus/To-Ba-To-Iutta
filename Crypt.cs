@@ -111,8 +111,8 @@ namespace To_Ba_To_Iutta
             public static Procedure Procedure { get; set; }
             public static CryptoAlgorythm Algorythm { get; set; }
             public static bool Chat { get; set; }
-            public static int ChatCurrentY { get; set; }
-            public static Control[] ChatControls { get; set; }
+            public static int ChatCurrentY { get; set; } = 0;
+            public static List<Control> ChatControls { get; set; } = new List<Control>();
         }
 
         public static class Actions

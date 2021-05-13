@@ -109,14 +109,16 @@ namespace To_Ba_To_Iutta
             // 
             this.cipherLabel.AutoEllipsis = true;
             this.cipherLabel.AutoSize = true;
-            this.cipherLabel.ForeColor = System.Drawing.Color.White;
+            this.cipherLabel.Font = new System.Drawing.Font("Helvetica", 7F);
+            this.cipherLabel.ForeColor = System.Drawing.Color.LightGray;
             this.cipherLabel.Location = new System.Drawing.Point(6, 38);
             this.cipherLabel.MaximumSize = new System.Drawing.Size(594, 17);
             this.cipherLabel.MinimumSize = new System.Drawing.Size(0, 17);
             this.cipherLabel.Name = "cipherLabel";
-            this.cipherLabel.Size = new System.Drawing.Size(48, 17);
+            this.cipherLabel.Size = new System.Drawing.Size(33, 17);
             this.cipherLabel.TabIndex = 24;
             this.cipherLabel.Text = "cipher";
+            this.cipherLabel.TextChanged += new System.EventHandler(this.cipherLabel_TextChanged);
             // 
             // separatorPanel
             // 
@@ -132,13 +134,15 @@ namespace To_Ba_To_Iutta
             // 
             this.textLabel.AutoEllipsis = true;
             this.textLabel.AutoSize = true;
+            this.textLabel.Font = new System.Drawing.Font("Helvetica", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textLabel.ForeColor = System.Drawing.Color.White;
             this.textLabel.Location = new System.Drawing.Point(6, 6);
             this.textLabel.MaximumSize = new System.Drawing.Size(594, 0);
             this.textLabel.Name = "textLabel";
-            this.textLabel.Size = new System.Drawing.Size(32, 17);
+            this.textLabel.Size = new System.Drawing.Size(35, 17);
             this.textLabel.TabIndex = 22;
             this.textLabel.Text = "text";
+            this.textLabel.TextChanged += new System.EventHandler(this.textLabel_TextChanged);
             // 
             // recieverDelete
             // 
