@@ -77,7 +77,7 @@ namespace To_Ba_To_Iutta
             if(Crypt.Data.Chat)
             {
                 symmetricButton.BackColor = Crypt.Constants.ColorThemeCollection[0].Primary;
-                asymmetricButton.BackColor = Crypt.Constants.ColorThemeCollection[0].Primary;
+                decryptButton.BackColor = Crypt.Constants.ColorThemeCollection[0].Primary;
                 encryptButton.BackColor = Crypt.Constants.ColorThemeCollection[0].Primary;
                 decryptButton.BackColor = Crypt.Constants.ColorThemeCollection[0].Primary;
 
@@ -155,6 +155,42 @@ namespace To_Ba_To_Iutta
         {
             ProcessStartInfo pInfo = new ProcessStartInfo("https://github.com/XpoizonEximus/To-Ba-To-Iutta");
             Process.Start(pInfo);
+        }
+
+        private void symmetricButton_BackColorChanged(object sender, EventArgs e)
+        {
+            if (symmetricButton.BackColor == Crypt.Constants.ColorThemeCollection[0].PrimaryClicked)
+                symmetricRedPanel.Visible = true;
+            else
+                symmetricRedPanel.Visible = false;
+        }
+        private void asymmetricButton_BackColorChanged(object sender, EventArgs e)
+        {
+            if (asymmetricButton.BackColor == Crypt.Constants.ColorThemeCollection[0].PrimaryClicked)
+                asymmetricRedPanel.Visible = true;
+            else
+                asymmetricRedPanel.Visible = false;
+        }
+        private void encryptButton_BackColorChanged(object sender, EventArgs e)
+        {
+            if (encryptButton.BackColor == Crypt.Constants.ColorThemeCollection[0].PrimaryClicked)
+                encryptRedPanel.Visible = true;
+            else
+                encryptRedPanel.Visible = false;
+        }
+        private void decryptButton_BackColorChanged(object sender, EventArgs e)
+        {
+            if (decryptButton.BackColor == Crypt.Constants.ColorThemeCollection[0].PrimaryClicked)
+                decryptRedPanel.Visible = true;
+            else
+                decryptRedPanel.Visible = false;
+        }
+        private void chatButton_BackColorChanged(object sender, EventArgs e)
+        {
+            if (chatButton.BackColor == Crypt.Constants.ColorThemeCollection[0].PrimaryClicked)
+                chatRedPanel.Visible = true;
+            else
+                chatRedPanel.Visible = false;
         }
     }
 }

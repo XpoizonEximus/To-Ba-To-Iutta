@@ -51,6 +51,11 @@ namespace To_Ba_To_Iutta
             this.titleLabel = new System.Windows.Forms.Label();
             this.minimzeButton = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
+            this.symmetricRedPanel = new System.Windows.Forms.Panel();
+            this.asymmetricRedPanel = new System.Windows.Forms.Panel();
+            this.encryptRedPanel = new System.Windows.Forms.Panel();
+            this.decryptRedPanel = new System.Windows.Forms.Panel();
+            this.chatRedPanel = new System.Windows.Forms.Panel();
             this.leftContainerPanel.SuspendLayout();
             this.leftSecondPanel.SuspendLayout();
             this.leftFirstPanel.SuspendLayout();
@@ -62,6 +67,7 @@ namespace To_Ba_To_Iutta
             // leftContainerPanel
             // 
             this.leftContainerPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(17)))), ((int)(((byte)(32)))));
+            this.leftContainerPanel.Controls.Add(this.chatRedPanel);
             this.leftContainerPanel.Controls.Add(this.chatButton);
             this.leftContainerPanel.Controls.Add(this.panel1);
             this.leftContainerPanel.Controls.Add(this.leftSecondPanel);
@@ -93,6 +99,7 @@ namespace To_Ba_To_Iutta
             this.chatButton.Text = "    Chat";
             this.chatButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.chatButton.UseVisualStyleBackColor = true;
+            this.chatButton.BackColorChanged += new System.EventHandler(this.chatButton_BackColorChanged);
             this.chatButton.Click += new System.EventHandler(this.chatButton_Click);
             // 
             // panel1
@@ -108,6 +115,8 @@ namespace To_Ba_To_Iutta
             // 
             // leftSecondPanel
             // 
+            this.leftSecondPanel.Controls.Add(this.encryptRedPanel);
+            this.leftSecondPanel.Controls.Add(this.decryptRedPanel);
             this.leftSecondPanel.Controls.Add(this.decryptButton);
             this.leftSecondPanel.Controls.Add(this.encryptButton);
             this.leftSecondPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -134,6 +143,7 @@ namespace To_Ba_To_Iutta
             this.decryptButton.Text = "    Decrypt";
             this.decryptButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.decryptButton.UseVisualStyleBackColor = true;
+            this.decryptButton.BackColorChanged += new System.EventHandler(this.decryptButton_BackColorChanged);
             this.decryptButton.Click += new System.EventHandler(this.decryptButton_Click);
             // 
             // encryptButton
@@ -154,6 +164,7 @@ namespace To_Ba_To_Iutta
             this.encryptButton.Text = "    Encrypt";
             this.encryptButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.encryptButton.UseVisualStyleBackColor = true;
+            this.encryptButton.BackColorChanged += new System.EventHandler(this.encryptButton_BackColorChanged);
             this.encryptButton.Click += new System.EventHandler(this.encryptButton_Click);
             // 
             // leftSecondSeparatorPanel
@@ -169,6 +180,8 @@ namespace To_Ba_To_Iutta
             // 
             // leftFirstPanel
             // 
+            this.leftFirstPanel.Controls.Add(this.asymmetricRedPanel);
+            this.leftFirstPanel.Controls.Add(this.symmetricRedPanel);
             this.leftFirstPanel.Controls.Add(this.asymmetricButton);
             this.leftFirstPanel.Controls.Add(this.symmetricButton);
             this.leftFirstPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -195,6 +208,7 @@ namespace To_Ba_To_Iutta
             this.asymmetricButton.Text = "Asymmetric";
             this.asymmetricButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.asymmetricButton.UseVisualStyleBackColor = true;
+            this.asymmetricButton.BackColorChanged += new System.EventHandler(this.asymmetricButton_BackColorChanged);
             this.asymmetricButton.Click += new System.EventHandler(this.asymmetricButton_Click);
             // 
             // symmetricButton
@@ -215,6 +229,7 @@ namespace To_Ba_To_Iutta
             this.symmetricButton.Text = " Symmetric  ";
             this.symmetricButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.symmetricButton.UseVisualStyleBackColor = true;
+            this.symmetricButton.BackColorChanged += new System.EventHandler(this.symmetricButton_BackColorChanged);
             this.symmetricButton.Click += new System.EventHandler(this.symmetricButton_Click);
             // 
             // leftFirstSeparatorPanel
@@ -374,6 +389,51 @@ namespace To_Ba_To_Iutta
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.closeFormHandler);
             // 
+            // symmetricRedPanel
+            // 
+            this.symmetricRedPanel.BackColor = System.Drawing.Color.Red;
+            this.symmetricRedPanel.Location = new System.Drawing.Point(228, 0);
+            this.symmetricRedPanel.Name = "symmetricRedPanel";
+            this.symmetricRedPanel.Size = new System.Drawing.Size(3, 71);
+            this.symmetricRedPanel.TabIndex = 6;
+            this.symmetricRedPanel.Visible = false;
+            // 
+            // asymmetricRedPanel
+            // 
+            this.asymmetricRedPanel.BackColor = System.Drawing.Color.Red;
+            this.asymmetricRedPanel.Location = new System.Drawing.Point(228, 71);
+            this.asymmetricRedPanel.Name = "asymmetricRedPanel";
+            this.asymmetricRedPanel.Size = new System.Drawing.Size(3, 71);
+            this.asymmetricRedPanel.TabIndex = 7;
+            this.asymmetricRedPanel.Visible = false;
+            // 
+            // encryptRedPanel
+            // 
+            this.encryptRedPanel.BackColor = System.Drawing.Color.Red;
+            this.encryptRedPanel.Location = new System.Drawing.Point(228, 0);
+            this.encryptRedPanel.Name = "encryptRedPanel";
+            this.encryptRedPanel.Size = new System.Drawing.Size(3, 71);
+            this.encryptRedPanel.TabIndex = 7;
+            this.encryptRedPanel.Visible = false;
+            // 
+            // decryptRedPanel
+            // 
+            this.decryptRedPanel.BackColor = System.Drawing.Color.Red;
+            this.decryptRedPanel.Location = new System.Drawing.Point(228, 71);
+            this.decryptRedPanel.Name = "decryptRedPanel";
+            this.decryptRedPanel.Size = new System.Drawing.Size(3, 71);
+            this.decryptRedPanel.TabIndex = 8;
+            this.decryptRedPanel.Visible = false;
+            // 
+            // chatRedPanel
+            // 
+            this.chatRedPanel.BackColor = System.Drawing.Color.Red;
+            this.chatRedPanel.Location = new System.Drawing.Point(228, 395);
+            this.chatRedPanel.Name = "chatRedPanel";
+            this.chatRedPanel.Size = new System.Drawing.Size(3, 71);
+            this.chatRedPanel.TabIndex = 8;
+            this.chatRedPanel.Visible = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -422,5 +482,10 @@ namespace To_Ba_To_Iutta
         private System.Windows.Forms.Button encryptButton;
         private System.Windows.Forms.Label titleLabel;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel chatRedPanel;
+        private System.Windows.Forms.Panel encryptRedPanel;
+        private System.Windows.Forms.Panel decryptRedPanel;
+        private System.Windows.Forms.Panel asymmetricRedPanel;
+        private System.Windows.Forms.Panel symmetricRedPanel;
     }
 }
