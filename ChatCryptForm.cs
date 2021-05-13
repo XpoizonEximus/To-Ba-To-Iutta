@@ -91,7 +91,7 @@ namespace To_Ba_To_Iutta
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void send_Click(object sender, EventArgs e)
+        private void send_Click(object sender, EventArgs e) 
         {
             try
             {

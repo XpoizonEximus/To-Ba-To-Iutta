@@ -88,8 +88,8 @@ namespace To_Ba_To_Iutta
             public const float FormBorderRadius = 20;
             public const float PanelBorderRadius = 10;
 
-            public static readonly Image EncryptButtonImage = Image.FromFile("C:\\Users\\xpoiz\\Documents\\Visual Studio 2019\\Projects\\C#\\To-Ba-To-Iutta\\res\\padlock-3-24.png");
-            public static readonly Image DecryptButtonImage = Image.FromFile("C:\\Users\\xpoiz\\Documents\\Visual Studio 2019\\Projects\\C#\\To-Ba-To-Iutta\\res\\key-24.png");
+            public static readonly Image EncryptButtonImage = Properties.Resources.SymmetricEncryptButtonIcon;
+            public static readonly Image DecryptButtonImage = Properties.Resources.SymmetricDecryptButtonIcon;
 
             public static readonly ColorTheme[] ColorThemeCollection =
             {
