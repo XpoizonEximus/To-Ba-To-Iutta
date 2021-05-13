@@ -32,6 +32,7 @@ namespace To_Ba_To_Iutta
             Crypt.Actions.ControlRoundBorder(inputPanel, new Pen(Color.Silver, 1.0f));
             Crypt.Actions.ControlRoundBorder(inputBottomPanel, new Pen(Color.Silver, 1.0f));
             Crypt.Actions.ControlRoundBorder(uploadFileButton, new Pen(Color.Silver, 1.0f));
+            Crypt.Actions.ControlRoundBorder(clearInputButton, new Pen(Color.Silver, 1.0f));
 
             Crypt.Actions.ControlRoundBorder(outputPanel, new Pen(Color.Silver, 1.0f));
             Crypt.Actions.ControlRoundBorder(outputBottomPanel, new Pen(Color.Silver, 1.0f));
@@ -94,6 +95,7 @@ namespace To_Ba_To_Iutta
                 button.PerformClick();
         }
         #endregion
+        #region Bottom panels
         #region Bottom panels apear/disappear
         private void input_TextChanged(object sender, EventArgs e)
         {
@@ -121,7 +123,7 @@ namespace To_Ba_To_Iutta
         }
         private void outputBottomPanel_MouseLeave(object sender, EventArgs e) => outputBottomPanel.Visible = false;
         #endregion
-
+        #region Bottom panels functionality
         private void UploadFile()
         {
             if(openFileDialog.ShowDialog() == DialogResult.OK)
@@ -235,5 +237,8 @@ namespace To_Ba_To_Iutta
             if (output.Text != null)
                 Clipboard.SetText(output.Text);
         }
+        private void clearInputButton_Click(object sender, EventArgs e) => input.Text = "";
+        #endregion
+        #endregion
     }
 }

@@ -38,23 +38,24 @@ namespace To_Ba_To_Iutta
             this.input = new System.Windows.Forms.TextBox();
             this.inputPanel = new System.Windows.Forms.Panel();
             this.outputPanel = new System.Windows.Forms.Panel();
+            this.outputBottomPanel = new System.Windows.Forms.Panel();
+            this.copyButton = new System.Windows.Forms.Button();
+            this.saveFileButton = new System.Windows.Forms.Button();
             this.output = new System.Windows.Forms.TextBox();
             this.keyPanel = new System.Windows.Forms.Panel();
             this.inputBottomPanel = new System.Windows.Forms.Panel();
             this.uploadFileButton = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.outputBottomPanel = new System.Windows.Forms.Panel();
-            this.saveFileButton = new System.Windows.Forms.Button();
-            this.copyButton = new System.Windows.Forms.Button();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openEncryptedFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveEncryptedFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.clearInputButton = new System.Windows.Forms.Button();
             this.mainPanel.SuspendLayout();
             this.inputPanel.SuspendLayout();
             this.outputPanel.SuspendLayout();
+            this.outputBottomPanel.SuspendLayout();
             this.keyPanel.SuspendLayout();
             this.inputBottomPanel.SuspendLayout();
-            this.outputBottomPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -177,6 +178,49 @@ namespace To_Ba_To_Iutta
             this.outputPanel.TabIndex = 8;
             this.outputPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.outputPanel_MouseMove);
             // 
+            // outputBottomPanel
+            // 
+            this.outputBottomPanel.Controls.Add(this.copyButton);
+            this.outputBottomPanel.Controls.Add(this.saveFileButton);
+            this.outputBottomPanel.Location = new System.Drawing.Point(0, 179);
+            this.outputBottomPanel.Name = "outputBottomPanel";
+            this.outputBottomPanel.Size = new System.Drawing.Size(667, 41);
+            this.outputBottomPanel.TabIndex = 13;
+            this.outputBottomPanel.Visible = false;
+            this.outputBottomPanel.MouseLeave += new System.EventHandler(this.outputBottomPanel_MouseLeave);
+            // 
+            // copyButton
+            // 
+            this.copyButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.copyButton.FlatAppearance.BorderSize = 0;
+            this.copyButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.copyButton.Font = new System.Drawing.Font("Helvetica", 11F);
+            this.copyButton.ForeColor = System.Drawing.Color.White;
+            this.copyButton.Location = new System.Drawing.Point(181, 8);
+            this.copyButton.Name = "copyButton";
+            this.copyButton.Size = new System.Drawing.Size(167, 25);
+            this.copyButton.TabIndex = 13;
+            this.copyButton.Text = "Copy";
+            this.copyButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.copyButton.UseVisualStyleBackColor = true;
+            this.copyButton.Click += new System.EventHandler(this.copyButton_Click);
+            // 
+            // saveFileButton
+            // 
+            this.saveFileButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.saveFileButton.FlatAppearance.BorderSize = 0;
+            this.saveFileButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.saveFileButton.Font = new System.Drawing.Font("Helvetica", 11F);
+            this.saveFileButton.ForeColor = System.Drawing.Color.White;
+            this.saveFileButton.Location = new System.Drawing.Point(8, 8);
+            this.saveFileButton.Name = "saveFileButton";
+            this.saveFileButton.Size = new System.Drawing.Size(167, 25);
+            this.saveFileButton.TabIndex = 12;
+            this.saveFileButton.Text = "Save file...";
+            this.saveFileButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.saveFileButton.UseVisualStyleBackColor = true;
+            this.saveFileButton.Click += new System.EventHandler(this.saveFileButton_Click);
+            // 
             // output
             // 
             this.output.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(39)))), ((int)(((byte)(74)))));
@@ -203,6 +247,7 @@ namespace To_Ba_To_Iutta
             // 
             // inputBottomPanel
             // 
+            this.inputBottomPanel.Controls.Add(this.clearInputButton);
             this.inputBottomPanel.Controls.Add(this.uploadFileButton);
             this.inputBottomPanel.Location = new System.Drawing.Point(114, 191);
             this.inputBottomPanel.Name = "inputBottomPanel";
@@ -231,49 +276,6 @@ namespace To_Ba_To_Iutta
             // 
             this.openFileDialog.Filter = "All files (*.*)|*.*";
             // 
-            // outputBottomPanel
-            // 
-            this.outputBottomPanel.Controls.Add(this.copyButton);
-            this.outputBottomPanel.Controls.Add(this.saveFileButton);
-            this.outputBottomPanel.Location = new System.Drawing.Point(0, 179);
-            this.outputBottomPanel.Name = "outputBottomPanel";
-            this.outputBottomPanel.Size = new System.Drawing.Size(667, 41);
-            this.outputBottomPanel.TabIndex = 13;
-            this.outputBottomPanel.Visible = false;
-            this.outputBottomPanel.MouseLeave += new System.EventHandler(this.outputBottomPanel_MouseLeave);
-            // 
-            // saveFileButton
-            // 
-            this.saveFileButton.Cursor = System.Windows.Forms.Cursors.Default;
-            this.saveFileButton.FlatAppearance.BorderSize = 0;
-            this.saveFileButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.saveFileButton.Font = new System.Drawing.Font("Helvetica", 11F);
-            this.saveFileButton.ForeColor = System.Drawing.Color.White;
-            this.saveFileButton.Location = new System.Drawing.Point(8, 8);
-            this.saveFileButton.Name = "saveFileButton";
-            this.saveFileButton.Size = new System.Drawing.Size(167, 25);
-            this.saveFileButton.TabIndex = 12;
-            this.saveFileButton.Text = "Save file...";
-            this.saveFileButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.saveFileButton.UseVisualStyleBackColor = true;
-            this.saveFileButton.Click += new System.EventHandler(this.saveFileButton_Click);
-            // 
-            // copyButton
-            // 
-            this.copyButton.Cursor = System.Windows.Forms.Cursors.Default;
-            this.copyButton.FlatAppearance.BorderSize = 0;
-            this.copyButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.copyButton.Font = new System.Drawing.Font("Helvetica", 11F);
-            this.copyButton.ForeColor = System.Drawing.Color.White;
-            this.copyButton.Location = new System.Drawing.Point(181, 8);
-            this.copyButton.Name = "copyButton";
-            this.copyButton.Size = new System.Drawing.Size(167, 25);
-            this.copyButton.TabIndex = 13;
-            this.copyButton.Text = "Copy";
-            this.copyButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.copyButton.UseVisualStyleBackColor = true;
-            this.copyButton.Click += new System.EventHandler(this.copyButton_Click);
-            // 
             // openEncryptedFileDialog
             // 
             this.openEncryptedFileDialog.DefaultExt = "crypt";
@@ -283,6 +285,22 @@ namespace To_Ba_To_Iutta
             // 
             this.saveEncryptedFileDialog.DefaultExt = "crypt";
             this.saveEncryptedFileDialog.Filter = "Encrypted files (*.crypt)|*.crypt|All files (*.*)|*.*";
+            // 
+            // clearInputButton
+            // 
+            this.clearInputButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.clearInputButton.FlatAppearance.BorderSize = 0;
+            this.clearInputButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clearInputButton.Font = new System.Drawing.Font("Helvetica", 11F);
+            this.clearInputButton.ForeColor = System.Drawing.Color.White;
+            this.clearInputButton.Location = new System.Drawing.Point(494, 8);
+            this.clearInputButton.Name = "clearInputButton";
+            this.clearInputButton.Size = new System.Drawing.Size(167, 25);
+            this.clearInputButton.TabIndex = 13;
+            this.clearInputButton.Text = "Clear";
+            this.clearInputButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.clearInputButton.UseVisualStyleBackColor = true;
+            this.clearInputButton.Click += new System.EventHandler(this.clearInputButton_Click);
             // 
             // SymmetricCryptForm
             // 
@@ -296,10 +314,10 @@ namespace To_Ba_To_Iutta
             this.inputPanel.PerformLayout();
             this.outputPanel.ResumeLayout(false);
             this.outputPanel.PerformLayout();
+            this.outputBottomPanel.ResumeLayout(false);
             this.keyPanel.ResumeLayout(false);
             this.keyPanel.PerformLayout();
             this.inputBottomPanel.ResumeLayout(false);
-            this.outputBottomPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -324,5 +342,6 @@ namespace To_Ba_To_Iutta
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.OpenFileDialog openEncryptedFileDialog;
         private System.Windows.Forms.SaveFileDialog saveEncryptedFileDialog;
+        private System.Windows.Forms.Button clearInputButton;
     }
 }
