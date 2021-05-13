@@ -307,7 +307,7 @@ namespace To_Ba_To_Iutta
         private System.Windows.Forms.TextBox reciveTextBox;
         private System.Windows.Forms.ToolStripStatusLabel ipLabel;
         private System.Windows.Forms.Button disconnect;
-        private System.Windows.Forms.Panel chatElementContainerPanel;
         private System.Windows.Forms.ToolStripStatusLabel statusConstantTextLabel;
+        public System.Windows.Forms.Panel chatElementContainerPanel;
     }
 }

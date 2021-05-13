@@ -20,6 +20,17 @@ namespace To_Ba_To_Iutta
             string externalIpString = new WebClient().DownloadString("http://icanhazip.com").Replace("\\r\\n", "").Replace("\\n", "").Trim();
             ipLabel.Text = IPAddress.Parse(externalIpString).ToString();
 
+            ControlRoundBorder();
+            if(Crypt.Chat.Connected)
+            {
+                statusLabel.Text = "Connected";
+                statusLabel.ForeColor = Color.Lime;
+            }
+            foreach (Control c in Crypt.Data.ChatControls)
+                chatElementContainerPanel.Controls.Add(c);
+        }
+        private void ControlRoundBorder()
+        {
             Crypt.Actions.ControlRoundBorder(connect, new Pen(Color.White, 1f));
             Crypt.Actions.ControlRoundBorder(disconnect, new Pen(Color.White, 1f));
             Crypt.Actions.ControlRoundBorder(containerPanel, new Pen(Color.Silver, 1f));

@@ -110,7 +110,22 @@ namespace To_Ba_To_Iutta
             public static PanelForm MainPanelForm { get; set; }
             public static Procedure Procedure { get; set; }
             public static CryptoAlgorythm Algorythm { get; set; }
-            public static bool Chat { get; set; }
+            private static bool _chat;
+            public static bool Chat
+            {
+                get => _chat;
+                set
+                {
+                    if(_chat)
+                    {
+                        ChatControls.Clear();
+                        ChatCryptForm f = (ChatCryptForm)MainPanelForm;
+                        foreach (Control c in f.chatElementContainerPanel.Controls)
+                            ChatControls.Add(c);
+                    }
+                    _chat = value;
+                }
+            }
             public static int ChatCurrentY { get; set; } = 0;
             public static List<Control> ChatControls { get; set; } = new List<Control>();
         }

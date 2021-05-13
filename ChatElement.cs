@@ -56,10 +56,12 @@ namespace To_Ba_To_Iutta
             set => cipherLabel.Text = value;
         }
 
+        #region Actions
         private void CopyTextHandler(object sender, EventArgs e) => Clipboard.SetText(Text);
         private void CopyCipherHandler(object sender, EventArgs e) => Clipboard.SetText(Cipher);
         private void DeleteHandler(object sender, EventArgs e)
         {
+            if (MessageBox.Show("Are you sure you want to delete this message?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No) return;
             int index = Parent.Controls.IndexOf(this);
 
             for (int i = index + 1; i < Parent.Controls.Count; ++i)
@@ -85,6 +87,7 @@ namespace To_Ba_To_Iutta
                 }
             }
         }
+        #endregion
 
         private void SetSize()
         {
