@@ -63,7 +63,7 @@ namespace To_Ba_To_Iutta
             // openFileDialog
             // 
             this.openFileDialog.DefaultExt = "ck";
-            this.openFileDialog.Filter = "CryptoKey files|*.ck|All files|*.*";
+            this.openFileDialog.Filter = "CryptoKey files (*.ck)|*.ck|All files (*.*)|*.*";
             // 
             // createButton
             // 
@@ -154,7 +154,7 @@ namespace To_Ba_To_Iutta
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.nameLabel);
             this.Font = new System.Drawing.Font("Helvetica", 11F);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "NewAsymmetricKeyForm";

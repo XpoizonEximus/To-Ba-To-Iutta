@@ -70,7 +70,7 @@ namespace To_Ba_To_Iutta
             // saveFileDialog
             // 
             this.saveFileDialog.DefaultExt = "ck";
-            this.saveFileDialog.Filter = "CryptoKey files|*.ck|All files|*.*";
+            this.saveFileDialog.Filter = "CryptoKey files (*.ck)|*.ck|All files (*.*)|*.*";
             // 
             // key
             // 
@@ -85,7 +85,7 @@ namespace To_Ba_To_Iutta
             this.key.TabIndex = 4;
             this.key.Text = "key";
             // 
-            // ExportAsymmetricPublicKeyForm
+            // ExportAsymmetricKeyForm
             // 
             this.AcceptButton = this.copy;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 17F);
@@ -101,7 +101,7 @@ namespace To_Ba_To_Iutta
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(295, 117);
-            this.Name = "ExportAsymmetricPublicKeyForm";
+            this.Name = "ExportAsymmetricKeyForm";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

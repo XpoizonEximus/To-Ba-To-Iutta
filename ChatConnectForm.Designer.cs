@@ -75,7 +75,7 @@ namespace To_Ba_To_Iutta
             // saveFileDialog
             // 
             this.saveFileDialog.DefaultExt = "ck";
-            this.saveFileDialog.Filter = "CryptoKey files|*.ck|All files|*.*";
+            this.saveFileDialog.Filter = "CryptoKey files (*.ck)|*.ck|All files (*.*)|*.*";
             // 
             // sendKey
             // 
@@ -135,7 +135,7 @@ namespace To_Ba_To_Iutta
             // openFileDialog
             // 
             this.openFileDialog.DefaultExt = "ck";
-            this.openFileDialog.Filter = "CryptoKey files|*.ck|All files|*.*";
+            this.openFileDialog.Filter = "CryptoKey files (*.ck)|*.ck|All files (*.*)|*.*";
             // 
             // ChatConnectForm
             // 

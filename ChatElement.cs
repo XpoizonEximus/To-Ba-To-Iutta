@@ -88,7 +88,7 @@ namespace To_Ba_To_Iutta
             }
         }
         #endregion
-
+        #region Set Size
         private void SetSize()
         {
             int h;
@@ -111,5 +111,6 @@ namespace To_Ba_To_Iutta
         private void ChatElement_Load(object sender, EventArgs e) => SetSize();
         private void textLabel_TextChanged(object sender, EventArgs e) => SetSize();
         private void cipherLabel_TextChanged(object sender, EventArgs e) => SetSize();
+        #endregion
     }
 }

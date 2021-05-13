@@ -50,7 +50,7 @@ namespace To_Ba_To_Iutta
             // 
             // saveFileDialog
             // 
-            this.saveFileDialog.Filter = "Text files|*.txt|All files|*.*";
+            this.saveFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
             // 
             // copyTextToolStripMenuItem
             // 
