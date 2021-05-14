@@ -124,30 +124,42 @@ namespace To_Ba_To_Iutta
         private void outputBottomPanel_MouseLeave(object sender, EventArgs e) => outputBottomPanel.Visible = false;
         #endregion
         #region Bottom panels functionality
-        private void UploadFile()
+        private void UploadFile(string path = null)
         {
-            if(openFileDialog.ShowDialog() == DialogResult.OK)
+            string ext;
+            string name;
+
+            byte[] fileb;
+            string file;
+
+            if (path == null)
             {
-                string ext;
-                string name;
-
-                byte[] fileb;
-                string file;
-
-                ext= Path.GetExtension(openFileDialog.FileName);
+                if (openFileDialog.ShowDialog() != DialogResult.OK)
+                    return;
+                ext = Path.GetExtension(openFileDialog.FileName);
                 name = openFileDialog.SafeFileName;
-                using(Stream stream = openFileDialog.OpenFile())
+                using (Stream stream = openFileDialog.OpenFile())
                 {
                     fileb = new byte[stream.Length];
                     stream.Read(fileb, 0, (int)stream.Length);
                 }
-                file = Convert.ToBase64String(fileb);
-
-                if (ext == "") ext = ".txt";
-
-                string s = ext + "\a\a\b\b" + name + "\a\a\b\b" + file;
-                input.Text = s;
             }
+            else
+            {
+                ext = Path.GetExtension(path);
+                name = Path.GetFileName(path);
+                using (FileStream stream = new FileStream(path, FileMode.Open))
+                {
+                    fileb = new byte[stream.Length];
+                    stream.Read(fileb, 0, (int)stream.Length);
+                }
+            }
+            file = Convert.ToBase64String(fileb);
+
+            if (ext == "") ext = ".txt";
+
+            string s = ext + "\a\a\b\b" + name + "\a\a\b\b" + file;
+            input.Text = s;
         }
         private void SaveFile()
         {
@@ -192,19 +204,29 @@ namespace To_Ba_To_Iutta
                     stream.Write(fileb, 0, fileb.Length);
             }
         }
-        private void UploadEncryptedFile()
+        private void UploadEncryptedFile(string path = null)
         {
-            if (openEncryptedFileDialog.ShowDialog() == DialogResult.OK)
+            byte[] inputb;
+            if (path == null)
             {
-                byte[] inputb;
+                if (openEncryptedFileDialog.ShowDialog() != DialogResult.OK)
+                    return;
                 using (Stream stream = openEncryptedFileDialog.OpenFile())
                 {
                     inputb = new byte[stream.Length];
                     stream.Read(inputb, 0, (int)stream.Length);
                 }
-                string inputs = Convert.ToBase64String(inputb);
-                input.Text = inputs;
             }
+            else
+            {
+                using (FileStream stream = new FileStream(path,FileMode.Open))
+                {
+                    inputb = new byte[stream.Length];
+                    stream.Read(inputb, 0, (int)stream.Length);
+                }
+            }
+            string inputs = Convert.ToBase64String(inputb);
+            input.Text = inputs;
         }
         private void SaveEncryptedFile()
         {
@@ -246,17 +268,42 @@ namespace To_Ba_To_Iutta
 
         #endregion
         #region Drag-Drop
+        string dropFilesString = "Drop files here...";
         private void input_DragDrop(object sender, DragEventArgs e)
         {
+            dropFilesString = "Drop files here...";
 
+            if (!e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                MessageBox.Show("Please drop a file.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            string[] paths = (string[])e.Data.GetData(DataFormats.FileDrop);
+            if(paths.Length != 1)
+            {
+                MessageBox.Show("Please drop only a single file.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            string path = paths[0];
+
+            if (Procedure == Crypt.Procedure.Encrypt)
+                UploadFile(path);
+            else
+                UploadEncryptedFile(path);
         }
         private void input_DragEnter(object sender, DragEventArgs e)
         {
+            string tmp = dropFilesString;
+            dropFilesString = input.Text;
+            input.Text = tmp;
 
+            e.Effect = DragDropEffects.Copy;
         }
         private void input_DragLeave(object sender, EventArgs e)
         {
-
+            string tmp = dropFilesString;
+            dropFilesString = input.Text;
+            input.Text = tmp;
         }
         #endregion
     }
