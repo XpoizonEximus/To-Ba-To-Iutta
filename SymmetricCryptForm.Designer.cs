@@ -44,12 +44,12 @@ namespace To_Ba_To_Iutta
             this.output = new System.Windows.Forms.TextBox();
             this.keyPanel = new System.Windows.Forms.Panel();
             this.inputBottomPanel = new System.Windows.Forms.Panel();
+            this.clearInputButton = new System.Windows.Forms.Button();
             this.uploadFileButton = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openEncryptedFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveEncryptedFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.clearInputButton = new System.Windows.Forms.Button();
             this.mainPanel.SuspendLayout();
             this.inputPanel.SuspendLayout();
             this.outputPanel.SuspendLayout();
@@ -142,6 +142,7 @@ namespace To_Ba_To_Iutta
             // input
             // 
             this.input.AcceptsTab = true;
+            this.input.AllowDrop = true;
             this.input.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.input.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(1)))), ((int)(((byte)(39)))), ((int)(((byte)(74)))));
@@ -156,6 +157,9 @@ namespace To_Ba_To_Iutta
             this.input.Size = new System.Drawing.Size(655, 208);
             this.input.TabIndex = 0;
             this.input.TextChanged += new System.EventHandler(this.input_TextChanged);
+            this.input.DragDrop += new System.Windows.Forms.DragEventHandler(this.input_DragDrop);
+            this.input.DragEnter += new System.Windows.Forms.DragEventHandler(this.input_DragEnter);
+            this.input.DragLeave += new System.EventHandler(this.input_DragLeave);
             this.input.KeyUp += new System.Windows.Forms.KeyEventHandler(this.input_KeyUp);
             this.input.MouseMove += new System.Windows.Forms.MouseEventHandler(this.inputPanel_MouseMove);
             // 
@@ -166,6 +170,9 @@ namespace To_Ba_To_Iutta
             this.inputPanel.Name = "inputPanel";
             this.inputPanel.Size = new System.Drawing.Size(667, 220);
             this.inputPanel.TabIndex = 7;
+            this.inputPanel.DragDrop += new System.Windows.Forms.DragEventHandler(this.input_DragDrop);
+            this.inputPanel.DragEnter += new System.Windows.Forms.DragEventHandler(this.input_DragEnter);
+            this.inputPanel.DragLeave += new System.EventHandler(this.input_DragLeave);
             this.inputPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.inputPanel_MouseMove);
             // 
             // outputPanel
@@ -256,6 +263,22 @@ namespace To_Ba_To_Iutta
             this.inputBottomPanel.Visible = false;
             this.inputBottomPanel.MouseLeave += new System.EventHandler(this.inputBottomPanel_MouseLeave);
             // 
+            // clearInputButton
+            // 
+            this.clearInputButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.clearInputButton.FlatAppearance.BorderSize = 0;
+            this.clearInputButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clearInputButton.Font = new System.Drawing.Font("Helvetica", 11F);
+            this.clearInputButton.ForeColor = System.Drawing.Color.White;
+            this.clearInputButton.Location = new System.Drawing.Point(494, 8);
+            this.clearInputButton.Name = "clearInputButton";
+            this.clearInputButton.Size = new System.Drawing.Size(167, 25);
+            this.clearInputButton.TabIndex = 13;
+            this.clearInputButton.Text = "Clear";
+            this.clearInputButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.clearInputButton.UseVisualStyleBackColor = true;
+            this.clearInputButton.Click += new System.EventHandler(this.clearInputButton_Click);
+            // 
             // uploadFileButton
             // 
             this.uploadFileButton.Cursor = System.Windows.Forms.Cursors.Default;
@@ -285,22 +308,6 @@ namespace To_Ba_To_Iutta
             // 
             this.saveEncryptedFileDialog.DefaultExt = "crypt";
             this.saveEncryptedFileDialog.Filter = "Encrypted files (*.crypt)|*.crypt|All files (*.*)|*.*";
-            // 
-            // clearInputButton
-            // 
-            this.clearInputButton.Cursor = System.Windows.Forms.Cursors.Default;
-            this.clearInputButton.FlatAppearance.BorderSize = 0;
-            this.clearInputButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.clearInputButton.Font = new System.Drawing.Font("Helvetica", 11F);
-            this.clearInputButton.ForeColor = System.Drawing.Color.White;
-            this.clearInputButton.Location = new System.Drawing.Point(494, 8);
-            this.clearInputButton.Name = "clearInputButton";
-            this.clearInputButton.Size = new System.Drawing.Size(167, 25);
-            this.clearInputButton.TabIndex = 13;
-            this.clearInputButton.Text = "Clear";
-            this.clearInputButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.clearInputButton.UseVisualStyleBackColor = true;
-            this.clearInputButton.Click += new System.EventHandler(this.clearInputButton_Click);
             // 
             // SymmetricCryptForm
             // 

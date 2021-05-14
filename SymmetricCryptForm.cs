@@ -237,8 +237,27 @@ namespace To_Ba_To_Iutta
             if (output.Text != null)
                 Clipboard.SetText(output.Text);
         }
-        private void clearInputButton_Click(object sender, EventArgs e) => input.Text = "";
+        private void clearInputButton_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.OK)
+                input.Text = "";
+        }
         #endregion
+
+        #endregion
+        #region Drag-Drop
+        private void input_DragDrop(object sender, DragEventArgs e)
+        {
+
+        }
+        private void input_DragEnter(object sender, DragEventArgs e)
+        {
+
+        }
+        private void input_DragLeave(object sender, EventArgs e)
+        {
+
+        }
         #endregion
     }
 }
