@@ -31,13 +31,18 @@ namespace To_Ba_To_Iutta
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.leftContainerPanel = new System.Windows.Forms.Panel();
+            this.chatRedPanel = new System.Windows.Forms.Panel();
             this.chatButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.leftSecondPanel = new System.Windows.Forms.Panel();
+            this.encryptRedPanel = new System.Windows.Forms.Panel();
+            this.decryptRedPanel = new System.Windows.Forms.Panel();
             this.decryptButton = new System.Windows.Forms.Button();
             this.encryptButton = new System.Windows.Forms.Button();
             this.leftSecondSeparatorPanel = new System.Windows.Forms.Panel();
             this.leftFirstPanel = new System.Windows.Forms.Panel();
+            this.asymmetricRedPanel = new System.Windows.Forms.Panel();
+            this.symmetricRedPanel = new System.Windows.Forms.Panel();
             this.asymmetricButton = new System.Windows.Forms.Button();
             this.symmetricButton = new System.Windows.Forms.Button();
             this.leftFirstSeparatorPanel = new System.Windows.Forms.Panel();
@@ -51,11 +56,6 @@ namespace To_Ba_To_Iutta
             this.titleLabel = new System.Windows.Forms.Label();
             this.minimzeButton = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Button();
-            this.symmetricRedPanel = new System.Windows.Forms.Panel();
-            this.asymmetricRedPanel = new System.Windows.Forms.Panel();
-            this.encryptRedPanel = new System.Windows.Forms.Panel();
-            this.decryptRedPanel = new System.Windows.Forms.Panel();
-            this.chatRedPanel = new System.Windows.Forms.Panel();
             this.leftContainerPanel.SuspendLayout();
             this.leftSecondPanel.SuspendLayout();
             this.leftFirstPanel.SuspendLayout();
@@ -81,6 +81,15 @@ namespace To_Ba_To_Iutta
             this.leftContainerPanel.Name = "leftContainerPanel";
             this.leftContainerPanel.Size = new System.Drawing.Size(231, 561);
             this.leftContainerPanel.TabIndex = 0;
+            // 
+            // chatRedPanel
+            // 
+            this.chatRedPanel.BackColor = System.Drawing.Color.Red;
+            this.chatRedPanel.Location = new System.Drawing.Point(228, 395);
+            this.chatRedPanel.Name = "chatRedPanel";
+            this.chatRedPanel.Size = new System.Drawing.Size(3, 71);
+            this.chatRedPanel.TabIndex = 8;
+            this.chatRedPanel.Visible = false;
             // 
             // chatButton
             // 
@@ -124,6 +133,24 @@ namespace To_Ba_To_Iutta
             this.leftSecondPanel.Name = "leftSecondPanel";
             this.leftSecondPanel.Size = new System.Drawing.Size(231, 142);
             this.leftSecondPanel.TabIndex = 7;
+            // 
+            // encryptRedPanel
+            // 
+            this.encryptRedPanel.BackColor = System.Drawing.Color.Red;
+            this.encryptRedPanel.Location = new System.Drawing.Point(228, 0);
+            this.encryptRedPanel.Name = "encryptRedPanel";
+            this.encryptRedPanel.Size = new System.Drawing.Size(3, 71);
+            this.encryptRedPanel.TabIndex = 7;
+            this.encryptRedPanel.Visible = false;
+            // 
+            // decryptRedPanel
+            // 
+            this.decryptRedPanel.BackColor = System.Drawing.Color.Red;
+            this.decryptRedPanel.Location = new System.Drawing.Point(228, 71);
+            this.decryptRedPanel.Name = "decryptRedPanel";
+            this.decryptRedPanel.Size = new System.Drawing.Size(3, 71);
+            this.decryptRedPanel.TabIndex = 8;
+            this.decryptRedPanel.Visible = false;
             // 
             // decryptButton
             // 
@@ -189,6 +216,24 @@ namespace To_Ba_To_Iutta
             this.leftFirstPanel.Name = "leftFirstPanel";
             this.leftFirstPanel.Size = new System.Drawing.Size(231, 142);
             this.leftFirstPanel.TabIndex = 5;
+            // 
+            // asymmetricRedPanel
+            // 
+            this.asymmetricRedPanel.BackColor = System.Drawing.Color.Red;
+            this.asymmetricRedPanel.Location = new System.Drawing.Point(228, 71);
+            this.asymmetricRedPanel.Name = "asymmetricRedPanel";
+            this.asymmetricRedPanel.Size = new System.Drawing.Size(3, 71);
+            this.asymmetricRedPanel.TabIndex = 7;
+            this.asymmetricRedPanel.Visible = false;
+            // 
+            // symmetricRedPanel
+            // 
+            this.symmetricRedPanel.BackColor = System.Drawing.Color.Red;
+            this.symmetricRedPanel.Location = new System.Drawing.Point(228, 0);
+            this.symmetricRedPanel.Name = "symmetricRedPanel";
+            this.symmetricRedPanel.Size = new System.Drawing.Size(3, 71);
+            this.symmetricRedPanel.TabIndex = 6;
+            this.symmetricRedPanel.Visible = false;
             // 
             // asymmetricButton
             // 
@@ -389,51 +434,6 @@ namespace To_Ba_To_Iutta
             this.closeButton.UseVisualStyleBackColor = true;
             this.closeButton.Click += new System.EventHandler(this.closeFormHandler);
             // 
-            // symmetricRedPanel
-            // 
-            this.symmetricRedPanel.BackColor = System.Drawing.Color.Red;
-            this.symmetricRedPanel.Location = new System.Drawing.Point(228, 0);
-            this.symmetricRedPanel.Name = "symmetricRedPanel";
-            this.symmetricRedPanel.Size = new System.Drawing.Size(3, 71);
-            this.symmetricRedPanel.TabIndex = 6;
-            this.symmetricRedPanel.Visible = false;
-            // 
-            // asymmetricRedPanel
-            // 
-            this.asymmetricRedPanel.BackColor = System.Drawing.Color.Red;
-            this.asymmetricRedPanel.Location = new System.Drawing.Point(228, 71);
-            this.asymmetricRedPanel.Name = "asymmetricRedPanel";
-            this.asymmetricRedPanel.Size = new System.Drawing.Size(3, 71);
-            this.asymmetricRedPanel.TabIndex = 7;
-            this.asymmetricRedPanel.Visible = false;
-            // 
-            // encryptRedPanel
-            // 
-            this.encryptRedPanel.BackColor = System.Drawing.Color.Red;
-            this.encryptRedPanel.Location = new System.Drawing.Point(228, 0);
-            this.encryptRedPanel.Name = "encryptRedPanel";
-            this.encryptRedPanel.Size = new System.Drawing.Size(3, 71);
-            this.encryptRedPanel.TabIndex = 7;
-            this.encryptRedPanel.Visible = false;
-            // 
-            // decryptRedPanel
-            // 
-            this.decryptRedPanel.BackColor = System.Drawing.Color.Red;
-            this.decryptRedPanel.Location = new System.Drawing.Point(228, 71);
-            this.decryptRedPanel.Name = "decryptRedPanel";
-            this.decryptRedPanel.Size = new System.Drawing.Size(3, 71);
-            this.decryptRedPanel.TabIndex = 8;
-            this.decryptRedPanel.Visible = false;
-            // 
-            // chatRedPanel
-            // 
-            this.chatRedPanel.BackColor = System.Drawing.Color.Red;
-            this.chatRedPanel.Location = new System.Drawing.Point(228, 395);
-            this.chatRedPanel.Name = "chatRedPanel";
-            this.chatRedPanel.Size = new System.Drawing.Size(3, 71);
-            this.chatRedPanel.TabIndex = 8;
-            this.chatRedPanel.Visible = false;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -442,6 +442,7 @@ namespace To_Ba_To_Iutta
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.titleBarPanel);
             this.Controls.Add(this.leftContainerPanel);
+            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Helvetica", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MainForm";

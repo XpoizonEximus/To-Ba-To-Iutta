@@ -42,7 +42,8 @@ namespace To_Ba_To_Iutta
 
             this.Region = new Region(path);
         }
-        #region Move Form Panel
+
+        #region Move Form
         private bool logoPanelClicked = false;
         private Point logoPanelClickedStartPoint;
         private void movePanel_MouseDown(object sender, MouseEventArgs e)
@@ -50,12 +51,10 @@ namespace To_Ba_To_Iutta
             logoPanelClicked = true;
             logoPanelClickedStartPoint = e.Location;
         }
-
         private void movePanel_MouseUp(object sender, MouseEventArgs e)
         {
             logoPanelClicked = false;
         }
-
         private void movePanel_MouseMove(object sender, MouseEventArgs e)
         {
             if(logoPanelClicked)

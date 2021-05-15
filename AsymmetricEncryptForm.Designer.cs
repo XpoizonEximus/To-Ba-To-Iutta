@@ -47,12 +47,22 @@ namespace To_Ba_To_Iutta
             this.keyNameRadio = new System.Windows.Forms.RadioButton();
             this.keyRadio = new System.Windows.Forms.RadioButton();
             this.uploadKeyButton = new System.Windows.Forms.Button();
+            this.openKeyFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.inputBottomPanel = new System.Windows.Forms.Panel();
+            this.clearInputButton = new System.Windows.Forms.Button();
+            this.uploadFileButton = new System.Windows.Forms.Button();
+            this.outputBottomPanel = new System.Windows.Forms.Panel();
+            this.copyButton = new System.Windows.Forms.Button();
+            this.saveFileButton = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.saveEncryptedFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.mainPanel.SuspendLayout();
             this.inputPanel.SuspendLayout();
             this.outputPanel.SuspendLayout();
             this.keyNamePanel.SuspendLayout();
             this.keyPanel.SuspendLayout();
+            this.inputBottomPanel.SuspendLayout();
+            this.outputBottomPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // mainPanel
@@ -125,6 +135,7 @@ namespace To_Ba_To_Iutta
             // input
             // 
             this.input.AcceptsTab = true;
+            this.input.AllowDrop = true;
             this.input.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -141,23 +152,35 @@ namespace To_Ba_To_Iutta
             this.input.Size = new System.Drawing.Size(655, 204);
             this.input.TabIndex = 0;
             this.input.Text = global::To_Ba_To_Iutta.Properties.Settings.Default.LastAsymmetricEncryptInput;
+            this.input.DragDrop += new System.Windows.Forms.DragEventHandler(this.input_DragDrop);
+            this.input.DragEnter += new System.Windows.Forms.DragEventHandler(this.input_DragEnter);
+            this.input.DragLeave += new System.EventHandler(this.input_DragLeave);
             this.input.KeyUp += new System.Windows.Forms.KeyEventHandler(this.input_KeyUp);
+            this.input.MouseMove += new System.Windows.Forms.MouseEventHandler(this.inputPanel_MouseMove);
             // 
             // inputPanel
             // 
+            this.inputPanel.AllowDrop = true;
+            this.inputPanel.Controls.Add(this.inputBottomPanel);
             this.inputPanel.Controls.Add(this.input);
             this.inputPanel.Location = new System.Drawing.Point(114, 12);
             this.inputPanel.Name = "inputPanel";
             this.inputPanel.Size = new System.Drawing.Size(667, 216);
             this.inputPanel.TabIndex = 7;
+            this.inputPanel.DragDrop += new System.Windows.Forms.DragEventHandler(this.input_DragDrop);
+            this.inputPanel.DragEnter += new System.Windows.Forms.DragEventHandler(this.input_DragEnter);
+            this.inputPanel.DragLeave += new System.EventHandler(this.input_DragLeave);
+            this.inputPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.inputPanel_MouseMove);
             // 
             // outputPanel
             // 
+            this.outputPanel.Controls.Add(this.outputBottomPanel);
             this.outputPanel.Controls.Add(this.output);
             this.outputPanel.Location = new System.Drawing.Point(114, 302);
             this.outputPanel.Name = "outputPanel";
             this.outputPanel.Size = new System.Drawing.Size(667, 216);
             this.outputPanel.TabIndex = 8;
+            this.outputPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.outputPanel_MouseMove);
             // 
             // output
             // 
@@ -176,6 +199,7 @@ namespace To_Ba_To_Iutta
             this.output.Size = new System.Drawing.Size(655, 204);
             this.output.TabIndex = 0;
             this.output.TabStop = false;
+            this.output.MouseMove += new System.Windows.Forms.MouseEventHandler(this.outputPanel_MouseMove);
             // 
             // manageKeysButton
             // 
@@ -292,9 +316,104 @@ namespace To_Ba_To_Iutta
             this.uploadKeyButton.UseVisualStyleBackColor = true;
             this.uploadKeyButton.Click += new System.EventHandler(this.uploadKeyButton_Click);
             // 
+            // openKeyFileDialog
+            // 
+            this.openKeyFileDialog.Filter = "CryptoKey files|*.ck|All files|*.*";
+            // 
+            // inputBottomPanel
+            // 
+            this.inputBottomPanel.Controls.Add(this.clearInputButton);
+            this.inputBottomPanel.Controls.Add(this.uploadFileButton);
+            this.inputBottomPanel.Location = new System.Drawing.Point(0, 175);
+            this.inputBottomPanel.Name = "inputBottomPanel";
+            this.inputBottomPanel.Size = new System.Drawing.Size(667, 41);
+            this.inputBottomPanel.TabIndex = 3;
+            this.inputBottomPanel.Visible = false;
+            this.inputBottomPanel.MouseLeave += new System.EventHandler(this.inputBottomPanel_MouseLeave);
+            // 
+            // clearInputButton
+            // 
+            this.clearInputButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.clearInputButton.FlatAppearance.BorderSize = 0;
+            this.clearInputButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clearInputButton.Font = new System.Drawing.Font("Helvetica", 11F);
+            this.clearInputButton.ForeColor = System.Drawing.Color.White;
+            this.clearInputButton.Location = new System.Drawing.Point(494, 8);
+            this.clearInputButton.Name = "clearInputButton";
+            this.clearInputButton.Size = new System.Drawing.Size(167, 25);
+            this.clearInputButton.TabIndex = 13;
+            this.clearInputButton.Text = "Clear";
+            this.clearInputButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.clearInputButton.UseVisualStyleBackColor = true;
+            this.clearInputButton.Click += new System.EventHandler(this.clearInputButton_Click);
+            // 
+            // uploadFileButton
+            // 
+            this.uploadFileButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.uploadFileButton.FlatAppearance.BorderSize = 0;
+            this.uploadFileButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.uploadFileButton.Font = new System.Drawing.Font("Helvetica", 11F);
+            this.uploadFileButton.ForeColor = System.Drawing.Color.White;
+            this.uploadFileButton.Location = new System.Drawing.Point(8, 8);
+            this.uploadFileButton.Name = "uploadFileButton";
+            this.uploadFileButton.Size = new System.Drawing.Size(167, 25);
+            this.uploadFileButton.TabIndex = 12;
+            this.uploadFileButton.Text = "Upload file...";
+            this.uploadFileButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.uploadFileButton.UseVisualStyleBackColor = true;
+            this.uploadFileButton.Click += new System.EventHandler(this.uploadFileButton_Click);
+            // 
+            // outputBottomPanel
+            // 
+            this.outputBottomPanel.Controls.Add(this.copyButton);
+            this.outputBottomPanel.Controls.Add(this.saveFileButton);
+            this.outputBottomPanel.Location = new System.Drawing.Point(0, 175);
+            this.outputBottomPanel.Name = "outputBottomPanel";
+            this.outputBottomPanel.Size = new System.Drawing.Size(667, 41);
+            this.outputBottomPanel.TabIndex = 15;
+            this.outputBottomPanel.Visible = false;
+            this.outputBottomPanel.MouseLeave += new System.EventHandler(this.outputBottomPanel_MouseLeave);
+            // 
+            // copyButton
+            // 
+            this.copyButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.copyButton.FlatAppearance.BorderSize = 0;
+            this.copyButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.copyButton.Font = new System.Drawing.Font("Helvetica", 11F);
+            this.copyButton.ForeColor = System.Drawing.Color.White;
+            this.copyButton.Location = new System.Drawing.Point(181, 8);
+            this.copyButton.Name = "copyButton";
+            this.copyButton.Size = new System.Drawing.Size(167, 25);
+            this.copyButton.TabIndex = 13;
+            this.copyButton.Text = "Copy";
+            this.copyButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.copyButton.UseVisualStyleBackColor = true;
+            this.copyButton.Click += new System.EventHandler(this.copyButton_Click);
+            // 
+            // saveFileButton
+            // 
+            this.saveFileButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.saveFileButton.FlatAppearance.BorderSize = 0;
+            this.saveFileButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.saveFileButton.Font = new System.Drawing.Font("Helvetica", 11F);
+            this.saveFileButton.ForeColor = System.Drawing.Color.White;
+            this.saveFileButton.Location = new System.Drawing.Point(8, 8);
+            this.saveFileButton.Name = "saveFileButton";
+            this.saveFileButton.Size = new System.Drawing.Size(167, 25);
+            this.saveFileButton.TabIndex = 12;
+            this.saveFileButton.Text = "Save file...";
+            this.saveFileButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.saveFileButton.UseVisualStyleBackColor = true;
+            this.saveFileButton.Click += new System.EventHandler(this.saveFileButton_Click);
+            // 
             // openFileDialog
             // 
-            this.openFileDialog.Filter = "CryptoKey files|*.ck|All files|*.*";
+            this.openFileDialog.Filter = "All files (*.*)|*.*";
+            // 
+            // saveEncryptedFileDialog
+            // 
+            this.saveEncryptedFileDialog.DefaultExt = "crypt";
+            this.saveEncryptedFileDialog.Filter = "Encrypted files (*.crypt)|*.crypt|All files (*.*)|*.*";
             // 
             // AsymmetricEncryptForm
             // 
@@ -312,6 +431,8 @@ namespace To_Ba_To_Iutta
             this.keyNamePanel.PerformLayout();
             this.keyPanel.ResumeLayout(false);
             this.keyPanel.PerformLayout();
+            this.inputBottomPanel.ResumeLayout(false);
+            this.outputBottomPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -334,6 +455,14 @@ namespace To_Ba_To_Iutta
         private System.Windows.Forms.RadioButton keyRadio;
         private System.Windows.Forms.RadioButton keyNameRadio;
         private System.Windows.Forms.Button uploadKeyButton;
+        private System.Windows.Forms.OpenFileDialog openKeyFileDialog;
+        private System.Windows.Forms.Panel inputBottomPanel;
+        private System.Windows.Forms.Button clearInputButton;
+        private System.Windows.Forms.Button uploadFileButton;
+        private System.Windows.Forms.Panel outputBottomPanel;
+        private System.Windows.Forms.Button copyButton;
+        private System.Windows.Forms.Button saveFileButton;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.SaveFileDialog saveEncryptedFileDialog;
     }
 }

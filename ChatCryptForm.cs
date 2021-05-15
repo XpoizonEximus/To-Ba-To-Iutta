@@ -39,6 +39,9 @@ namespace To_Ba_To_Iutta
             Crypt.Actions.ControlRoundBorder(sendTextBoxPanel, new Pen(Color.Silver, 1f));
             Crypt.Actions.ControlRoundBorder(recive, new Pen(Color.Silver, 1f));
             Crypt.Actions.ControlRoundBorder(reciveTextBoxPanel, new Pen(Color.Silver, 1f));
+
+            Crypt.Actions.ControlRoundBorder(chatElementContainerContainerPanel, new Pen(Color.Silver, 1f));
+            Crypt.Actions.ControlRoundBorder(chatElementContainerPanel, new Pen(Color.Transparent, 1f));
         }
         private void AddElem(string text, string cipher, Crypt.ChatElementType type)
         {
@@ -47,15 +50,23 @@ namespace To_Ba_To_Iutta
                 Text = text,
                 Cipher = cipher
             };
-            chatElementContainerPanel.Controls.Add(message);
 
             int x, y;
-            y = Crypt.Data.ChatCurrentY + 8;
-            if (type == Crypt.ChatElementType.Receiver) x = 8;
-            else x = chatElementContainerPanel.Width - message.Width - 8;
+
+            if (chatElementContainerPanel.Controls.Count == 0)
+                y = 8;
+            else
+            {
+                Control lastControl = chatElementContainerPanel.Controls[chatElementContainerPanel.Controls.Count - 1];
+                y = lastControl.Location.Y + lastControl.Height + 8;
+            }
+
+            if (type == Crypt.ChatElementType.Receiver) x = Crypt.Constants.ChatXElementOffset;
+            else x = chatElementContainerPanel.Width - message.Width - Crypt.Constants.ChatXElementOffset;
+
             message.Location = new Point(x, y);
 
-            Crypt.Data.ChatCurrentY += message.Height + 8;
+            chatElementContainerPanel.Controls.Add(message);
 
             Crypt.Actions.ControlRoundBorder(message, new Pen(Color.Transparent, 1f));
 
@@ -85,6 +96,19 @@ namespace To_Ba_To_Iutta
         }
         #endregion
         #region Click
+        private void SetStatusLabel()
+        {
+            if (Crypt.Chat.Connected == true)
+            {
+                statusLabel.Text = "Connected";
+                statusLabel.ForeColor = Color.Lime;
+            }
+            else
+            {
+                statusLabel.Text = "Not connected";
+                statusLabel.ForeColor = Color.Red;
+            }
+        }
         private void connect_Click(object sender, EventArgs e)
         {
             try
@@ -94,38 +118,27 @@ namespace To_Ba_To_Iutta
 
                 ChatConnectForm f = new ChatConnectForm(Crypt.Chat.Initialize());
                 if (f.ShowDialog() == DialogResult.OK)
-                {
                     Crypt.Chat.Connect(f.RecivedKey);
-
-                    statusLabel.Text = "Connected";
-                    statusLabel.ForeColor = Color.Lime;
-                }
                 else
-                {
                     Crypt.Chat.Disconnect(false);
-                    statusLabel.Text = "Not connected";
-                    statusLabel.ForeColor = Color.Red;
-                }
             }
             catch (System.Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                statusLabel.Text = "Not connected";
-                statusLabel.ForeColor = Color.Red;
             }
+            SetStatusLabel();
         }
         private void disconnect_Click(object sender, EventArgs e)
         {
             try
             {
                 Crypt.Chat.Disconnect();
-                statusLabel.Text = "Not connected";
-                statusLabel.ForeColor = Color.Red;
             }
             catch (System.Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            SetStatusLabel();
         }
         private void send_Click(object sender, EventArgs e) 
         {

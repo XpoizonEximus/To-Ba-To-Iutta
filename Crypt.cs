@@ -92,6 +92,7 @@ namespace To_Ba_To_Iutta
             public static readonly Image DecryptButtonImage = Properties.Resources.SymmetricDecryptButtonIcon;
 
             public const int MaxInputLength = 5000;
+            public const int ChatXElementOffset = 25;
 
             public static readonly ColorTheme[] ColorThemeCollection =
             {
@@ -128,7 +129,6 @@ namespace To_Ba_To_Iutta
                     _chat = value;
                 }
             }
-            public static int ChatCurrentY { get; set; } = 0;
             public static List<Control> ChatControls { get; set; } = new List<Control>();
         }
 

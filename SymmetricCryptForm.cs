@@ -85,6 +85,13 @@ namespace To_Ba_To_Iutta
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void input_TextChanged(object sender, EventArgs e)
+        {
+            if (Procedure == Crypt.Procedure.Encrypt)
+                Properties.Settings.Default.LastSymmetricEncryptInput = input.Text;
+            else
+                Properties.Settings.Default.LastSymmetricDecryptInput = input.Text;
+        }
 
         #region KeyUp
         private void key_KeyUp(object sender, KeyEventArgs e)
@@ -100,13 +107,6 @@ namespace To_Ba_To_Iutta
         #endregion
         #region Bottom panels
         #region Bottom panels apear/disappear
-        private void input_TextChanged(object sender, EventArgs e)
-        {
-            if (Procedure == Crypt.Procedure.Encrypt)
-                Properties.Settings.Default.LastSymmetricEncryptInput = input.Text;
-            else
-                Properties.Settings.Default.LastSymmetricDecryptInput = input.Text;
-        }
 
         private void inputPanel_MouseMove(object sender, MouseEventArgs e)
         {
@@ -268,9 +268,8 @@ namespace To_Ba_To_Iutta
                 input.Text = "";
         }
         #endregion
-
         #endregion
-        #region Drag-Drop
+        #region Drag-Drop Data
         string dropFilesString = "Drop files here...";
         private void input_DragDrop(object sender, DragEventArgs e)
         {

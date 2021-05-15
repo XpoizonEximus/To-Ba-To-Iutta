@@ -60,7 +60,6 @@ namespace To_Ba_To_Iutta
             // 
             // mainPanel
             // 
-            this.mainPanel.Controls.Add(this.inputBottomPanel);
             this.mainPanel.Controls.Add(this.button);
             this.mainPanel.Controls.Add(this.keyPanel);
             this.mainPanel.Controls.Add(this.outputPanel);
@@ -166,6 +165,7 @@ namespace To_Ba_To_Iutta
             // 
             // inputPanel
             // 
+            this.inputPanel.Controls.Add(this.inputBottomPanel);
             this.inputPanel.Controls.Add(this.input);
             this.inputPanel.Location = new System.Drawing.Point(114, 12);
             this.inputPanel.Name = "inputPanel";
@@ -258,7 +258,7 @@ namespace To_Ba_To_Iutta
             // 
             this.inputBottomPanel.Controls.Add(this.clearInputButton);
             this.inputBottomPanel.Controls.Add(this.uploadFileButton);
-            this.inputBottomPanel.Location = new System.Drawing.Point(114, 191);
+            this.inputBottomPanel.Location = new System.Drawing.Point(0, 179);
             this.inputBottomPanel.Name = "inputBottomPanel";
             this.inputBottomPanel.Size = new System.Drawing.Size(667, 41);
             this.inputBottomPanel.TabIndex = 1;
