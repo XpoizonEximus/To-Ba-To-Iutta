@@ -16,7 +16,7 @@ namespace To_Ba_To_Iutta
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm(false));
+            Application.Run(new MainForm());
         }
     }
 }
