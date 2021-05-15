@@ -44,29 +44,36 @@ namespace To_Ba_To_Iutta
 
         private void createButton_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(nameTextBox.Text))
-                return;
-            byte[] xml = null;
-            if(IsPublic)
+            try
             {
-                if (!String.IsNullOrWhiteSpace(keyTextBox.Text))
-                    xml = Convert.FromBase64String(keyTextBox.Text);
-                else if (!String.IsNullOrWhiteSpace(KeyXml))
-                    xml = Encoding.UTF8.GetBytes(KeyXml);
-                else
-                    MessageBox.Show("You need to insert a key or import one.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            Crypt.Asymmetric.CreateNewKeyContainer(nameTextBox.Text, xml != null, xml);
+                if (String.IsNullOrWhiteSpace(nameTextBox.Text))
+                    return;
+                byte[] xml = null;
+                if (IsPublic)
+                {
+                    if (!String.IsNullOrWhiteSpace(keyTextBox.Text))
+                        xml = Convert.FromBase64String(keyTextBox.Text);
+                    else if (!String.IsNullOrWhiteSpace(KeyXml))
+                        xml = Encoding.UTF8.GetBytes(KeyXml);
+                    else
+                        MessageBox.Show("You need to insert a key or import one.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                Crypt.Asymmetric.CreateNewKeyContainer(nameTextBox.Text, xml != null, xml);
 
-            if (Crypt.Asymmetric.VerifyKeyContainerExistence(nameTextBox.Text))
+                if (Crypt.Asymmetric.VerifyKeyContainerExistence(nameTextBox.Text))
+                {
+                    if (IsPublic) Properties.Settings.Default.PublicKeyPairs += nameTextBox.Text + "\r\r";
+                    else Properties.Settings.Default.PrivateKeyPairs += nameTextBox.Text + "\r\r";
+
+                    this.DialogResult = DialogResult.OK;
+                }
+
+                this.Close();
+            }
+            catch (Exception ex)
             {
-                if (IsPublic) Properties.Settings.Default.PublicKeyPairs += nameTextBox.Text + "\r\r";
-                else Properties.Settings.Default.PrivateKeyPairs += nameTextBox.Text + "\r\r";
-
-                this.DialogResult = DialogResult.OK;
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            this.Close();
         }
     }
 }

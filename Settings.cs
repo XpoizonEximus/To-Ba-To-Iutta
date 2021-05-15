@@ -50,7 +50,7 @@ namespace To_Ba_To_Iutta.Properties {
         }
         private bool VerifyInput(string input)
         {
-            if (input.Length>5000)
+            if (input.Length > Crypt.Constants.MaxInputLength)
                 return true;
             return false;
         }

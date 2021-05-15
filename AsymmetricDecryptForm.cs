@@ -33,6 +33,9 @@ namespace To_Ba_To_Iutta
                 byte[] outputb = Crypt.Asymmetric.Decrypt(inputb, keyName.Text);
                 if (outputb != null)
                     output.Text = Encoding.UTF8.GetString(outputb);
+
+                if (input.Text.Length > Crypt.Constants.MaxInputLength)
+                    input.Text = "";
             }
             catch (System.Exception ex)
             {

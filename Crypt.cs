@@ -91,6 +91,8 @@ namespace To_Ba_To_Iutta
             public static readonly Image EncryptButtonImage = Properties.Resources.SymmetricEncryptButtonIcon;
             public static readonly Image DecryptButtonImage = Properties.Resources.SymmetricDecryptButtonIcon;
 
+            public const int MaxInputLength = 5000;
+
             public static readonly ColorTheme[] ColorThemeCollection =
             {
                 new ColorTheme
@@ -171,7 +173,7 @@ namespace To_Ba_To_Iutta
                         case "DES3": { Symmetric.Algorythm = TripleDES.Create(); break; }
                         case "RC2": { Symmetric.Algorythm = RC2.Create(); break; }
                         case "DES": { Symmetric.Algorythm = DES.Create(); break; }
-                        default: { throw new Exception("Symmetric Algorythm Settings error. Resetting all settings."); }
+                        default: { throw new ArgumentException("Symmetric Algorythm Settings error. Resetting all settings."); }
                     }
                 }
                 public static void LoadSymmetricIV()
@@ -202,7 +204,7 @@ namespace To_Ba_To_Iutta
                         case "ISO10126": { Symmetric.Algorythm.Padding = PaddingMode.ISO10126; break; }
                         case "Zeros": { Symmetric.Algorythm.Padding = PaddingMode.Zeros; break; }
                         case "None": { Symmetric.Algorythm.Padding = PaddingMode.None; break; }
-                        default: { throw new Exception("Symmetric Algorythm Padding Settings error. Resetting all settings."); }
+                        default: { throw new ArgumentException("Symmetric Algorythm Padding Settings error. Resetting all settings."); }
                     }
                 }
                 public static void LoadSymmetricMode()
@@ -214,7 +216,7 @@ namespace To_Ba_To_Iutta
                         case "CFB": { Symmetric.Algorythm.Mode = CipherMode.CFB; break; }
                         case "CTS": { Symmetric.Algorythm.Mode = CipherMode.CTS; break; }
                         case "OFB": { Symmetric.Algorythm.Mode = CipherMode.OFB; break; }
-                        default: { throw new Exception("Symmetric Mode Settings error. Resetting all settings."); }
+                        default: { throw new ArgumentException("Symmetric Mode Settings error. Resetting all settings."); }
                     }
                 }
                 // Save
@@ -294,7 +296,7 @@ namespace To_Ba_To_Iutta
                         case "DES3": { bits[0] = false; bits[1] = true; break; }
                         case "RC2": { bits[0] = true; bits[1] = false; break; }
                         case "DES": { bits[0] = true; bits[1] = true; break; }
-                        default: { throw new Exception("Symmetric Algorythm Settings error."); }
+                        default: { throw new ArgumentException("Symmetric Algorythm Settings error."); }
                     }
                     switch (Properties.Settings.Default.SymmetricPadding)
                     {
@@ -303,7 +305,7 @@ namespace To_Ba_To_Iutta
                         case "ISO10126": { bits[2] = false; bits[3] = true; bits[4] = false; break; }
                         case "Zeros": { bits[2] = false; bits[3] = true; bits[4] = true; break; }
                         case "None": { bits[2] = true; bits[3] = false; bits[4] = false; break; }
-                        default: { throw new Exception("Symmetric Algorythm Padding Settings error."); }
+                        default: { throw new ArgumentException("Symmetric Algorythm Padding Settings error."); }
                     }
                     switch (Properties.Settings.Default.SymmetricMode)
                     {
@@ -312,7 +314,7 @@ namespace To_Ba_To_Iutta
                         case "CFB": { bits[5] = false; bits[6] = true; bits[7] = false; break; }
                         case "CTS": { bits[5] = false; bits[6] = true; bits[7] = true; break; }
                         case "OFB": { bits[5] = true; bits[6] = false; bits[7] = false; break; }
-                        default: { throw new Exception("Symmetric Mode Settings error."); }
+                        default: { throw new ArgumentException("Symmetric Mode Settings error."); }
                     }
 
                     byte[] bytes = new byte[1];
@@ -347,7 +349,7 @@ namespace To_Ba_To_Iutta
                         case 2: { Algorythm.Padding = PaddingMode.ISO10126; break; }
                         case 3: { Algorythm.Padding = PaddingMode.Zeros; break; }
                         case 4: { Algorythm.Padding = PaddingMode.None; break; }
-                        default: { throw new Exception("Wrong input."); }
+                        default: { throw new ArgumentException("Wrong input."); }
                     }
                     switch (ints[5] * 4 + ints[6] * 2 + ints[7])
                     {
@@ -356,7 +358,7 @@ namespace To_Ba_To_Iutta
                         case 2: { Algorythm.Mode = CipherMode.CFB; break; }
                         case 3: { Algorythm.Mode = CipherMode.CTS; break; }
                         case 4: { Algorythm.Mode = CipherMode.OFB; break; }
-                        default: { throw new Exception("Wrong input."); }
+                        default: { throw new ArgumentException("Wrong input."); }
                     }
                 }
             }
@@ -365,89 +367,79 @@ namespace To_Ba_To_Iutta
                 if (Algorythm == null) Actions.Settings.LoadAlgorythm();
                 byte[] output = null;
                 byte[] encryptedinput = null;
-                try
+
+                if (key != null)
                 {
-                    if (key != null) 
-                    {
-                        if (keytransform)
-                            key = KeyTransform(key);
-                        Algorythm.Key = key;
-                    }
-                    if (RandomIV)
-                        Algorythm.GenerateIV();
-
-                    byte[] header = HeaderBytes;
-                    byte[] iv = Algorythm.IV;
-                    byte[] lenIV = BitConverter.GetBytes(iv.Length);
-
-                    ICryptoTransform transform = Algorythm.CreateEncryptor();
-                    using (MemoryStream ms = new MemoryStream())
-                    {
-                        using (CryptoStream cs = new CryptoStream(ms, transform, CryptoStreamMode.Write))
-                        { 
-                            cs.Write(input, 0, input.Length); 
-                        }
-                        encryptedinput = ms.ToArray();
-                    }
-
-                    output = new byte[header.Length + lenIV.Length + iv.Length + encryptedinput.Length];
-                    header.         CopyTo(output, 0);
-                    lenIV.          CopyTo(output, header.Length);
-                    iv.             CopyTo(output, header.Length + lenIV.Length);
-                    encryptedinput. CopyTo(output, header.Length + lenIV.Length + iv.Length);
+                    if (keytransform)
+                        key = KeyTransform(key);
+                    Algorythm.Key = key;
                 }
-                catch (System.Exception ex)
+                if (RandomIV)
+                    Algorythm.GenerateIV();
+
+                byte[] header = HeaderBytes;
+                byte[] iv = Algorythm.IV;
+                byte[] lenIV = BitConverter.GetBytes(iv.Length);
+
+                ICryptoTransform transform = Algorythm.CreateEncryptor();
+                using (MemoryStream ms = new MemoryStream())
                 {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    using (CryptoStream cs = new CryptoStream(ms, transform, CryptoStreamMode.Write))
+                    {
+                        cs.Write(input, 0, input.Length);
+                    }
+                    encryptedinput = ms.ToArray();
                 }
+
+                output = new byte[header.Length + lenIV.Length + iv.Length + encryptedinput.Length];
+                header.CopyTo(output, 0);
+                lenIV.CopyTo(output, header.Length);
+                iv.CopyTo(output, header.Length + lenIV.Length);
+                encryptedinput.CopyTo(output, header.Length + lenIV.Length + iv.Length);
+
                 return output;
             }
             public static byte[] Decrypt(byte[] input, byte[] key = null, bool keytransform = true)
             {
                 byte[] output = null;
                 byte[] encryptedinput = null;
-                try
+
+                byte[] header = new byte[1];
+                Array.Copy(input, 0, header, 0, 1);
+
+                byte[] lenIV = new byte[4];
+                Array.Copy(input, 1, lenIV, 0, 4);
+
+                byte[] iv = new byte[BitConverter.ToInt32(lenIV, 0)];
+                Array.Copy(input, 5, iv, 0, iv.Length);
+
+                encryptedinput = new byte[input.Length - (5 + iv.Length)];
+                Array.Copy(input, 5 + iv.Length, encryptedinput, 0, encryptedinput.Length);
+
+                HeaderBytes = header;
+                Algorythm.IV = iv;
+
+
+
+                if (key != null)
                 {
-                    byte[] header = new byte[1];
-                    Array.Copy(input, 0, header, 0, 1);
-                    
-                    byte[] lenIV = new byte[4];
-                    Array.Copy(input, 1, lenIV, 0, 4);
-
-                    byte[] iv = new byte[BitConverter.ToInt32(lenIV, 0)];
-                    Array.Copy(input, 5, iv, 0, iv.Length);
-
-                    encryptedinput = new byte[input.Length - (5 + iv.Length)];
-                    Array.Copy(input, 5 + iv.Length, encryptedinput, 0, encryptedinput.Length);
-
-                    HeaderBytes = header;
-                    Algorythm.IV = iv;
-
-
-                    
-                    if (key != null)
-                    {
-                        if (keytransform)
-                            key = KeyTransform(key);
-                        Algorythm.Key = key;
-                    }
-
-                    ICryptoTransform transform = Algorythm.CreateDecryptor();
-                    using (MemoryStream ms = new MemoryStream())
-                    {
-                        using (CryptoStream cs = new CryptoStream(ms, transform, CryptoStreamMode.Write))
-                        {
-                            cs.Write(encryptedinput, 0, encryptedinput.Length);
-                        }
-                        output = ms.ToArray();
-                    }
-
-                    Actions.Settings.LoadAlgorythm();
+                    if (keytransform)
+                        key = KeyTransform(key);
+                    Algorythm.Key = key;
                 }
-                catch (System.Exception ex)
+
+                ICryptoTransform transform = Algorythm.CreateDecryptor();
+                using (MemoryStream ms = new MemoryStream())
                 {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    using (CryptoStream cs = new CryptoStream(ms, transform, CryptoStreamMode.Write))
+                    {
+                        cs.Write(encryptedinput, 0, encryptedinput.Length);
+                    }
+                    output = ms.ToArray();
                 }
+
+                Actions.Settings.LoadAlgorythm();
+
                 return output;
             }
         }
@@ -477,127 +469,99 @@ namespace To_Ba_To_Iutta
             }
             public static void CreateNewKeyContainer(string keyContainerName, bool isImported = false, byte[] key = null)
             {
-                try
+
+                if (VerifyKeyContainerExistence(keyContainerName))
+                    throw new ArgumentException("Key set already exists in CSP.");
+                param = new CspParameters { KeyContainerName = keyContainerName };
+                rsa = new RSACryptoServiceProvider(param);
+                if (isImported)
                 {
-                    if (VerifyKeyContainerExistence(keyContainerName))
-                        throw new Exception("Key set already exists in CSP.");
-                    param = new CspParameters {KeyContainerName = keyContainerName };
-                    rsa = new RSACryptoServiceProvider(param);
-                    if (isImported)
-                    {
-                        if (key == null)
-                            throw new ArgumentNullException();
-                        string xml = Encoding.UTF8.GetString(key);
-                        rsa.FromXmlString(xml);
-                    }
-                    rsa.PersistKeyInCsp = true;
+                    if (key == null)
+                        throw new ArgumentNullException();
+                    string xml = Encoding.UTF8.GetString(key);
+                    rsa.FromXmlString(xml);
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                rsa.PersistKeyInCsp = true;
             }
             public static void DeleteKey(string keyContainerName)
             {
-                try
+                if (!VerifyKeyContainerExistence(keyContainerName))
+                    throw new ArgumentException("This Key does not exist in CSP.");
+                CspParameters cspParams = new CspParameters
                 {
-                    if (!VerifyKeyContainerExistence(keyContainerName))
-                        throw new Exception("This Key does not exist in CSP.");
-                    CspParameters cspParams = new CspParameters
-                    {
-                        Flags = CspProviderFlags.UseExistingKey,
-                        KeyContainerName = keyContainerName
-                    };
-                    using (var provider = new RSACryptoServiceProvider(cspParams)) 
-                    {
-                        provider.PersistKeyInCsp = false;
-                    }
-                }
-                catch(Exception ex)
+                    Flags = CspProviderFlags.UseExistingKey,
+                    KeyContainerName = keyContainerName
+                };
+                using (var provider = new RSACryptoServiceProvider(cspParams))
                 {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    provider.PersistKeyInCsp = false;
                 }
             }
+
             public static byte[] Decrypt(byte[] input, string privateKeyContainerName)
             {
-                try
+                if (privateKeyContainerName == null) return null;
+                if (!VerifyKeyContainerExistence(privateKeyContainerName))
+                    throw new ArgumentException("This Key does not exist in CSP. Check Key Manager to see which are your saved keys.");
+                param = new CspParameters() { KeyContainerName = privateKeyContainerName, Flags = CspProviderFlags.UseExistingKey };
+                rsa = new RSACryptoServiceProvider(keySize, param);
+                if (rsa.PublicOnly)
+                    throw new ArgumentException("This Key is public. Choose a private key for decryption. Check Key Manager to see which are your saved keys.");
+
+                byte[] lenk = new byte[4];
+
+                byte[] encryptedKey = null;
+
+                byte[] encryptedOutput = null;
+
+                using (MemoryStream ms = new MemoryStream())
                 {
-                    if (privateKeyContainerName == null) return null;
-                    if (!VerifyKeyContainerExistence(privateKeyContainerName))
-                        throw new Exception("This Key does not exist in CSP. Check Key Manager to see which are your saved keys.");
-                    param = new CspParameters() { KeyContainerName = privateKeyContainerName, Flags = CspProviderFlags.UseExistingKey };
-                    rsa = new RSACryptoServiceProvider(keySize, param);
-                    if(rsa.PublicOnly)
-                        throw new Exception("This Key is public. Choose a private key for decryption. Check Key Manager to see which are your saved keys.");
+                    ms.Write(input, 0, input.Length);
+                    ms.Flush();
+                    ms.Position = 0;
 
-                    byte[] lenk = new byte[4];
+                    ms.Read(lenk, 0, 4);
 
-                    byte[] encryptedKey = null;
+                    int lk = BitConverter.ToInt32(lenk, 0);
 
-                    byte[] encryptedOutput = null;
+                    encryptedKey = new byte[lk];
+                    encryptedOutput = new byte[input.Length - (4 + lk)];
 
-                    using(MemoryStream ms = new MemoryStream())
-                    {
-                        ms.Write(input, 0, input.Length);
-                        ms.Flush();
-                        ms.Position = 0;
+                    ms.Read(encryptedKey, 0, lk);
 
-                        ms.Read(lenk, 0, 4);
-
-                        int lk = BitConverter.ToInt32(lenk, 0);
-
-                        encryptedKey = new byte[lk];
-                        encryptedOutput = new byte[input.Length - (4 + lk)];
-
-                        ms.Read(encryptedKey, 0, lk);
-
-                        ms.Read(encryptedOutput, 0, input.Length - (4 + lk));
-                    }
-
-                    byte[] key = rsa.Decrypt(encryptedKey, fOAEP);
-                    byte[] output = Symmetric.Decrypt(encryptedOutput, key, false);
-
-                    return output;
+                    ms.Read(encryptedOutput, 0, input.Length - (4 + lk));
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                return null;
+
+                byte[] key = rsa.Decrypt(encryptedKey, fOAEP);
+                byte[] output = Symmetric.Decrypt(encryptedOutput, key, false);
+
+                return output;
             }
             public static byte[] Encrypt(byte[] input, string publicKeyContainerName, bool setAlgorythm = true)
             {
-                try
+                if (publicKeyContainerName == null && setAlgorythm) return null;
+                if (!VerifyKeyContainerExistence(publicKeyContainerName))
+                    throw new ArgumentException("This Key does not exist in CSP. Check Key Manager to see which are your saved keys.");
+                Actions.Settings.LoadAlgorythm();
+                byte[] encryptedInput = Symmetric.Encrypt(input);
+
+                if (setAlgorythm)
                 {
-                    if (publicKeyContainerName == null && setAlgorythm) return null;
-                    if (!VerifyKeyContainerExistence(publicKeyContainerName))
-                        throw new Exception("This Key does not exist in CSP. Check Key Manager to see which are your saved keys.");
-                    Actions.Settings.LoadAlgorythm();
-                    byte[] encryptedInput = Symmetric.Encrypt(input);
-
-                    if (setAlgorythm)
-                    {
-                        param = new CspParameters() { KeyContainerName = publicKeyContainerName, Flags = CspProviderFlags.UseExistingKey };
-                        rsa = new RSACryptoServiceProvider(keySize, param);
-                    }
-                    byte[] key = Symmetric.Algorythm.Key;
-                    byte[] encryptedKey = rsa.Encrypt(key, fOAEP); Clipboard.SetText(Convert.ToBase64String(encryptedKey));
-
-                    byte[] lenk = BitConverter.GetBytes(encryptedKey.Length);
-
-                    List<byte> list = new List<byte>();
-                    list.AddRange(lenk);
-                    list.AddRange(encryptedKey);
-                    list.AddRange(encryptedInput);
-
-                    byte[] output = list.ToArray();
-                    return output;
+                    param = new CspParameters() { KeyContainerName = publicKeyContainerName, Flags = CspProviderFlags.UseExistingKey };
+                    rsa = new RSACryptoServiceProvider(keySize, param);
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                return null;
+                byte[] key = Symmetric.Algorythm.Key;
+                byte[] encryptedKey = rsa.Encrypt(key, fOAEP); Clipboard.SetText(Convert.ToBase64String(encryptedKey));
+
+                byte[] lenk = BitConverter.GetBytes(encryptedKey.Length);
+
+                List<byte> list = new List<byte>();
+                list.AddRange(lenk);
+                list.AddRange(encryptedKey);
+                list.AddRange(encryptedInput);
+
+                byte[] output = list.ToArray();
+                return output;
             }
             public static byte[] Encrypt(byte[] input, byte[] key)
             {
@@ -610,20 +574,12 @@ namespace To_Ba_To_Iutta
             }
             public static byte[] GetKeyXmlBlob(string keyContainerName, bool includePrivate = false)
             {
-                try
-                {
-                    if (!VerifyKeyContainerExistence(keyContainerName))
-                        throw new Exception("This Key does not exist in CSP. Check Key Manager to see which are your saved keys.");
-                    param = new CspParameters { KeyContainerName = keyContainerName, Flags = CspProviderFlags.UseExistingKey };
-                    rsa = new RSACryptoServiceProvider(keySize, param);
-                    string xml = rsa.ToXmlString(includePrivate);
-                    return Encoding.UTF8.GetBytes(xml);
-                }
-                catch(Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                return null;
+                if (!VerifyKeyContainerExistence(keyContainerName))
+                    throw new ArgumentException("This Key does not exist in CSP. Check Key Manager to see which are your saved keys.");
+                param = new CspParameters { KeyContainerName = keyContainerName, Flags = CspProviderFlags.UseExistingKey };
+                rsa = new RSACryptoServiceProvider(keySize, param);
+                string xml = rsa.ToXmlString(includePrivate);
+                return Encoding.UTF8.GetBytes(xml);
             }
         }
         public static class Chat

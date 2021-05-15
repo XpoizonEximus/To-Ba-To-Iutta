@@ -46,7 +46,7 @@ namespace To_Ba_To_Iutta
                 case "DES3": { DES3RadioButton.Checked = true; break; }
                 case "RC2": { RC2RadioButton.Checked = true; break; }
                 case "DES": { DESRadioButton.Checked = true; break; }
-                default: { throw new Exception("Symmetric Algorythm Settings error. Resetting all settings."); }
+                default: { throw new ArgumentException("Symmetric Algorythm Settings error. Resetting all settings."); }
             }
         }
         private void LoadSymmetricIV()
@@ -68,7 +68,7 @@ namespace To_Ba_To_Iutta
                 case "ISO10126": { symmetricISO10126RadioButton.Checked = true; break; }
                 case "Zeros"   : { symmetricZerosRadioButton.Checked = true; break; }
                 case "None"    : { symmetricNoneRadioButton.Checked = true; break; }
-                default: { throw new Exception("Symmetric Padding Settings error. Resetting all settings."); }
+                default: { throw new ArgumentException("Symmetric Padding Settings error. Resetting all settings."); }
             }
         }
         private void LoadSymmetricMode()
@@ -80,7 +80,7 @@ namespace To_Ba_To_Iutta
                 case "CFB": { CFBRadioButton.Checked = true; break; }
                 case "CTS": { CTSRadioButton.Checked = true; break; }
                 case "OFB": { OFBRadioButton.Checked = true; break; }
-                default: { throw new Exception("Symmetric Mode Settings error. Resetting all settings."); }
+                default: { throw new ArgumentException("Symmetric Mode Settings error. Resetting all settings."); }
             }
         }
         //Asymmetric
@@ -224,8 +224,8 @@ namespace To_Ba_To_Iutta
         private void newPrivateKeyButton_Click(object sender, EventArgs e)
         {
             NewAsymmetricKeyForm f = new NewAsymmetricKeyForm(false);
-            if (f.ShowDialog() == DialogResult.OK)
-                this.LoadAsymmetricPrivateKeys();
+            f.ShowDialog();
+            this.LoadAsymmetricPrivateKeys();
             Settings.Save();
         }
         private void newPublicKeyButton_Click(object sender, EventArgs e)
@@ -241,8 +241,15 @@ namespace To_Ba_To_Iutta
             if (MessageBox.Show("Deleting keys loses their data forever. Consider saving them first.", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) != DialogResult.OK) return;
             foreach (ListViewItem i in privateKeysListView.SelectedItems)
             {
-                Crypt.Asymmetric.DeleteKey(i.Text);
-                privateKeysListView.Items.Remove(i);
+                try
+                {
+                    Crypt.Asymmetric.DeleteKey(i.Text);
+                    privateKeysListView.Items.Remove(i);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             SaveAsymmetricPrivateKeys();
             Settings.Save();
@@ -252,8 +259,15 @@ namespace To_Ba_To_Iutta
             if (MessageBox.Show("Deleting keys loses their data forever. Consider saving them first.", "Warning", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning) != DialogResult.OK) return;
             foreach (ListViewItem i in publicKeysListView.SelectedItems)
             {
-                Crypt.Asymmetric.DeleteKey(i.Text);
-                publicKeysListView.Items.Remove(i);
+                try
+                {
+                    Crypt.Asymmetric.DeleteKey(i.Text);
+                    publicKeysListView.Items.Remove(i);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             SaveAsymmetricPublicKeys();
             Settings.Save();

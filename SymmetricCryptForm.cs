@@ -76,6 +76,9 @@ namespace To_Ba_To_Iutta
                     outputb = Crypt.Symmetric.Decrypt(inputb, keyb);
                 if (outputb != null) 
                     output.Text = (procedure == Crypt.Procedure.Encrypt ? Convert.ToBase64String(outputb) : Encoding.UTF8.GetString(outputb));
+
+                if (input.Text.Length > Crypt.Constants.MaxInputLength)
+                    input.Text = "";
             }
             catch (System.Exception ex)
             {
