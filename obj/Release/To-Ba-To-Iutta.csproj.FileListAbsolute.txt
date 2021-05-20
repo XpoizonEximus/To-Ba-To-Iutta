@@ -1,7 +1,3 @@
-C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\bin\Release\To-Ba-To-Iutta.exe.config
-C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\bin\Release\To-Ba-To-Iutta.exe
-C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\bin\Release\To-Ba-To-Iutta.pdb
-C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Release\To-Ba-To-Iutta.csprojAssemblyReference.cache
 C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Release\To_Ba_To_Iutta.AsymmetricEncryptForm.resources
 C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Release\To_Ba_To_Iutta.AsymmetricDecryptForm.resources
 C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Release\To_Ba_To_Iutta.ChatConnectForm.resources
@@ -17,5 +13,14 @@ C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Relea
 C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Release\To_Ba_To_Iutta.SymmetricCryptForm.resources
 C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Release\To-Ba-To-Iutta.csproj.GenerateResource.cache
 C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Release\To-Ba-To-Iutta.csproj.CoreCompileInputs.cache
-C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Release\To-Ba-To-Iutta.exe
-C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Release\To-Ba-To-Iutta.pdb
+C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\bin\Release\To ba to iutta.exe.config
+C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\bin\Release\To ba to iutta.exe
+C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\bin\Release\To ba to iutta.pdb
+C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Release\To ba to iutta.exe
+C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Release\To ba to iutta.pdb
+C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\bin\Release\To ba to iutta.exe.manifest
+C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\bin\Release\To ba to iutta.application
+C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Release\To ba to iutta.TrustInfo.xml
+C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Release\To ba to iutta.exe.manifest
+C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Release\To ba to iutta.application
+C:\Users\xpoiz\Documents\Visual Studio 2019\Projects\C#\To-Ba-To-Iutta\obj\Release\To-Ba-To-Iutta.csprojAssemblyReference.cache

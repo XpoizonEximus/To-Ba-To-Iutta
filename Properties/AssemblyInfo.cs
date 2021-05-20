@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("To-Ba-To-Iutta")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("To ba to iutta")]
+[assembly: AssemblyDescription("This apllication is designed to be used for encryption/decription exclusively.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("To-Ba-To-Iutta")]
+[assembly: AssemblyCompany("Xpoizon Eximus")]
+[assembly: AssemblyProduct("To ba to iutta")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

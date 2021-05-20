@@ -76,7 +76,7 @@ namespace To_Ba_To_Iutta
             if(Crypt.Data.Chat)
             {
                 symmetricButton.BackColor = Crypt.Constants.ColorThemeCollection[0].Primary;
-                decryptButton.BackColor = Crypt.Constants.ColorThemeCollection[0].Primary;
+                asymmetricButton.BackColor = Crypt.Constants.ColorThemeCollection[0].Primary;
                 encryptButton.BackColor = Crypt.Constants.ColorThemeCollection[0].Primary;
                 decryptButton.BackColor = Crypt.Constants.ColorThemeCollection[0].Primary;
 
