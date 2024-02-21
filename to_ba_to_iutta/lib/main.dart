@@ -79,7 +79,11 @@ class _PagesManagerState extends State<PagesManager> {
               children: [
                 DrawerHeader(
                   decoration: BoxDecoration(color: theme.colorScheme.primary),
-                  child: const Text("Drawer Header"),
+                  child: Text("TO BA\nTO IUTTA",
+                      style: TextStyle(
+                          fontFamily: 'Minecraftia',
+                          fontSize: 40,
+                          color: theme.colorScheme.onPrimary)),
                 ),
                 ExpansionTile(
                   title: const Text('Symmetric cryptography'),
