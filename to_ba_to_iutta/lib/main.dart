@@ -35,14 +35,21 @@ class PagesManager extends StatefulWidget {
 }
 
 class _PagesManagerState extends State<PagesManager> {
-  int? _selectedIndex;
-
   static final List<GenericPage> _pages = [
     const SymmetricEncryptPage(),
     const SymmetricDecryptPage(),
     const AsymmetricEncryptPage(),
     const AsymmetricDecryptPage()
   ];
+
+  int? _selectedIndex;
+  GenericPage get _currentPage {
+    return _selectedIndex == null ||
+            _selectedIndex! < 0 ||
+            _selectedIndex! >= _pages.length
+        ? const HomePage()
+        : _pages[_selectedIndex!];
+  }
 
   BuildContext? _currentContext;
 
@@ -63,14 +70,11 @@ class _PagesManagerState extends State<PagesManager> {
 
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: theme.colorScheme.inversePrimary,
-          title: const Text("ffd"),
+          backgroundColor: theme.colorScheme.primary,
+          foregroundColor: theme.colorScheme.onPrimary,
+          title: Text(_currentPage.title),
         ),
-        body: _selectedIndex == null ||
-                _selectedIndex! < 0 ||
-                _selectedIndex! >= _pages.length
-            ? const HomePage()
-            : _pages[_selectedIndex!],
+        body: _currentPage,
         drawer: Drawer(
           child: Theme(
             data: theme.copyWith(dividerColor: Colors.transparent),
@@ -82,7 +86,7 @@ class _PagesManagerState extends State<PagesManager> {
                   child: Text("TO BA\nTO IUTTA",
                       style: TextStyle(
                           fontFamily: 'Minecraftia',
-                          fontSize: 40,
+                          fontSize: 35,
                           color: theme.colorScheme.onPrimary)),
                 ),
                 ExpansionTile(
