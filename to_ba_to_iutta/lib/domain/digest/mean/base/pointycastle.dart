@@ -28,11 +28,10 @@ abstract class _PointyCastleDigest extends Digest {
 class _PointyCastleDigestProcessor extends DigestProcessor {
   final pc.Digest _algorithm;
   int _bufferLength = 0;
-  late Bytes _lastResult;
+  Bytes _lastResult;
 
-  _PointyCastleDigestProcessor(this._algorithm, {super.syncronized = true}) {
-    _lastResult = _algorithm.process(Uint8List.fromList([]));
-  }
+  _PointyCastleDigestProcessor(this._algorithm, {super.syncronized = true})
+      : _lastResult = _algorithm.process(Uint8List.fromList([]));
 
   @override
   void put(Bytes chunk) {

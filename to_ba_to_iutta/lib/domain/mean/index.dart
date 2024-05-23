@@ -1,7 +1,7 @@
 library mean;
 
 import 'dart:async';
-import 'dart:typed_data';
+import 'dart:ffi';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +10,7 @@ import 'package:flutter/services.dart';
 part "data.dart";
 part "mean.dart";
 part "params.dart";
+part "variables.dart";
 
 part "converter/mean_implementation_converter.dart";
 part "converter/params_interactor_converter.dart";
@@ -30,6 +31,8 @@ part "serializer/bounded_int_serializer.dart";
 part "serializer/enum_serializer.dart";
 part "serializer/params_serializer.dart";
 part "serializer/data_serializer.dart";
+part "serializer/variables_serializer.dart";
+part "serializer/bytes_serializer.dart";
 
 typedef Byte = int;
 typedef Bytes = Uint8List;

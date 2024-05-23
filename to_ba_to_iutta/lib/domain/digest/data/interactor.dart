@@ -6,7 +6,7 @@ class DigestDataInteractor extends DataInteractor<DigestData> {
       required super.initial,
       super.title = "Digest data",
       super.description =
-          "Select the implementation wanted for the digest algorithm and its parameters."});
+          "Select the implementation to be used for the digest algorithm and its parameters."});
 
   @override
   InteractorState<DigestData, Interactor> createState() =>

@@ -12,9 +12,9 @@ import 'package:pointycastle/digests/sha3.dart' as sha3;
 import 'package:pointycastle/digests/keccak.dart' as keccak;
 import 'package:to_ba_to_iutta/domain/mean/index.dart';
 
-part "mean/digest/digest.dart";
-part "mean/digest/cryptography.dart";
-part "mean/digest/pointycastle.dart";
+part "mean/base/digest.dart";
+part "mean/base/cryptography.dart";
+part "mean/base/pointycastle.dart";
 
 part "mean/blake.dart";
 part "mean/keccak.dart";

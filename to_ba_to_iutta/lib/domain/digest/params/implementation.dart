@@ -19,8 +19,7 @@ class DigestParamsImplementation
       BlakeDigestParamsInteractorConverter(),
       BlakeDigestParamsSerializer(),
       "Blake digest params",
-      BlakeDigestParams(
-          BlakeSize.defaults(BlakeType.x2b), BlakeType.x2b));
+      BlakeDigestParams(BlakeSize.defaults(BlakeType.x2b), BlakeType.x2b));
 
   const DigestParamsImplementation(
       DigestParamsImplementation? super.underlying,

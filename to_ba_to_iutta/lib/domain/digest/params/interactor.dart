@@ -5,7 +5,7 @@ class DigestParamsInteractor<T extends DigestParams>
   const DigestParamsInteractor(
       {super.key,
       required super.initial,
-      super.title = "DigestParameters",
+      super.title = "Digest parameters",
       super.description =
           "This type of digest does not have adjustable parameters."});
 

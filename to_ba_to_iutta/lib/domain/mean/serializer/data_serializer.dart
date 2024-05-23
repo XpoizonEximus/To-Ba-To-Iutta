@@ -1,3 +1,5 @@
 part of "../index.dart";
 
-typedef DataSerializer<T extends Data> = Serializer<T>;
+abstract class DataSerializer<T extends Data> extends Serializer<T> {
+  const DataSerializer();
+}

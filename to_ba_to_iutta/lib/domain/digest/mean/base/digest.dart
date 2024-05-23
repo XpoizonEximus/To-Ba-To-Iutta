@@ -13,12 +13,7 @@ abstract class Digest extends Mean {
   DigestProcessor newProcessor({bool syncronized = true});
 }
 
-abstract class DigestProcessor {
-  final bool syncronized;
-
-  const DigestProcessor({this.syncronized = true});
-
-  void put(Bytes chunk);
-  FutureOr<Bytes> get result;
+abstract class DigestProcessor extends Processor {
+  const DigestProcessor({super.syncronized = true});
   int get length;
 }

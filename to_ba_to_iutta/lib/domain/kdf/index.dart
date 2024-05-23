@@ -7,11 +7,14 @@ import 'package:cryptography/dart.dart' as dc;
 import 'package:flutter/material.dart';
 import 'package:pointycastle/api.dart' as pc;
 import 'package:pointycastle/block/aes.dart' as aes;
+import 'package:pointycastle/export.dart';
 import 'package:pointycastle/macs/cmac.dart' as cmac;
+import 'package:pointycastle/pointycastle.dart';
+import 'package:synchronized/extension.dart';
 import 'package:to_ba_to_iutta/domain/digest/index.dart';
 import 'package:to_ba_to_iutta/domain/mean/index.dart';
 
-part "mean/base/authenticator.dart";
+part "mean/base/kdf.dart";
 part "mean/base/cryptography.dart";
 part "mean/base/pointycastle.dart";
 
