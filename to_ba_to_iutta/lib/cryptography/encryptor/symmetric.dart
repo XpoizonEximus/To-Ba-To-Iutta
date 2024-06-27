@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:cryptography/cryptography.dart';
-import 'package:to_ba_to_iutta/domain/encryptor/index.dart';
+import 'package:to_ba_to_iutta/cryptography/encryptor/index.dart';
 
 class SymmetricEncryptor extends Encryptor {
   @override

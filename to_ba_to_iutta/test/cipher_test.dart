@@ -3,9 +3,9 @@ import 'package:flutter_test/flutter_test.dart';
 import "package:cryptography/cryptography.dart" as c;
 import 'package:pointycastle/api.dart';
 import 'package:pointycastle/export.dart' as pc;
-import 'package:to_ba_to_iutta/domain/authenticator/index.dart';
-import 'package:to_ba_to_iutta/domain/cipher/index.dart';
-import 'package:to_ba_to_iutta/domain/mean/index.dart';
+import 'package:to_ba_to_iutta/cryptography/authenticator/index.dart';
+import 'package:to_ba_to_iutta/cryptography/cipher/index.dart';
+import 'package:to_ba_to_iutta/cryptography/mean/index.dart';
 
 import 'list_matcher.dart';
 
@@ -177,6 +177,8 @@ void main() async {
               StreamCipherParams(const CipherParams())));
       await testImplementation(cipherData);
     });
+
+
   });
   group("Library", () {
     test("Cryptography stream blocks", () async {

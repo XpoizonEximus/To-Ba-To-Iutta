@@ -5,8 +5,8 @@ import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:synchronized/synchronized.dart';
-import 'package:to_ba_to_iutta/domain/encryptor/index.dart';
-import 'package:to_ba_to_iutta/domain/encryptor/symmetric.dart';
+import 'package:to_ba_to_iutta/cryptography/encryptor/index.dart';
+import 'package:to_ba_to_iutta/cryptography/encryptor/symmetric.dart';
 import 'package:to_ba_to_iutta/exception/async_result_exception.dart';
 import 'package:to_ba_to_iutta/service/file_manager/downloader.dart';
 import 'package:to_ba_to_iutta/service/file_manager/file_options.dart';

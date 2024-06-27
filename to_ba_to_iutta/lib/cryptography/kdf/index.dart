@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:pointycastle/api.dart' as pc;
 import 'package:pointycastle/key_derivators/api.dart' as pckdf;
 import 'package:pointycastle/key_derivators/scrypt.dart' as scrypt;
-import 'package:to_ba_to_iutta/domain/digest/index.dart';
-import 'package:to_ba_to_iutta/domain/mean/index.dart';
+import 'package:to_ba_to_iutta/cryptography/digest/index.dart';
+import 'package:to_ba_to_iutta/cryptography/mean/index.dart';
 
 part "mean/base/kdf.dart";
 part "mean/base/cryptography.dart";

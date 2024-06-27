@@ -37,6 +37,7 @@ part "serializer/enum_serializer.dart";
 part "serializer/params_serializer.dart";
 part "serializer/data_serializer.dart";
 part "serializer/bytes_serializer.dart";
+part "serializer/bigint_serializer.dart";
 
 part "generator/generator.dart";
 part "generator/secure_bytes_generator.dart";

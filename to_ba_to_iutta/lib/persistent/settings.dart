@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:async/async.dart';
-import 'package:to_ba_to_iutta/domain/cipher/index.dart';
-import 'package:to_ba_to_iutta/domain/digest/index.dart';
-import 'package:to_ba_to_iutta/domain/persistent/database.dart';
+import 'package:to_ba_to_iutta/cryptography/cipher/index.dart';
+import 'package:to_ba_to_iutta/cryptography/digest/index.dart';
+import 'package:to_ba_to_iutta/persistent/database.dart';
 
 class SettingsProvider {
   final _database = DatabaseProvider();

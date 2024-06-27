@@ -1,7 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:cryptography/cryptography.dart';
-import 'package:to_ba_to_iutta/domain/decryptor/index.dart';
+import 'package:to_ba_to_iutta/cryptography/decryptor/index.dart';
 
 class SymmetricDecryptor extends Decryptor {
   @override

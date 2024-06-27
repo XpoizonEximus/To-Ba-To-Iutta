@@ -6,7 +6,7 @@ import "package:flutter/services.dart";
 import 'package:flutter_test/flutter_test.dart';
 import "package:pointycastle/api.dart";
 
-import "package:to_ba_to_iutta/domain/digest/index.dart";
+import "package:to_ba_to_iutta/cryptography/digest/index.dart";
 import "package:pointycastle/export.dart" as pc;
 import "package:cryptography/cryptography.dart" as c;
 

@@ -3,9 +3,9 @@ import 'dart:math';
 import 'package:pointycastle/export.dart' as pc;
 import 'package:cryptography/cryptography.dart' as c;
 import 'package:flutter_test/flutter_test.dart';
-import 'package:to_ba_to_iutta/domain/digest/index.dart';
-import 'package:to_ba_to_iutta/domain/kdf/index.dart';
-import 'package:to_ba_to_iutta/domain/mean/index.dart';
+import 'package:to_ba_to_iutta/cryptography/digest/index.dart';
+import 'package:to_ba_to_iutta/cryptography/kdf/index.dart';
+import 'package:to_ba_to_iutta/cryptography/mean/index.dart';
 
 import 'list_matcher.dart';
 

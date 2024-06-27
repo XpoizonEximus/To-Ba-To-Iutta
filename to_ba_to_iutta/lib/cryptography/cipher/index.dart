@@ -1,7 +1,6 @@
 library cipher;
 
 import 'dart:async';
-import 'dart:collection';
 
 import 'package:async/async.dart';
 import 'package:cryptography/cryptography.dart' as c;
@@ -18,9 +17,9 @@ import 'package:pointycastle/paddings/pkcs7.dart' as pkcs7;
 import 'package:pointycastle/stream/chacha20.dart' as chacha20;
 import 'package:pointycastle/stream/salsa20.dart' as salsa20;
 import 'package:pointycastle/stream/chacha7539.dart' as chacha7539;
-import 'package:to_ba_to_iutta/domain/authenticator/index.dart';
-import 'package:to_ba_to_iutta/domain/kdf/index.dart';
-import 'package:to_ba_to_iutta/domain/mean/index.dart';
+import 'package:to_ba_to_iutta/cryptography/authenticator/index.dart';
+import 'package:to_ba_to_iutta/cryptography/kdf/index.dart';
+import 'package:to_ba_to_iutta/cryptography/mean/index.dart';
 
 part "mean/cipher.dart";
 part "mean/cryptography.dart";

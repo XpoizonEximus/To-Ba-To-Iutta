@@ -9,9 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:pointycastle/api.dart' as pc;
 import 'package:pointycastle/block/aes.dart' as aes;
 import 'package:pointycastle/macs/cmac.dart' as cmac;
-import 'package:to_ba_to_iutta/domain/digest/index.dart';
-import 'package:to_ba_to_iutta/domain/kdf/index.dart';
-import 'package:to_ba_to_iutta/domain/mean/index.dart';
+import 'package:to_ba_to_iutta/cryptography/digest/index.dart';
+import 'package:to_ba_to_iutta/cryptography/kdf/index.dart';
+import 'package:to_ba_to_iutta/cryptography/mean/index.dart';
 
 part "mean/base/authenticator.dart";
 part "mean/base/cryptography.dart";

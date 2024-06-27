@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:to_ba_to_iutta/domain/cipher/index.dart';
-import 'package:to_ba_to_iutta/domain/digest/index.dart';
-import 'package:to_ba_to_iutta/domain/persistent/settings.dart';
+import 'package:to_ba_to_iutta/cryptography/cipher/index.dart';
+import 'package:to_ba_to_iutta/cryptography/digest/index.dart';
+import 'package:to_ba_to_iutta/persistent/settings.dart';
 import "page.dart" as local;
 
 class SettingsPage extends local.Page {
