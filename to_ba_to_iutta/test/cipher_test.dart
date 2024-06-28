@@ -5,7 +5,7 @@ import 'package:pointycastle/api.dart';
 import 'package:pointycastle/export.dart' as pc;
 import 'package:to_ba_to_iutta/cryptography/authenticator/index.dart';
 import 'package:to_ba_to_iutta/cryptography/cipher/index.dart';
-import 'package:to_ba_to_iutta/cryptography/mean/index.dart';
+import 'package:to_ba_to_iutta/cryptography/index/index.dart';
 
 import 'list_matcher.dart';
 

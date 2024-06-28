@@ -1,38 +1,36 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:async/async.dart';
-import 'package:to_ba_to_iutta/cryptography/cipher/index.dart';
-import 'package:to_ba_to_iutta/cryptography/digest/index.dart';
+import 'package:to_ba_to_iutta/bytes.dart';
 import 'package:to_ba_to_iutta/persistent/database.dart';
 
 class SettingsProvider {
   final _database = DatabaseProvider();
 
-  final _symmetricId = 0;
+  final Stream<Byte> _defaults;
+  final int _id;
 
-  Future<CipherData> get _symmetric async =>
-      CipherDataSerializer().load(StreamQueue(Stream.fromIterable(
-          utf8.encode(await _database.readSettings(_symmetricId)))));
+  static const _symmetricId = 0;
+  static const _asymmetricId = 1;
 
-  Future<CipherData> get symmetric async {
+  SettingsProvider(bool isAsymmetric, this._defaults)
+      : _id = isAsymmetric ? _asymmetricId : _symmetricId;
+
+  Future<Bytes> get get async {
+    Future<Bytes> value() async =>
+        utf8.encode(await _database.readSettings(_id));
+
     try {
-      return await _symmetric;
-    } catch (e) {
-      if (e is EmptyDatabaseException) {
-        await setSymmetric(CipherData.defaults);
-        return await _symmetric;
-      } else {
-        rethrow;
-      }
+      return await value();
+    } on EmptyDatabaseException {
+      await set(Bytes.fromList(await _defaults.toList()));
+      return await value();
     }
   }
 
-  Future<void> setSymmetric(CipherData value) async {
+  Future set(Bytes value) async {
     assert(_symmetricId ==
-        await _database.writeSettings(
-            _symmetricId,
-            utf8.decode(
-                await CipherDataSerializer().serialize(value).toList())));
+        await _database.writeSettings(_id, utf8.decode(value as List<int>)));
+    return;
   }
 }

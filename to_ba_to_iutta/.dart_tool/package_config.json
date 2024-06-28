@@ -81,7 +81,7 @@
     },
     {
       "name": "file_picker",
-      "rootUri": "file:///C:/Users/xpoiz/AppData/Local/Pub/Cache/hosted/pub.dev/file_picker-8.0.3",
+      "rootUri": "file:///C:/Users/xpoiz/AppData/Local/Pub/Cache/hosted/pub.dev/file_picker-8.0.5",
       "packageUri": "lib/",
       "languageVersion": "2.19"
     },
@@ -350,7 +350,7 @@
       "languageVersion": "3.3"
     }
   ],
-  "generated": "2024-05-25T08:00:19.991215Z",
+  "generated": "2024-06-27T11:41:27.106870Z",
   "generator": "pub",
   "generatorVersion": "3.3.0"
 }

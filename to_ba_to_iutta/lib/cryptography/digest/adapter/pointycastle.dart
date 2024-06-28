@@ -43,6 +43,6 @@ class PackagePointyCastleDigestAdapter implements pc.Digest {
 
   @override
   void updateByte(int inp) {
-    return _processor.put(Uint8List.fromList([inp]));
+    return _processor.put(Bytes.fromList([inp]));
   }
 }

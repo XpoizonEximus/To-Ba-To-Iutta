@@ -94,7 +94,7 @@ class PackageDartSinkCryptographyDigestAdapter implements dc.DartHashSink {
   @override
   void add(List<int> chunk) {
     if (_closed) throw StateError("Bad state: Sink closed");
-    _processor.put(Uint8List.fromList(chunk));
+    _processor.put(Bytes.fromList(chunk));
   }
 
   @override

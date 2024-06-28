@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
-import 'package:to_ba_to_iutta/service/symmetric_encrypt_service.dart';
 import 'package:to_ba_to_iutta/view/pages/page.dart' as local;
 
 class AsymmetricEncryptPage extends local.Page {
@@ -24,13 +23,12 @@ class _SymmetricEncryptPageState extends State<AsymmetricEncryptPage> {
     super.dispose();
   }
 
-  final service = SymmetricEncryptService();
 
   void onSubmit() async {
-    service.key = keyController.text;
-    await service.processText(inputController.text);
-    final (text, _) = await service.getResultText();
-    outputController.text = text;
+    // service.key = keyController.text;
+    // await service.processText(inputController.text);
+    // final (text, _) = await service.getResultText();
+    // outputController.text = text;
   }
 
   @override

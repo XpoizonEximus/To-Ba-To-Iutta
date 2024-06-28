@@ -31,7 +31,7 @@ class _PointyCastleDigestProcessor extends DigestProcessor {
   Bytes _lastResult;
 
   _PointyCastleDigestProcessor(this._algorithm, {super.syncronized = true})
-      : _lastResult = _algorithm.process(Uint8List.fromList([]));
+      : _lastResult = _algorithm.process(Bytes.fromList([]));
 
   @override
   void put(Bytes chunk) {
@@ -43,7 +43,7 @@ class _PointyCastleDigestProcessor extends DigestProcessor {
   FutureOr<Bytes> get result {
     Bytes f() {
       if (_bufferLength != 0) {
-        _lastResult = Uint8List(_algorithm.digestSize);
+        _lastResult = Bytes(_algorithm.digestSize);
         _algorithm.doFinal(_lastResult, 0);
       }
       _bufferLength = 0;

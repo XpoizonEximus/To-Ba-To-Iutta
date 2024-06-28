@@ -14,8 +14,8 @@ class UnauthenticatedStreamCipherParamsInteractor
           "These are the general parameters of the stream cipher. Authentication is handled separately using an authenticator."});
 
   @override
-  AuthenticatedStreamCipherParamsInteractorState createState() =>
-      AuthenticatedStreamCipherParamsInteractorState();
+  UnauthenticatedStreamCipherParamsInteractorState createState() =>
+      UnauthenticatedStreamCipherParamsInteractorState();
 }
 
 class UnauthenticatedStreamCipherParamsInteractorState<

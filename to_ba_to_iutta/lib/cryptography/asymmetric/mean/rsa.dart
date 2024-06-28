@@ -44,18 +44,18 @@ class RsaAsymmetricCipher extends _PointyCastleAsymmetricCipher {
     if (variables.p == null || variables.q == null) {
       throw ArgumentError.notNull("Private exponent of asymmetric key");
     }
+    if (variables.p == null || variables.q == null) {
+      throw ArgumentError("Private parameters of asymmetric key not found");
+    }
     return pc.PrivateKeyParameter<pca.RSAPrivateKey>(pca.RSAPrivateKey(
         variables.modulus, variables.exponent, variables.p, variables.q));
   }
 
   @override
   pc.PublicKeyParameter<pca.RSAPublicKey> publicKey(
-      AsymmetricCipherVariables variables) {
-    final privateKey = pca.RSAPrivateKey(
-        variables.modulus, variables.exponent, variables.p, variables.q);
-    return pc.PublicKeyParameter<pca.RSAPublicKey>(
-        pca.RSAPublicKey(privateKey.modulus!, privateKey.publicExponent!));
-  }
+          AsymmetricCipherVariables variables) =>
+      pc.PublicKeyParameter<pca.RSAPublicKey>(
+          pca.RSAPublicKey(variables.modulus, variables.exponent));
 }
 
 class RsaAsymmetricCipherImplementationConverter

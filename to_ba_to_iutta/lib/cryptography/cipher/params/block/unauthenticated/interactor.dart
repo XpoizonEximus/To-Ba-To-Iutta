@@ -14,8 +14,8 @@ class UnauthenticatedBlockCipherParamsInteractor
           "These are the general parameters of the block cipher. Authentication is handled separately using an authenticator."});
 
   @override
-  AuthenticatedBlockCipherParamsInteractorState createState() =>
-      AuthenticatedBlockCipherParamsInteractorState();
+  UnauthenticatedBlockCipherParamsInteractorState createState() =>
+      UnauthenticatedBlockCipherParamsInteractorState();
 }
 
 class UnauthenticatedBlockCipherParamsInteractorState<

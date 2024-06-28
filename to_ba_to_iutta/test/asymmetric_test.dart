@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:pointycastle/export.dart' as pc;
 import 'package:to_ba_to_iutta/cryptography/asymmetric/index.dart';
 import 'package:to_ba_to_iutta/cryptography/cipher/index.dart';
-import 'package:to_ba_to_iutta/cryptography/mean/index.dart';
+import 'package:to_ba_to_iutta/cryptography/index/index.dart';
 
 import 'list_matcher.dart';
 
@@ -16,21 +16,29 @@ Future testImplementation(AsymmetricCipherData data) async {
     Bytes.fromList([1, 2, 3])
   ];
 
+  
+  final key2 = await const AsymmetricCipherVariablesSerializer().load(
+      StreamQueue(const AsymmetricCipherVariablesSerializer().serialize(key)));
+  final key3 = AsymmetricCipherVariables(
+      modulus: key.modulus,
+      exponent: pc.RSAPrivateKey(key2.modulus, key2.exponent, key2.p, key2.q)
+          .publicExponent!);
+  final key4 = await const AsymmetricCipherVariablesSerializer().load(
+      StreamQueue(const AsymmetricCipherVariablesSerializer().serialize(key3)));
+
   final cipherText = await cipher
-      .encrypt(StreamQueue(Stream.fromIterable(test1)), key)
+      .encrypt(StreamQueue(Stream.fromIterable(test1)), key4)
       .toList();
   // for (final chunk in cipherText) {
   //   print(chunk);
   // }
   // print("-------------------");
 
+
   final plainText = await (await AsymmetricCipherDataSerializer()
           .load(StreamQueue(AsymmetricCipherDataSerializer().serialize(data))))
       .newMean
-      .decrypt(
-          StreamQueue(Stream.fromIterable(cipherText)),
-          await const AsymmetricCipherVariablesSerializer().load(StreamQueue(
-              const AsymmetricCipherVariablesSerializer().serialize(key))))
+      .decrypt(StreamQueue(Stream.fromIterable(cipherText)), key)
       .toList();
   // for (final chunk in plainText) {
   //   print(chunk);

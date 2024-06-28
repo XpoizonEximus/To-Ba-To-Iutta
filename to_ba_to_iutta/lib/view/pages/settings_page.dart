@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:to_ba_to_iutta/cryptography/cipher/index.dart';
-import 'package:to_ba_to_iutta/cryptography/digest/index.dart';
-import 'package:to_ba_to_iutta/persistent/settings.dart';
+import 'package:to_ba_to_iutta/persistent/provider/symmetric.dart';
 import "page.dart" as local;
 
 class SettingsPage extends local.Page {
@@ -18,9 +17,9 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   void initState() {
     super.initState();
-    SettingsProvider().symmetric.then((value) => setState(() {
-          _initial = value;
-        }));
+    SymmetricAlgorithmProvider()
+        .algorithm
+        .then((value) => _initial = value.cipher.data);
   }
 
   @override

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
-import 'package:to_ba_to_iutta/service/symmetric_encrypt_service.dart';
+import 'package:to_ba_to_iutta/service/index/symmetric/encrypt.dart';
 import 'package:to_ba_to_iutta/view/pages/page.dart' as local;
 
 class SymmetricEncryptPage extends local.Page {
@@ -12,25 +12,16 @@ class SymmetricEncryptPage extends local.Page {
 }
 
 class _SymmetricEncryptPageState extends State<SymmetricEncryptPage> {
-  final inputController = TextEditingController();
-  final keyController = TextEditingController();
-  final outputController = TextEditingController();
-
   @override
   void dispose() {
-    inputController.dispose();
-    keyController.dispose();
-
+    service.dispose();
     super.dispose();
   }
 
   final service = SymmetricEncryptService();
 
   void onSubmit() async {
-    service.key = keyController.text;
-    await service.processText(inputController.text);
-    final (text, _) = await service.getResultText();
-    outputController.text = text;
+    await service.serve(() => false);
   }
 
   @override
@@ -60,7 +51,7 @@ class _SymmetricEncryptPageState extends State<SymmetricEncryptPage> {
               child: Column(
                 children: [
                   TextField(
-                    controller: inputController,
+                    controller: service.inputController,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: "Type something to encrypt",
@@ -101,7 +92,7 @@ class _SymmetricEncryptPageState extends State<SymmetricEncryptPage> {
                       children: [
                         Expanded(
                             child: TextField(
-                          controller: keyController,
+                          controller: service.keyManager.keyController,
                           decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               hintText: "Enter your encryption key",
@@ -130,7 +121,7 @@ class _SymmetricEncryptPageState extends State<SymmetricEncryptPage> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                           TextField(
-                            controller: keyController,
+                            controller: service.keyManager.keyController,
                             decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
                                 hintText: "Enter your encryption key",
@@ -162,7 +153,7 @@ class _SymmetricEncryptPageState extends State<SymmetricEncryptPage> {
               child: Column(
                 children: [
                   TextField(
-                    controller: outputController,
+                    controller: service.outputController,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: "Output",
@@ -170,6 +161,8 @@ class _SymmetricEncryptPageState extends State<SymmetricEncryptPage> {
                           "*This is the cipher representing your encrypted data",
                     ),
                     readOnly: true,
+                    keyboardType: TextInputType.multiline,
+                    maxLines: null,
                   ),
                   const SizedBox(height: 16),
                   SizedBox(
