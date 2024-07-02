@@ -25,7 +25,7 @@ class Argon2IdKdfParamsInteractorState
     yield* super.buildParams(context);
     yield IntInteractor(
       key: _iterationsKey,
-      initial: widget.initial.iterations,
+      initial: (initial as Argon2IdKdfParams).iterations,
       title: "Number of iterations",
       description:
           "This parameter dictates how many times the memory is filled and then iterated over, affecting the time cost of the algorithm and the security.",
@@ -33,7 +33,7 @@ class Argon2IdKdfParamsInteractorState
     );
     yield IntInteractor(
       key: _memoryKey,
-      initial: widget.initial.memory,
+      initial: (initial as Argon2IdKdfParams).memory,
       title: "Memory used",
       description:
           "This parameter determines how much memory (RAM) the algorithm will use, contributing to its resistance against brute-force attacks and memory-hard functions.",
@@ -41,7 +41,7 @@ class Argon2IdKdfParamsInteractorState
     );
     yield IntInteractor(
       key: _parallelismKey,
-      initial: widget.initial.parallelism,
+      initial: (initial as Argon2IdKdfParams).parallelism,
       title: "Number of iterations",
       description:
           "This parameter specifies how many threads will be used to parallelize the computation, affecting the time cost and leveraging modern multi-core processors.",
@@ -51,11 +51,9 @@ class Argon2IdKdfParamsInteractorState
 
   @override
   Argon2IdKdfParams get current => Argon2IdKdfParams(super.current,
-      iterations:
-          _iterationsKey.currentState?.current ?? widget.initial.iterations,
-      memory: _memoryKey.currentState?.current ?? widget.initial.memory,
-      parallelism:
-          _parallelismKey.currentState?.current ?? widget.initial.parallelism);
+      iterations: _iterationsKey.currentState!.current,
+      memory: _memoryKey.currentState!.current,
+      parallelism: _parallelismKey.currentState!.current);
 }
 
 typedef Argon2IdKdfParamsInteractorKey

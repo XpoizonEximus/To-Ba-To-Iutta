@@ -27,13 +27,13 @@ class AsymmetricCipherParamsInteractorState<
   Iterable<Widget> buildParams(BuildContext context) sync* {
     yield NamedEnumInteractor(
         key: _engineKey,
-        initial: widget.initial.engine,
+        initial: initial.engine,
         title: "Asymmetric cipher engine",
         description: "The algorithm itself used for encryption",
         values: AsymmetricCipherEngine.values);
     yield NamedEnumInteractor(
         key: _encodingKey,
-        initial: widget.initial.encoding,
+        initial: initial.encoding,
         title: "Asymmetric encoding",
         description:
             "The encoding prepares the input for encryption. Asymmetric encryption is highly sensible, therefore a specialized algorithm is needed.",
@@ -42,8 +42,8 @@ class AsymmetricCipherParamsInteractorState<
 
   @override
   AsymmetricCipherParams get current => AsymmetricCipherParams(
-      _engineKey.currentState?.current ?? widget.initial.engine,
-      _encodingKey.currentState?.current ?? widget.initial.encoding);
+      _engineKey.currentState!.current,
+      _encodingKey.currentState!.current);
 }
 
 typedef AsymmetricCipherParamsInteractorKey = InteractorKey<

@@ -18,27 +18,18 @@ class AuthenticatorDataInteractorState extends DataInteractorState<
   final _implementationKey = AuthenticatorImplementationInteractorKey();
   final _paramsKey = AuthenticatorParamsInteractorKey();
 
-  late AuthenticatorImplementation _implementation;
-
   @override
-  void initState() {
-    _implementation =
-        widget.initial.implementation as AuthenticatorImplementation;
-    super.initState();
-  }
-
-  @override
-  Widget buildImplementation(BuildContext context) =>
+  AuthenticatorImplementationInteractor buildImplementation(
+          BuildContext context) =>
       AuthenticatorImplementationInteractor(
-        initial: widget.initial.implementation as AuthenticatorImplementation,
-        onChanged: (implementation) => setState(() {
-          _implementation = implementation;
-        }),
+        key: _implementationKey,
+        initial: implementation as AuthenticatorImplementation,
+        onChanged: changeImplementation,
       );
 
   @override
-  Widget buildParams(BuildContext context) => _implementation.requiredParams
-      .interactor(_implementation.requiredParams.defaults, key: _paramsKey);
+  ParamsInteractor buildParams(BuildContext context) =>
+      implementation.requiredParams.interactor(params, key: _paramsKey);
 
   @override
   AuthenticatorData get current => AuthenticatorData(

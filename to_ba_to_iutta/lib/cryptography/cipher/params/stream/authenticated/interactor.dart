@@ -28,7 +28,7 @@ class AuthenticatedStreamCipherParamsInteractorState<
     yield* super.buildParams(context);
     yield NamedEnumInteractor<AuthenticatedStreamEngine>(
         key: _engineKey,
-        initial: widget.initial.engine,
+        initial: (initial as AuthenticatedStreamCipherParams).engine,
         title: "Engine",
         description:
             "This is the algorithm itself. It is also coupled with a specialized version of the Poly1305 authenticator to provide data integrity assurance.",
@@ -38,8 +38,7 @@ class AuthenticatedStreamCipherParamsInteractorState<
   @override
   AuthenticatedStreamCipherParams get current =>
       AuthenticatedStreamCipherParams(
-          _engineKey.currentState?.current ?? widget.initial.engine,
-          super.current);
+          _engineKey.currentState!.current, super.current);
 }
 
 typedef AuthenticatedStreamCipherParamsInteractorKey

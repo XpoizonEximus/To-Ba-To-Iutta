@@ -28,7 +28,7 @@ class AuthenticatedBlockCipherParamsInteractorState<
     yield* super.buildParams(context);
     yield NamedEnumInteractor<AuthenticatedModeOfOperation>(
         key: _mooKey,
-        initial: widget.initial.moo,
+        initial: (initial as AuthenticatedBlockCipherParams).moo,
         title: "Mode of operation",
         description:
             "This is the linker of the algorithm. The mode of operation tells the algorithm how to handle the succesive blocks of the input and also defines the authentication mechanism.",
@@ -37,7 +37,7 @@ class AuthenticatedBlockCipherParamsInteractorState<
 
   @override
   AuthenticatedBlockCipherParams get current => AuthenticatedBlockCipherParams(
-      _mooKey.currentState?.current ?? widget.initial.moo, super.current);
+      _mooKey.currentState!.current, super.current);
 }
 
 typedef AuthenticatedBlockCipherParamsInteractorKey

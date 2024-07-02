@@ -17,6 +17,27 @@ abstract class Interactor<T> extends StatefulWidget {
 
 abstract class InteractorState<T, I extends Interactor> extends State<I> {
   T get current;
+  late T _initial;
+
+  T get initial => _initial;
+  set initial(T value) => setState(() {
+        _initial = value;
+      });
+
+  @override
+  void initState() {
+    super.initState();
+    _initial = widget.initial;
+  }
+
+  @override
+  void didUpdateWidget(covariant I oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.initial != widget.initial) {
+      initial = widget.initial;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

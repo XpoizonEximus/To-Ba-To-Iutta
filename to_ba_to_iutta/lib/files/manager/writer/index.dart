@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
@@ -18,8 +19,7 @@ class FileWriter extends FileManager {
   Future<bool> get choose async {
     filePath = await FilePicker.platform.saveFile(
         dialogTitle: 'Save',
-        fileName:
-            _name != null ? setExtension(_name!, types.types.first) : null,
+        fileName: _name,
         allowedExtensions: types.types.toList(),
         bytes: Bytes.fromList([0]),
         lockParentWindow: true);
@@ -27,6 +27,12 @@ class FileWriter extends FileManager {
     return filePath != null;
   }
 
-  Future put(Stream<Bytes> data) =>
-      file.openWrite(mode: FileMode.writeOnly).addStream(data);
+  Future put(Stream<Bytes> data) async {
+    bool replaced = false;
+    await for (final chunk in data) {
+      await file.writeAsBytes(chunk,
+          mode: replaced ? FileMode.writeOnlyAppend : FileMode.writeOnly);
+      replaced = true;
+    }
+  }
 }

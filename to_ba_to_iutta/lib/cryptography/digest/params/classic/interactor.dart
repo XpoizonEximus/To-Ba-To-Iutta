@@ -26,7 +26,7 @@ class ClassicDigestParamsInteractorState
 
     yield NamedEnumInteractor<ClassicDigestSize>(
         key: _key,
-        initial: widget.initial.size,
+        initial: (initial as ClassicDigestParams).size,
         title: "Output size",
         description:
             "The length of the resulting output. A higher value implies increased security, but also longer ciphertexts and possibly increased compoting time.",
@@ -34,8 +34,8 @@ class ClassicDigestParamsInteractorState
   }
 
   @override
-  ClassicDigestParams get current => ClassicDigestParams(
-      super.current, _key.currentState?.current ?? widget.initial.size);
+  ClassicDigestParams get current =>
+      ClassicDigestParams(super.current, _key.currentState!.current);
 }
 
 typedef ClassicDigestParamsInteractorKey

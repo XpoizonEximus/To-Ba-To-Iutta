@@ -56,6 +56,14 @@ class RsaAsymmetricCipher extends _PointyCastleAsymmetricCipher {
           AsymmetricCipherVariables variables) =>
       pc.PublicKeyParameter<pca.RSAPublicKey>(
           pca.RSAPublicKey(variables.modulus, variables.exponent));
+
+  @override
+  AsymmetricCipherVariables extractPublicKey(
+      AsymmetricCipherVariables variables) {
+    final pk = privateKey(variables);
+    return AsymmetricCipherVariables(
+        modulus: pk.key.modulus!, exponent: pk.key.publicExponent!);
+  }
 }
 
 class RsaAsymmetricCipherImplementationConverter

@@ -17,11 +17,13 @@ abstract class CryptographicProcessor {
       if (version != 0) {
         throw ArgumentError("Invalid version");
       }
+      final k = await key;
       yield* algorithm.compute(
-          forDecryption, StreamQueue(byteInput.restChunks), await key);
+          forDecryption, StreamQueue(byteInput.restChunks), k);
     } else {
       yield Bytes.fromList([0]);
-      yield* algorithm.compute(forDecryption, input, await key);
+      final k = await key;
+      yield* algorithm.compute(forDecryption, input, k);
     }
   }
 

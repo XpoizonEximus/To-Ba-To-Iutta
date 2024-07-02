@@ -9,10 +9,10 @@ import 'package:to_ba_to_iutta/service/algorithm/packager/asymmetric.dart';
 class AsymmetricAlgorithmProvider
     extends AlgorithmProvider<AsymmetricAlgorithm> {
   AsymmetricAlgorithmProvider()
-      : super(SettingsProvider(false, _defaults), _steticPackager);
-  static final _steticPackager = AsymmetricPackager();
+      : super(SettingsProvider(true, _defaults), _staticPackager);
+  static final _staticPackager = AsymmetricPackager();
 
   static Stream<Byte> get _defaults =>
-      _steticPackager.serialize(AsymmetricAlgorithm(
+      _staticPackager.serialize(AsymmetricAlgorithm(
           AsymmetricCipherData.defaults.newMean, CipherData.defaults.newMean));
 }

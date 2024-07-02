@@ -18,7 +18,7 @@ class SettingsProvider {
 
   Future<Bytes> get get async {
     Future<Bytes> value() async =>
-        utf8.encode(await _database.readSettings(_id));
+        ascii.encode(await _database.readSettings(_id));
 
     try {
       return await value();
@@ -29,8 +29,9 @@ class SettingsProvider {
   }
 
   Future set(Bytes value) async {
-    assert(_symmetricId ==
-        await _database.writeSettings(_id, utf8.decode(value as List<int>)));
+    assert(
+      _id ==
+        await _database.writeSettings(_id, ascii.decode(value as List<int>)));
     return;
   }
 }

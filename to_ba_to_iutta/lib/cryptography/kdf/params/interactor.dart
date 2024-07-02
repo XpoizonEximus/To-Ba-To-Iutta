@@ -20,7 +20,7 @@ class KdfParamsInteractorState<I extends KdfParamsInteractor>
   Iterable<Widget> buildParams(BuildContext context) sync* {
     yield IntInteractor(
         key: _nonceSizeKey,
-        initial: widget.initial.nonceSize,
+        initial: initial.nonceSize,
         title: "Nonce size",
         description:
             "The derivation process requires the generation of a new random list of bytes every time. Here specify the size of this list.",
@@ -29,7 +29,7 @@ class KdfParamsInteractorState<I extends KdfParamsInteractor>
 
   @override
   KdfParams get current => KdfParams(
-      _nonceSizeKey.currentState?.current ?? widget.initial.nonceSize);
+      _nonceSizeKey.currentState!.current);
 }
 
 typedef KdfParamsInteractorKey

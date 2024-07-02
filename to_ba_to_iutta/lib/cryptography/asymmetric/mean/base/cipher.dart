@@ -6,6 +6,9 @@ abstract class AsymmetricCipher extends Mean {
   @override
   AsymmetricCipherData get data;
 
+  AsymmetricCipherVariables extractPublicKey(
+      AsymmetricCipherVariables variables);
+
   Stream<Bytes> encrypt(
       StreamQueue<Bytes> input, AsymmetricCipherVariables variables);
   Stream<Bytes> decrypt(

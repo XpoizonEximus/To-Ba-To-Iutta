@@ -30,20 +30,20 @@ class UnauthenticatedStreamCipherParamsInteractorState<
     yield* super.buildParams(context);
     yield NamedEnumInteractor<UnauthenticatedStreamEngine>(
         key: _engineKey,
-        initial: widget.initial.engine,
+        initial: (initial as UnauthenticatedStreamCipherParams).engine,
         title: "Engine",
         description: "This is the algorithm itself used for encryption;",
         values: UnauthenticatedStreamEngine.values);
     yield AuthenticatorDataInteractor(
       key: _authenticatorKey,
-      initial: widget.initial.authenticatorData,
+      initial: (initial as UnauthenticatedStreamCipherParams).authenticatorData,
       title: "Authenticator algorithm",
       description:
           "The cipher uses a authenticator to ensure the data has not been tampered with at the recieving end. Here update the data of the authenticator used.",
     );
     yield IntInteractor(
       key: _roundsKey,
-      initial: widget.initial.rounds,
+      initial: (initial as UnauthenticatedStreamCipherParams).rounds,
       title: "Rounds",
       description:
           "Stream ciphers work by applying the same algorithm multiple times on a key to generate a keystream. Here specify the number of times (20 recommended).",
@@ -54,10 +54,9 @@ class UnauthenticatedStreamCipherParamsInteractorState<
   @override
   UnauthenticatedStreamCipherParams get current =>
       UnauthenticatedStreamCipherParams(
-          _authenticatorKey.currentState?.current ??
-              widget.initial.authenticatorData,
-          _engineKey.currentState?.current ?? widget.initial.engine,
-          _roundsKey.currentState?.current ?? widget.initial.rounds,
+          _authenticatorKey.currentState!.current,
+          _engineKey.currentState!.current,
+          _roundsKey.currentState!.current,
           super.current);
 }
 

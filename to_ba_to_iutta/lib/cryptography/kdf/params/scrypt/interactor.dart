@@ -26,7 +26,7 @@ class ScryptKdfParamsInteractorState
     yield* super.buildParams(context);
     yield IntInteractor(
       key: _costFactorExponentKey,
-      initial: widget.initial.costFactorExponent,
+      initial: (initial as ScryptKdfParams).costFactorExponent,
       title: "Cost factor",
       description:
           "Dictates the overall computational and memory effort required, enhancing resistance against brute-force attacks.",
@@ -35,7 +35,7 @@ class ScryptKdfParamsInteractorState
     );
     yield IntInteractor(
       key: _blockSizeFactorKey,
-      initial: widget.initial.blockSizeFactor,
+      initial: (initial as ScryptKdfParams).blockSizeFactor,
       title: "Block Size Factor",
       description:
           "Adjusts the memory usage and internal parallelism, impacting the function's performance and security.",
@@ -44,7 +44,7 @@ class ScryptKdfParamsInteractorState
     );
     yield IntInteractor(
       key: _parallelisationFactorKey,
-      initial: widget.initial.parallelisationFactor,
+      initial: (initial as ScryptKdfParams).parallelisationFactor,
       title: "Parallelization Factor",
       description:
           "Sets the number of parallel threads, influencing the function's speed and ability to utilize multi-core processors.",
@@ -54,12 +54,9 @@ class ScryptKdfParamsInteractorState
 
   @override
   ScryptKdfParams get current => ScryptKdfParams(super.current,
-      costFactorExponent: _costFactorExponentKey.currentState?.current ??
-          widget.initial.costFactorExponent,
-      blockSizeFactor: _blockSizeFactorKey.currentState?.current ??
-          widget.initial.blockSizeFactor,
-      parallelisationFactor: _parallelisationFactorKey.currentState?.current ??
-          widget.initial.parallelisationFactor);
+      costFactorExponent: _costFactorExponentKey.currentState!.current,
+      blockSizeFactor: _blockSizeFactorKey.currentState!.current,
+      parallelisationFactor: _parallelisationFactorKey.currentState!.current);
 }
 
 typedef ScryptKdfParamsInteractorKey

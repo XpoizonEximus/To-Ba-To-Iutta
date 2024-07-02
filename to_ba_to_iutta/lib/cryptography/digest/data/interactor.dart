@@ -15,31 +15,23 @@ class DigestDataInteractor extends DataInteractor<DigestData> {
 class DigestDataInteractorState
     extends DataInteractorState<DigestData, DigestDataInteractor> {
   final _paramsKey = DigestParamsInteractorKey();
-
-  late DigestImplementation _implementation;
-
-  @override
-  void initState() {
-    _implementation = widget.initial.implementation as DigestImplementation;
-    super.initState();
-  }
+  final _implementationKey = DigestImplementationInteractorKey();
 
   @override
-  Widget buildImplementation(BuildContext context) =>
+  DigestImplementationInteractor buildImplementation(BuildContext context) =>
       DigestImplementationInteractor(
-        initial: widget.initial.implementation as DigestImplementation,
-        onChanged: (implementation) => setState(() {
-          _implementation = implementation;
-        }),
+        key: _implementationKey,
+        initial: implementation as DigestImplementation,
+        onChanged: changeImplementation,
       );
 
   @override
-  Widget buildParams(BuildContext context) => _implementation.requiredParams
-      .interactor(_implementation.requiredParams.defaults, key: _paramsKey);
+  ParamsInteractor buildParams(BuildContext context) =>
+      implementation.requiredParams.interactor(params, key: _paramsKey);
 
   @override
-  DigestData get current => DigestData(_implementation,
-      _paramsKey.currentState?.current ?? widget.initial.params);
+  DigestData get current => DigestData(_implementationKey.currentState!.current,
+      _paramsKey.currentState!.current);
 }
 
 typedef DigestDataInteractorKey = InteractorKey<DigestDataInteractorState>;

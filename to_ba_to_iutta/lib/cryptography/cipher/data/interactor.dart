@@ -4,9 +4,9 @@ class CipherDataInteractor extends DataInteractor<CipherData> {
   const CipherDataInteractor(
       {super.key,
       required super.initial,
-      super.title = "Key derivation function data",
+      super.title = "Cipher data",
       super.description =
-          "Select the implementation wanted for the Cipher algorithm and its parameters."});
+          "Select the implementation wanted for the cipher algorithm and its parameters."});
 
   @override
   CipherDataInteractorState createState() => CipherDataInteractorState();
@@ -17,26 +17,17 @@ class CipherDataInteractorState
   final _implementationKey = CipherImplementationInteractorKey();
   final _paramsKey = CipherParamsInteractorKey();
 
-  late CipherImplementation _implementation;
-
   @override
-  void initState() {
-    _implementation = widget.initial.implementation as CipherImplementation;
-    super.initState();
-  }
-
-  @override
-  Widget buildImplementation(BuildContext context) =>
+  CipherImplementationInteractor buildImplementation(BuildContext context) =>
       CipherImplementationInteractor(
-        initial: widget.initial.implementation as CipherImplementation,
-        onChanged: (implementation) => setState(() {
-          _implementation = implementation;
-        }),
+        key: _implementationKey,
+        initial: implementation as CipherImplementation,
+        onChanged: changeImplementation,
       );
 
   @override
-  Widget buildParams(BuildContext context) => _implementation.requiredParams
-      .interactor(_implementation.requiredParams.defaults, key: _paramsKey);
+  ParamsInteractor buildParams(BuildContext context) =>
+      implementation.requiredParams.interactor(params, key: _paramsKey);
 
   @override
   CipherData get current => CipherData(_implementationKey.currentState!.current,

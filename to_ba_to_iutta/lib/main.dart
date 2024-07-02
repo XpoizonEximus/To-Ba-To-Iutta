@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:to_ba_to_iutta/view/pages/transform/asymmetric_decrypt_page.dart';
-import 'package:to_ba_to_iutta/view/pages/transform/asymmetric_encrypt_page.dart';
+import 'package:material_symbols_icons/material_symbols_icons.dart';
+import 'package:to_ba_to_iutta/view/pages/key_manager/index.dart';
+import 'package:to_ba_to_iutta/view/pages/transform/asymmetric/decrypt.dart';
+import 'package:to_ba_to_iutta/view/pages/transform/asymmetric/encrypt.dart';
 import 'package:to_ba_to_iutta/view/pages/page.dart' as local;
-import 'package:to_ba_to_iutta/view/pages/home_page/index.dart';
-import 'package:to_ba_to_iutta/view/pages/settings_page.dart';
-import 'package:to_ba_to_iutta/view/pages/transform/symmetric_decrypt_page.dart';
-import 'package:to_ba_to_iutta/view/pages/transform/symmetric_encrypt_page.dart';
+import 'package:to_ba_to_iutta/view/pages/home/index.dart';
+import 'package:to_ba_to_iutta/view/pages/settings/index.dart';
+import 'package:to_ba_to_iutta/view/pages/transform/symmetric/decrypt.dart';
+import 'package:to_ba_to_iutta/view/pages/transform/symmetric/encrypt.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 void main() {
@@ -57,7 +59,8 @@ class _PagesManagerState extends State<PagesManager> {
     const SymmetricDecryptPage(),
     const AsymmetricEncryptPage(),
     const AsymmetricDecryptPage(),
-    const SettingsPage()
+    const SettingsPage(),
+    const KeysManagerPage()
   ];
 
   int? _selectedIndex;
@@ -178,6 +181,16 @@ class _PagesManagerState extends State<PagesManager> {
                       leading: const Icon(Icons.lock_open),
                       onTap: () {
                         _selectPage(3);
+                        Navigator.pop(context);
+                      },
+                    ),
+                    ListTile(
+                      contentPadding: const EdgeInsets.only(
+                          left: 16.0 + tilesIndent, right: 16.0),
+                      title: const Text('Key manager'),
+                      leading: const Icon(Symbols.key_vertical_rounded),
+                      onTap: () {
+                        _selectPage(5);
                         Navigator.pop(context);
                       },
                     ),

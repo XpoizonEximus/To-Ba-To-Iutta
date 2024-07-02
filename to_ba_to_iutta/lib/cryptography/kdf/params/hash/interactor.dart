@@ -23,7 +23,7 @@ class HashKdfParamsInteractorState
     yield* super.buildParams(context);
     yield DigestDataInteractor(
       key: _digestDataKey,
-      initial: widget.initial.digestData,
+      initial: (initial as HashKdfParams).digestData,
       title: "Digest algorithm",
       description:
           "This algorithm uses a digest to derive the key. Here update the data of the digest used.",
@@ -31,8 +31,8 @@ class HashKdfParamsInteractorState
   }
 
   @override
-  HashKdfParams get current => HashKdfParams(super.current,
-      _digestDataKey.currentState?.current ?? widget.initial.digestData);
+  HashKdfParams get current =>
+      HashKdfParams(super.current, _digestDataKey.currentState!.current);
 }
 
 typedef HashKdfParamsInteractorKey

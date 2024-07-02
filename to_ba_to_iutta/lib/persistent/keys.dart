@@ -9,14 +9,14 @@ class AsymmetricKeysProvider {
   Future<Iterable<String>> get privates => _database.readKeys(false);
   Future<Iterable<String>> get publics => _database.readKeys(true);
 
-  Future<Bytes?> getKey(String name) async {
+  Future<Bytes?> getKey(String name, bool public) async {
     try {
-      return utf8.encode(await _database.readKey(name));
+      return base64Decode(await _database.readKey(name, public));
     } on EmptyDatabaseException {
       return null;
     }
   }
 
-  Future setKey(String name, Bytes value, bool public) async =>
-      _database.writeKey(name, utf8.decode(value), public);
+  Future setKey(String name, Bytes? value, bool public) async => _database
+      .writeKey(name, value == null ? null : base64Encode(value), public);
 }

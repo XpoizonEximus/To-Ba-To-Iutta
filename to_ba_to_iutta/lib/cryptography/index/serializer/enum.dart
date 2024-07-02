@@ -18,6 +18,7 @@ class EnumSerializer<T> extends Serializer<T> {
     if (_values.length > 255) {
       throw UnimplementedError("Too many values in the enum");
     }
-    return _values[await input.next];
+    final v = await input.next;
+    return _values[v];
   }
 }

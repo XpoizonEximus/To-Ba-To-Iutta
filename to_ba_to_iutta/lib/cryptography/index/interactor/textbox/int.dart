@@ -14,29 +14,10 @@ class IntInteractor extends TextboxInteractor<int> {
 }
 
 class IntInteractorState extends TextboxInteractorState<int, IntInteractor> {
-  late final TextEditingController _controller;
   String? _errorMessage;
 
-  String get _initial => widget.initial.toString();
-
   @override
-  void initState() {
-    super.initState();
-    _controller = TextEditingController(text: _initial);
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  void didUpdateWidget(covariant IntInteractor oldWidget) {
-    super.didUpdateWidget(oldWidget);
-
-    if (oldWidget.initial != widget.initial) _controller.text = _initial;
-  }
+  String get initialString => initial.toString();
 
   String? _validateNumber(String value) {
     final number = int.tryParse(value);
@@ -47,12 +28,12 @@ class IntInteractorState extends TextboxInteractorState<int, IntInteractor> {
   }
 
   @override
-  int get current => int.parse(_controller.text);
+  int get current => int.parse(controller.text);
 
   @override
   Widget buildTextbox(BuildContext context) {
     return TextField(
-        controller: _controller,
+        controller: controller,
         keyboardType: TextInputType.number,
         inputFormatters: [
           FilteringTextInputFormatter.digitsOnly,
@@ -62,9 +43,11 @@ class IntInteractorState extends TextboxInteractorState<int, IntInteractor> {
           errorText: _errorMessage,
         ),
         onChanged: (value) {
-          setState(() {
-            _errorMessage = _validateNumber(value);
-          });
+          if (mounted) {
+            setState(() {
+              _errorMessage = _validateNumber(value);
+            });
+          }
         });
   }
 }

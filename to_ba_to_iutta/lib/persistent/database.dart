@@ -21,7 +21,7 @@ class DatabaseProvider {
         );
         CREATE TABLE $_keys(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT UNIQUE,
+        name TEXT,
         public INTEGER(1),
         value TEXT
         );""");
@@ -59,19 +59,25 @@ class DatabaseProvider {
     return list.map((element) => element['name'] as String);
   }
 
-  Future<int> writeKey(String name, String value, bool public) async {
+  Future<int> writeKey(String name, String? value, bool public) async {
     final db = await _database;
 
-    return await db.insert(
-        _keys, {'name': name, 'value': value, 'public': public ? 1 : 0},
-        conflictAlgorithm: ConflictAlgorithm.replace);
+    if (value == null) {
+      return await db.delete(_keys, where: "name = ?", whereArgs: [name]);
+    } else {
+      return await db.insert(
+          _keys, {'name': name, 'value': value, 'public': public ? 1 : 0},
+          conflictAlgorithm: ConflictAlgorithm.replace);
+    }
   }
 
-  Future<String> readKey(String name) async {
+  Future<String> readKey(String name, bool public) async {
     final db = await _database;
 
-    final list = await db
-        .query(_keys, where: "name = ?", whereArgs: [name], columns: ['value']);
+    final list = await db.query(_keys,
+        where: "name = ? AND public = ?",
+        whereArgs: [name, public ? 1 : 0],
+        columns: ['value']);
 
     if (list.isEmpty) {
       throw EmptyDatabaseException("No key with name id $name");

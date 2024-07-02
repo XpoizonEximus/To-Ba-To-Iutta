@@ -9,7 +9,7 @@ class AsymmetricCipherImplementation
           null,
           RsaAsymmetricCipherImplementationConverter(),
           AsymmetricCipherParamsImplementation.base,
-          "SM3");
+          "Default");
 
   const AsymmetricCipherImplementation(
       AsymmetricCipherImplementation? super.underlying,
@@ -35,9 +35,9 @@ class AsymmetricCipherImplementationInteractor
   AsymmetricCipherImplementationInteractor(
       {super.key,
       required super.initial,
-      super.title = "AsymmetricCipher algorithm",
+      super.title = "Asymmetric cipher algorithm",
       super.description =
-          "Select the type of AsymmetricCipher you want to use.",
+          "Select the type of Asymmetric cipher you want to use.",
       super.onChanged})
       : super(values: AsymmetricCipherImplementation.values);
 

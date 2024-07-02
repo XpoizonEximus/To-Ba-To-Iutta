@@ -21,23 +21,28 @@ class AsymmetricAlgorithm extends Algorithm {
             .load(StreamQueue(Stream.fromIterable(key)));
 
     if (forDecryption) {
-      final byteInput = DechunkedStreamQueue(input);
-      final encryptedSymmetricKey = serializer.load(byteInput);
-      final symmetricKeyChunks = await asymmetric
-          .decrypt(
-              StreamQueue(
-                  Stream.fromFuture(Future.value(encryptedSymmetricKey))),
-              asymmetricVariables)
-          .toList();
-      final symmetricNonce = await serializer.load(byteInput);
-      yield* symmetric.decrypt(
-          StreamQueue(byteInput.restChunks),
-          CipherVariables(
-              key: _flattenChunks(symmetricKeyChunks), nonce: symmetricNonce));
+      try {
+        final byteInput = DechunkedStreamQueue(input);
+        final encryptedSymmetricKey = serializer.load(byteInput);
+        final symmetricKeyChunks = await asymmetric
+            .decrypt(
+                StreamQueue(
+                    Stream.fromFuture(Future.value(encryptedSymmetricKey))),
+                asymmetricVariables)
+            .toList();
+        final symmetricNonce = await serializer.load(byteInput);
+        yield* symmetric.decrypt(
+            StreamQueue(byteInput.restChunks),
+            CipherVariables(
+                key: _flattenChunks(symmetricKeyChunks),
+                nonce: symmetricNonce));
+      } catch (e) {
+        throw Exception("There was an error upon decryption");
+      }
     } else {
       final symmetricKey = await symmetric.newKey;
       final encryptedSymmetricKeyChunks = await asymmetric
-          .encrypt(StreamQueue(Stream.fromFuture(Future.value(key))),
+          .encrypt(StreamQueue(Stream.fromFuture(Future.value(symmetricKey))),
               asymmetricVariables)
           .toList();
 

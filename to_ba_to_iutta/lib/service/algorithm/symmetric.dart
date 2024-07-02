@@ -16,15 +16,19 @@ class SymmetricAlgorithm extends Algorithm {
       bool forDecryption, StreamQueue<Bytes> input, Bytes key) async* {
     const serializer = BytesSerializer();
     if (forDecryption) {
-      final byteInput = DechunkedStreamQueue(input);
-      final kdfNonce = await serializer.load(byteInput);
-      final cipherNonce = await serializer.load(byteInput);
+      try {
+        final byteInput = DechunkedStreamQueue(input);
+        final kdfNonce = await serializer.load(byteInput);
+        final cipherNonce = await serializer.load(byteInput);
 
-      final derivedKey = await kdf.process(
-          key, KdfVariables(size: cipher.keySize, nonce: kdfNonce),
-          syncronized: false);
-      yield* cipher.decrypt(StreamQueue(byteInput.restChunks),
-          CipherVariables(key: derivedKey, nonce: cipherNonce));
+        final derivedKey = await kdf.process(
+            key, KdfVariables(size: cipher.keySize, nonce: kdfNonce),
+            syncronized: false);
+        yield* cipher.decrypt(StreamQueue(byteInput.restChunks),
+            CipherVariables(key: derivedKey, nonce: cipherNonce));
+      } catch (e) {
+        throw Exception("There was an error upon decryption");
+      }
     } else {
       final kdfNonce = await kdf.newNonce;
       final cipherNonce = await cipher.newNonce;

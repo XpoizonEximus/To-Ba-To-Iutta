@@ -12,6 +12,6 @@ abstract class FileManager {
   File get file => File(path!);
   String? get path => filePath;
   void revoke() => filePath = null;
-  String get name => basenameWithoutExtension(path!);
+  String get name => basename(path!);
   String get type => extension(path!);
 }

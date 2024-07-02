@@ -22,13 +22,14 @@ class AsymmetricKeyManager extends KeyManager {
 
   @override
   Future<Bytes> get decryptionKey async =>
-      (await keysProvider.getKey(keyController.value.text)) ??
+      (await keysProvider.getKey(keyController.text, false)) ??
       base64Decode(keyController.value.text);
 
   @override
-  Future<Bytes> get encryptionKey async =>
-      (await keysProvider.getKey(keyController.value.text)) ??
-      base64Decode(keyController.value.text);
+  Future<Bytes> get encryptionKey async {
+    final res = (await keysProvider.getKey(keyController.text, true));
+    return res ?? base64Decode(keyController.value.text);
+  }
 
   Future<Iterable<String>> related(String value) async {
     cache ??= await (forPublic ? keysProvider.publics : keysProvider.privates);
@@ -37,7 +38,7 @@ class AsymmetricKeyManager extends KeyManager {
         cache!.map((str) => MapEntry(str, _levenshtein(str, value))).toList();
     distances.sort((a, b) => a.value.compareTo(b.value));
 
-    return distances /*.take(n)*/ .map((entry) => entry.key);
+    return distances.map((entry) => entry.key);
   }
 }
 

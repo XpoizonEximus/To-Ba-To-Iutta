@@ -1,17 +1,23 @@
 import 'dart:convert';
 
 import 'package:async/async.dart';
+import 'package:cryptography/cryptography.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 import 'package:to_ba_to_iutta/bytes.dart';
+import 'package:to_ba_to_iutta/cryptography/asymmetric/index.dart';
 import 'package:to_ba_to_iutta/cryptography/cipher/index.dart';
 import 'package:to_ba_to_iutta/cryptography/kdf/index.dart';
+import 'package:to_ba_to_iutta/persistent/provider/asymmetric.dart';
 import 'package:to_ba_to_iutta/persistent/provider/symmetric.dart';
 import 'package:to_ba_to_iutta/service/algorithm/index.dart';
 import 'package:to_ba_to_iutta/service/algorithm/packager/index.dart';
 import 'package:to_ba_to_iutta/service/algorithm/packager/symmetric.dart';
+import 'package:to_ba_to_iutta/service/algorithm/symmetric.dart';
 import 'package:to_ba_to_iutta/service/index/symmetric/decrypt.dart';
 import 'package:to_ba_to_iutta/service/index/symmetric/encrypt.dart';
+
+import 'list_matcher.dart';
 
 void main() {
   sqfliteFfiInit();
@@ -105,7 +111,7 @@ void main() {
 
       print(se.inputBytes);
 
-      await se.serve(() => false);
+      await se.serve(() => Future.value(false));
       final ciphertextBytes = se.outputBytes;
 
       print(ciphertextBytes);
@@ -115,10 +121,61 @@ void main() {
       sd.inputController.text = base64Encode(ciphertextBytes);
       sd.keyManager.keyController.text = "ceva";
 
-      await sd.serve(() => false);
+      await sd.serve(() => Future.value(false));
       final outputBytes = sd.outputBytes;
       print(sd.outputBytes);
       print(sd.outputController.text);
+    });
+  });
+  group("Asymmetric encryption & decryption", () {
+    test("With algorithm", () async {
+      final algorithm = await AsymmetricAlgorithmProvider().algorithm;
+      final input = Bytes.fromList([1, 2, 3]);
+
+      final privateKey = await algorithm.asymmetric.newKey;
+      final publicKey = algorithm.asymmetric.extractPublicKey(privateKey);
+
+      final privateKeyList = Bytes.fromList(
+          await const AsymmetricCipherVariablesSerializer()
+              .serialize(privateKey)
+              .toList());
+      final publicKeyList = Bytes.fromList(
+          await const AsymmetricCipherVariablesSerializer()
+              .serialize(publicKey)
+              .toList());
+
+      final ciphertextStream = algorithm.compute(false,
+          StreamQueue(Stream.fromFuture(Future.value(input))), publicKeyList);
+
+      print(flatten(await ciphertextStream.toList()));
+    });
+  });
+  group("Persistent", () {
+    test("Settings Provider", () async {
+      final provider = SymmetricAlgorithmProvider();
+      final index = CipherImplementation.values.indexOf(
+          (await provider.algorithm).cipher.data.implementation
+              as CipherImplementation);
+      print(index);
+
+      final provider2 = SymmetricAlgorithmProvider();
+      await provider2.setAlgorithm(SymmetricAlgorithm(
+          CipherData(
+                  CipherImplementation.values[index - 1],
+                  CipherImplementation
+                      .values[index - 1].requiredParams.defaults)
+              .newMean,
+          (await provider.algorithm).kdf));
+
+      final index2 = CipherImplementation.values.indexOf(
+          (await provider.algorithm).cipher.data.implementation
+              as CipherImplementation);
+      print(index2);
+
+      final index3 = CipherImplementation.values.indexOf(
+          (await provider2.algorithm).cipher.data.implementation
+              as CipherImplementation);
+      print(index3);
     });
   });
 }

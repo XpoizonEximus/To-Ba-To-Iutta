@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import "package:cryptography/cryptography.dart" as c;
 import 'package:pointycastle/api.dart';
 import 'package:pointycastle/export.dart' as pc;
+import 'package:to_ba_to_iutta/bytes.dart';
 import 'package:to_ba_to_iutta/cryptography/authenticator/index.dart';
 import 'package:to_ba_to_iutta/cryptography/cipher/index.dart';
 import 'package:to_ba_to_iutta/cryptography/index/index.dart';
@@ -31,7 +32,7 @@ Future testImplementation(CipherData data) async {
   final plainText = await (await CipherDataSerializer()
           .load(StreamQueue(CipherDataSerializer().serialize(data))))
       .newMean
-      .decrypt(StreamQueue(Stream.fromIterable(cipherText)), vars)
+      .decrypt(StreamQueue(Stream.fromFuture(Future.value(flatten(cipherText)))), vars)
       .toList();
   // for (final chunk in plainText) {
   //   print(chunk);

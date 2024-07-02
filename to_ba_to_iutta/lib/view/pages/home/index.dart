@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:material_symbols_icons/material_symbols_icons.dart';
 import 'package:to_ba_to_iutta/view/components/big_tonal_tile_button.dart';
 import 'package:to_ba_to_iutta/view/pages/page.dart' as local;
-import 'package:to_ba_to_iutta/view/pages/home_page/section.dart';
+import 'package:to_ba_to_iutta/view/pages/home/section.dart';
 
 class HomePage extends local.Page {
   const HomePage(
@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
               title: "Asymmetric encryption",
               content:
                   "Asymmetric algorythms use different keys for encryption and decryption. You will need to first recieve the encryption key from your recipient.",
-              onPressed: widget.selectSymmetricDecryption,
+              onPressed: widget.selectAsymmetricEncryption,
             )
           ],
         ),
@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
               title: "Symmetric decryption",
               content:
                   "Symmetric algorythms use the same unique key for encryption and decryption. You can specify any string of characters as a key.",
-              onPressed: widget.selectAsymmetricEncryption,
+              onPressed: widget.selectSymmetricDecryption,
             ),
             BigTonalTileButton(
               iconData: Symbols.passkey_rounded,

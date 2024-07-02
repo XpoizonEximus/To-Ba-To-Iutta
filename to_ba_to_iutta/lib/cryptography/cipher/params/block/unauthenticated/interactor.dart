@@ -29,14 +29,14 @@ class UnauthenticatedBlockCipherParamsInteractorState<
     yield* super.buildParams(context);
     yield NamedEnumInteractor<UnauthenticatedModeOfOperation>(
         key: _mooKey,
-        initial: widget.initial.moo,
+        initial: (initial as UnauthenticatedBlockCipherParams).moo,
         title: "Mode of operation",
         description:
             "This is the linker of the algorithm. The mode of operation tells the algorithm how to handle the succesive blocks of the input.",
         values: UnauthenticatedModeOfOperation.values);
     yield AuthenticatorDataInteractor(
       key: _authenticatorKey,
-      initial: widget.initial.authenticatorData,
+      initial: (initial as UnauthenticatedBlockCipherParams).authenticatorData,
       title: "Authenticator algorithm",
       description:
           "The cipher uses a authenticator to ensure the data has not been tampered with at the recieving end. Here update the data of the authenticator used.",
@@ -45,11 +45,8 @@ class UnauthenticatedBlockCipherParamsInteractorState<
 
   @override
   UnauthenticatedBlockCipherParams get current =>
-      UnauthenticatedBlockCipherParams(
-          _authenticatorKey.currentState?.current ??
-              widget.initial.authenticatorData,
-          _mooKey.currentState?.current ?? widget.initial.moo,
-          super.current);
+      UnauthenticatedBlockCipherParams(_authenticatorKey.currentState!.current,
+          _mooKey.currentState!.current, super.current);
 }
 
 typedef UnauthenticatedBlockCipherParamsInteractorKey

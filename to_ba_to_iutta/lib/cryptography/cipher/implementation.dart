@@ -24,13 +24,13 @@ class CipherImplementation extends Implementation<Cipher, CipherParams> {
       null,
       const UnauthenticatedStreamCipherImplementationConverter(),
       CipherParamsImplementation.unauthenticatedStream,
-      "Block cipher with separate authentication");
+      "Stream cipher with separate authentication");
 
   static final authenticatedStream = CipherImplementation(
       null,
       const AuthenticatedStreamCipherImplementationConverter(),
       CipherParamsImplementation.authenticatedStream,
-      "Block cipher with built-in authentication");
+      "Stream cipher with built-in authentication");
 
   const CipherImplementation(
       CipherImplementation? super.underlying,

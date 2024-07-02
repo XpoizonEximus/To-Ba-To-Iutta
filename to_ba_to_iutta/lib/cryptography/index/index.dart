@@ -15,32 +15,32 @@ part "mean.dart";
 part "params.dart";
 part "variables.dart";
 
-part "converter/mean_implementation_converter.dart";
-part "converter/params_interactor_converter.dart";
+part "converter/mean_implementation.dart";
+part "converter/params_interactor.dart";
 
 part "implementation/named.dart";
 part "implementation/implementation.dart";
 part "implementation/params_implementation.dart";
 
-part "interactor/interactor.dart";
-part "interactor/named_enum_interactor.dart";
-part "interactor/params_interactor.dart";
-part "interactor/data_interactor.dart";
+part "interactor/index.dart";
+part "interactor/named_enum.dart";
+part "interactor/params.dart";
+part "interactor/data.dart";
 
-part "interactor/textboxInteractor/textbox_interactor.dart";
-part "interactor/textboxInteractor/int_interactor.dart";
-part "interactor/textboxInteractor/bounded_int_interactor.dart";
+part "interactor/textbox/index.dart";
+part "interactor/textbox/int.dart";
+part "interactor/textbox/bounded_int.dart";
 
-part "serializer/serializer.dart";
-part "serializer/int_serializer.dart";
-part "serializer/bounded_int_serializer.dart";
-part "serializer/enum_serializer.dart";
-part "serializer/params_serializer.dart";
-part "serializer/data_serializer.dart";
-part "serializer/bytes_serializer.dart";
-part "serializer/bigint_serializer.dart";
+part "serializer/index.dart";
+part "serializer/int.dart";
+part "serializer/bounded_int.dart";
+part "serializer/enum.dart";
+part "serializer/params.dart";
+part "serializer/data.dart";
+part "serializer/bytes.dart";
+part "serializer/bigint.dart";
 
 part "generator/generator.dart";
-part "generator/secure_bytes_generator.dart";
+part "generator/secure_bytes.dart";
 
 part "dechunked_stream_queue.dart";

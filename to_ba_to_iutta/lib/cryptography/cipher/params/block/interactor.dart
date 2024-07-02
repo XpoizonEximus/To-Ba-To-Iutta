@@ -25,7 +25,7 @@ class BlockCipherParamsInteractorState<I extends BlockCipherParamsInteractor>
     yield* super.buildParams(context);
     yield NamedEnumInteractor<BlockCipherEngine>(
         key: _engineKey,
-        initial: widget.initial.engine,
+        initial: (initial as BlockCipherParams).engine,
         title: "Engine",
         description:
             "This is the hearth of the algorithm. The engine processes 2 blocks of information (key and input) and outputs the resulting block.",
@@ -34,9 +34,7 @@ class BlockCipherParamsInteractorState<I extends BlockCipherParamsInteractor>
 
   @override
   BlockCipherParams get current {
-    return BlockCipherParams(
-        _engineKey.currentState?.current ?? widget.initial.engine,
-        super.current);
+    return BlockCipherParams(_engineKey.currentState!.current, super.current);
   }
 }
 

@@ -28,7 +28,7 @@ class FixedLengthKeyAuthenticatorParamsInteractorState
     yield* super.buildParams(context);
     yield KdfDataInteractor(
       key: _key,
-      initial: widget.initial.kdfData,
+      initial: (initial as FixedLengthKeyAuthenticatorParams).kdfData,
       title: "Kdf algorithm",
       description:
           "This algorithm uses a kdf to get the key size to a required length.",
@@ -38,7 +38,7 @@ class FixedLengthKeyAuthenticatorParamsInteractorState
   @override
   FixedLengthKeyAuthenticatorParams get current =>
       FixedLengthKeyAuthenticatorParams(
-          super.current, _key.currentState?.current ?? widget.initial.kdfData);
+          super.current, _key.currentState!.current);
 }
 
 typedef FixedLengthKeyAuthenticatorParamsInteractorKey

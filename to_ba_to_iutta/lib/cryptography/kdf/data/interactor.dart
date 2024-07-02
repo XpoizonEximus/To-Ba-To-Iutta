@@ -17,26 +17,17 @@ class KdfDataInteractorState
   final _implementationKey = KdfImplementationInteractorKey();
   final _paramsKey = KdfParamsInteractorKey();
 
-  late KdfImplementation _implementation;
-
   @override
-  void initState() {
-    _implementation = widget.initial.implementation as KdfImplementation;
-    super.initState();
-  }
-
-  @override
-  Widget buildImplementation(BuildContext context) =>
+  KdfImplementationInteractor buildImplementation(BuildContext context) =>
       KdfImplementationInteractor(
-        initial: widget.initial.implementation as KdfImplementation,
-        onChanged: (implementation) => setState(() {
-          _implementation = implementation;
-        }),
+        key: _implementationKey,
+        initial: implementation as KdfImplementation,
+        onChanged: changeImplementation,
       );
 
   @override
-  Widget buildParams(BuildContext context) => _implementation.requiredParams
-      .interactor(_implementation.requiredParams.defaults, key: _paramsKey);
+  ParamsInteractor buildParams(BuildContext context) =>
+      implementation.requiredParams.interactor(params, key: _paramsKey);
 
   @override
   KdfData get current => KdfData(_implementationKey.currentState!.current,

@@ -22,15 +22,23 @@ abstract class ParamsInteractorState<T extends Params,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         super.build(context),
-        Container(
-          decoration: BoxDecoration(
-              border:
-                  Border(left: BorderSide(color: theme.colorScheme.secondary))),
-          child: Padding(
-              padding: const EdgeInsets.only(left: 4.0),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: buildParams(context).toList())),
+        Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: Container(
+            decoration: BoxDecoration(
+                border: Border(
+                    left: BorderSide(color: theme.colorScheme.secondary))),
+            child: Padding(
+                padding: const EdgeInsets.only(left: 8.0),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: buildParams(context)
+                        .map((e) => Padding(
+                              padding: const EdgeInsets.only(bottom: 16.0),
+                              child: e,
+                            ))
+                        .toList())),
+          ),
         )
       ],
     );

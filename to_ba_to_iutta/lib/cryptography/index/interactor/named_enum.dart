@@ -2,7 +2,13 @@ part of "../index.dart";
 
 class NamedEnumInteractor<T extends Named> extends Interactor<T> {
   final List<T> values;
-  final ValueChanged<T>? onChanged;
+  final ValueChanged<T>? _onChanged;
+
+  void onChanged(T value) {
+    if (_onChanged != null) {
+      _onChanged(value);
+    }
+  }
 
   const NamedEnumInteractor(
       {super.key,
@@ -10,7 +16,8 @@ class NamedEnumInteractor<T extends Named> extends Interactor<T> {
       required super.title,
       required super.description,
       required this.values,
-      this.onChanged});
+      ValueChanged<T>? onChanged})
+      : _onChanged = onChanged;
 
   @override
   NamedEnumInteractorState<T> createState() => NamedEnumInteractorState<T>();
@@ -18,23 +25,27 @@ class NamedEnumInteractor<T extends Named> extends Interactor<T> {
 
 class NamedEnumInteractorState<T extends Named>
     extends InteractorState<T, NamedEnumInteractor<T>> {
-  late T _selected;
+  late T _current;
 
   @override
   void initState() {
     super.initState();
-    _selected = widget.initial;
+    _current = initial;
   }
 
   void _onChanged(T? value) {
     if (value != null) {
       setState(() {
-        _selected = value;
+        _current = value;
       });
-      if (widget.onChanged != null) {
-        widget.onChanged!(value);
-      }
+      widget.onChanged(value);
     }
+  }
+
+  @override
+  set initial(T value) {
+    super.initial = value;
+    _current = initial;
   }
 
   @override
@@ -49,7 +60,7 @@ class NamedEnumInteractorState<T extends Named>
                 .map((e) => RadioListTile<T>(
                     title: Text(e.name),
                     value: e,
-                    groupValue: _selected,
+                    groupValue: _current,
                     onChanged: _onChanged))
                 .toList())
       ],
@@ -57,7 +68,7 @@ class NamedEnumInteractorState<T extends Named>
   }
 
   @override
-  T get current => _selected;
+  T get current => _current;
 }
 
 typedef NamedEnumInteractorKey<T extends Named>

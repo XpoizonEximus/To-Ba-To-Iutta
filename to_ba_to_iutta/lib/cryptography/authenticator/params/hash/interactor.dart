@@ -27,7 +27,7 @@ class HashAuthenticatorParamsInteractorState
     yield* super.buildParams(context);
     yield DigestDataInteractor(
       key: _key,
-      initial: widget.initial.digestData,
+      initial: (initial as HashAuthenticatorParams).digestData,
       title: "Digest algorithm",
       description:
           "This algorithm uses a digest to compute the authentication code (mac). Here update the data of the digest used.",
@@ -35,8 +35,8 @@ class HashAuthenticatorParamsInteractorState
   }
 
   @override
-  HashAuthenticatorParams get current => HashAuthenticatorParams(
-      super.current, _key.currentState?.current ?? widget.initial.digestData);
+  HashAuthenticatorParams get current =>
+      HashAuthenticatorParams(super.current, _key.currentState!.current);
 }
 
 typedef HashAuthenticatorParamsInteractorKey

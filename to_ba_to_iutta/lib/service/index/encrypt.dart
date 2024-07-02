@@ -24,12 +24,12 @@ mixin EncryptService on Service {
 
   @override
   Stream<Bytes> work(StreamQueue<Bytes> input) async* {
-    if (writer.path == null) {
+    if (reader.path == null) {
       yield Bytes.fromList([0]);
     } else {
       yield Bytes.fromList([1]);
       yield Bytes.fromList(
-          await (const BytesSerializer().serialize(utf8.encode(writer.name)))
+          await (const BytesSerializer().serialize(utf8.encode(reader.name)))
               .toList());
     }
     yield* input.rest;

@@ -25,7 +25,7 @@ class BlakeDigestParamsInteractorState
   @override
   void initState() {
     super.initState();
-    _initialOutputSize = widget.initial._outputSize;
+    _initialOutputSize = (initial as BlakeDigestParams)._outputSize;
   }
 
   @override
@@ -33,7 +33,7 @@ class BlakeDigestParamsInteractorState
     yield* super.buildParams(context);
     yield NamedEnumInteractor<BlakeDigestType>(
         key: _enumKey,
-        initial: widget.initial.type,
+        initial: (initial as BlakeDigestParams).type,
         title: "Type",
         description:
             "The 2b variant is optimized for 64-bit computing, therefore is suitable for most modern systems. The 2s is a lightweight variant optimized for 32-bit computing. They support output sizes ranging up to 64 and 32 bytes respectively.",
@@ -53,9 +53,9 @@ class BlakeDigestParamsInteractorState
 
   @override
   BlakeDigestParams get current {
-    final type = _enumKey.currentState?.current ?? widget.initial.type;
-    return BlakeDigestParams(super.current, type,
-        _intKey.currentState?.current.value ?? widget.initial.outputSize);
+    final type = _enumKey.currentState!.current;
+    return BlakeDigestParams(
+        super.current, type, _intKey.currentState!.current.value);
   }
 }
 
