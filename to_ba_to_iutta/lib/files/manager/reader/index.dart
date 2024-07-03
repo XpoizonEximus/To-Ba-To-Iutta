@@ -9,7 +9,8 @@ class FileReader extends FileManager {
   Future<bool> get choose async {
     final result = await FilePicker.platform.pickFiles(
         dialogTitle: "Open",
-        allowedExtensions: types.types.toList(),
+        // allowedExtensions: types.types.toList(),
+        // type: FileType.custom,
         allowMultiple: false,
         lockParentWindow: true);
     if (result == null) return false;

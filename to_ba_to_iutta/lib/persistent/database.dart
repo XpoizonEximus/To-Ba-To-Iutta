@@ -13,19 +13,34 @@ class DatabaseProvider {
   static Future<Database> _openDatabase() async {
     WidgetsFlutterBinding.ensureInitialized();
 
-    return await openDatabase(join(await getDatabasesPath(), _dbName),
-        onCreate: (database, version) {
-      return database.execute("""CREATE TABLE $_settings(
+    final db = await openDatabase(join(await getDatabasesPath(), _dbName),
+        onCreate: (database, version) async {
+      await database.execute("""CREATE TABLE $_settings(
         id INTEGER PRIMARY KEY,
         value TEXT
-        );
-        CREATE TABLE $_keys(
+        )""");
+      await database.execute("""CREATE TABLE $_keys(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT,
         public INTEGER(1),
         value TEXT
-        );""");
+        )""");
     }, version: _version);
+
+    // await db.execute("DROP TABLE $_settings");
+    // await db.execute("DROP TABLE $_keys");
+    await db.execute("""CREATE TABLE IF NOT EXISTS $_settings(
+        id INTEGER PRIMARY KEY,
+        value TEXT
+        )""");
+    await db.execute("""CREATE TABLE IF NOT EXISTS $_keys(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        public INTEGER(1),
+        value TEXT
+        )""");
+
+    return db;
   }
 
   DatabaseProvider() : _database = _openDatabase();

@@ -224,9 +224,14 @@ abstract class PageState<T extends Page> extends State<T> {
                 setState(() {
                   isDownloading = true;
                 });
-                if (await service.downloadOutput() == false) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text("Download cancelled")));
+                try {
+                  if (await service.downloadOutput() == false) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text("Download cancelled")));
+                  }
+                } catch (e) {
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(content: Text(e.toString())));
                 }
                 setState(() {
                   isDownloading = false;
