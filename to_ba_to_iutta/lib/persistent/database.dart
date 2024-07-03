@@ -40,6 +40,9 @@ class DatabaseProvider {
         value TEXT
         )""");
 
+    // await db.delete(_settings);
+    // await db.delete(_keys);
+
     return db;
   }
 

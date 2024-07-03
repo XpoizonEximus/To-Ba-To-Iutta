@@ -26,6 +26,11 @@ class FileWriter extends FileManager {
     //   return true;
     // }
 
+    if (Platform.isIOS) {
+      filePath = "${(await getDownloadsDirectory())?.path}/crypt.k";
+      return true;
+    }
+
     final type = Platform.isWindows ? FileType.custom : FileType.any;
 
     filePath = await FilePicker.platform.saveFile(
@@ -46,7 +51,7 @@ class FileWriter extends FileManager {
     if (status.isGranted) {
       // final f = await file.open(mode: FileMode.write);
       final directory = await getApplicationDocumentsDirectory();
-      final originalPath = "${directory.path}/test.k";
+      final originalPath = "${directory.path}/encrypted.k";
       final f = await File(originalPath).open(mode: FileMode.write);
       try {
         await for (final chunk in data) {
@@ -57,11 +62,16 @@ class FileWriter extends FileManager {
         // log((await File(originalPath).length()).toString()); // functioneaza
         log(originalPath);
         log(path!);
-        final originalFile = File(originalPath);
-        try {
-          await originalFile.copy(path!);
-        } catch (e) {
-          rethrow;
+        if (!Platform.isIOS) {
+          final originalFile = File(originalPath);
+          try {
+            if (!await file.exists()) {
+              await file.create(recursive: true);
+            }
+            await originalFile.copy(path!);
+          } catch (e) {
+            rethrow;
+          }
         }
       }
     } else {
